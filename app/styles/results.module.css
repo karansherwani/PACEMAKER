@@ -1,0 +1,141 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 5%;
+    min-height: 100vh;
+    background: #fcfcf9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #111827;
+  }
+  
+  .header p {
+    font-size: 1.2rem;
+    color: #374151;
+  }
+  
+  .selectTitle {
+    font-size: 1.3rem;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .sectionGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .sectionCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid rgba(94, 82, 64, 0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+  
+  .sectionCard:hover {
+    border-color: #218085;
+    box-shadow: 0 8px 20px rgba(33, 128, 133, 0.15);
+  }
+  
+  .sectionCard.selected {
+    border-color: #218085;
+    background: linear-gradient(135deg, rgba(33, 128, 133, 0.05) 0%, rgba(33, 128, 133, 0.02) 100%);
+  }
+  
+  .sectionCard.recommended {
+    border: 2px solid #218085;
+  }
+  
+  .badge {
+    position: absolute;
+    top: -12px;
+    right: 1rem;
+    background: #218085;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .sectionCard h4 {
+    font-size: 1.2rem;
+    color: #134252;
+    margin: 1rem 0 1rem 0;
+  }
+  
+  .detail {
+    font-size: 0.9rem;
+    color: #374151;
+    margin: 0.5rem 0;
+  }
+  
+  .detail strong {
+    color: #111827;
+  }
+  
+  .enrollBtn,
+  .backBtn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .enrollBtn {
+    background: #218085;
+    color: white;
+  }
+  
+  .enrollBtn:hover {
+    background: #1a6b73;
+    transform: translateY(-2px);
+  }
+  
+  .backBtn {
+    background: white;
+    color: #218085;
+    border: 2px solid #218085;
+  }
+  
+  .backBtn:hover {
+    background: #218085;
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem 5%;
+    }
+  
+    .header h2 {
+      font-size: 1.8rem;
+    }
+  
+    .sectionGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  

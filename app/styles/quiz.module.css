@@ -1,0 +1,180 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 5%;
+  min-height: 100vh;
+  background: #fcfcf9;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.header {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(94, 82, 64, 0.1);
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h3 {
+  margin: 0;
+  color: #111827;
+}
+
+.header p {
+  margin: 0;
+  color: #065f46;
+  font-weight: 600;
+}
+
+.progressBar {
+  height: 6px;
+  background: rgba(94, 82, 64, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: #218085;
+  transition: width 0.3s;
+}
+
+.questionContainer {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(94, 82, 64, 0.1);
+  margin-bottom: 2rem;
+}
+
+.questionNum {
+  font-size: 0.85rem;
+  color: #4b5563;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.questionText {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.optionItem {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: #111827;
+}
+
+.optionItem input {
+  margin-right: 1rem;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: #218085;
+}
+
+.optionItem:hover {
+  background: rgba(33, 128, 133, 0.05);
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.btnPrimary,
+.btnSecondary {
+  flex: 1;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  border: none;
+}
+
+.btnPrimary {
+  background: #218085;
+  color: white;
+}
+
+.btnPrimary:hover {
+  background: #1a6b73;
+}
+
+.btnSecondary {
+  background: transparent;
+  color: #218085;
+  border: 2px solid #218085;
+}
+
+.btnSecondary:hover {
+  background: #218085;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .buttons {
+    flex-direction: column;
+  }
+}
+
+.courseList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.courseCard {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(94, 82, 64, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.courseCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: #218085;
+}
+
+.courseCard h4 {
+  margin: 0 0 0.5rem 0;
+  color: #111827;
+  font-size: 1.25rem;
+}
+
+.courseCard p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.description {
+  margin-top: 0.75rem !important;
+  font-size: 0.85rem !important;
+  color: #6b7280 !important;
+  font-style: italic;
+}.inputContainer { display: flex; gap: 1rem; margin-bottom: 2rem; } .courseInput { flex: 1; padding: 0.8rem; border: 1px solid rgba(94, 82, 64, 0.2); border-radius: 8px; font-size: 1rem; color: #111827; } .errorMessage { color: #dc2626; margin-bottom: 1.5rem; padding: 0.75rem; background: #fef2f2; border-radius: 6px; border: 1px solid #fee2e2; } 

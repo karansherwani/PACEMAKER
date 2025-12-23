@@ -1,0 +1,248 @@
+:root {
+  --uofa-red: #C41E3A;
+  --uofa-blue: #003366;
+}
+
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+}
+
+.header {
+  background: linear-gradient(135deg, var(--uofa-blue) 0%, var(--uofa-red) 100%);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin: 5px 0 0 0;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.userAvatar {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.logoutBtn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.logoutBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.main {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.welcomeCard {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+  border-left: 5px solid var(--uofa-red);
+}
+
+.welcomeCard h1 {
+  color: var(--uofa-blue);
+  margin-bottom: 10px;
+}
+
+.welcomeCard p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.optionCard {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: all 0.3s;
+  border-top: 3px solid var(--uofa-blue);
+}
+
+.optionCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.optionIcon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.optionCard h3 {
+  color: var(--uofa-blue);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.optionCard p {
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.actionBtn {
+  background: var(--uofa-red);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.actionBtn:hover {
+  background: var(--uofa-blue);
+  transform: scale(1.05);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Batch Section */
+.batchSection {
+  margin-top: 50px;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.batchTitle {
+  color: var(--uofa-blue);
+  font-size: 1.6rem;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.batchSubtitle {
+  color: #666;
+  text-align: center;
+  margin: 0 0 30px 0;
+}
+
+.batchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.batchCard {
+  background: linear-gradient(135deg, rgba(0, 51, 102, 0.03) 0%, rgba(196, 30, 58, 0.03) 100%);
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid #eee;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.batchCard:hover {
+  border-color: var(--uofa-red);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.batchIcon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.batchCard h3 {
+  color: var(--uofa-blue);
+  margin: 0 0 15px 0;
+  font-size: 1.3rem;
+}
+
+.batchDetails {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.batchDetails p {
+  margin: 8px 0;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.batchDetails strong {
+  color: var(--uofa-blue);
+}
+
+.batchDesc {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .batchGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,456 @@
+/* PROGRESS PAGE STYLES - Grade Calculator */
+
+:root {
+    --uofa-red: #C41E3A;
+    --uofa-blue: #003366;
+    --uofa-light-blue: #E3F2FD;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666;
+    --border-color: #ddd;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--uofa-blue) 0%, #1a1a2e 100%);
+}
+
+.header {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: white;
+}
+
+.backBtn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.backBtn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    opacity: 0.8;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.main {
+    padding: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.welcomeCard {
+    background: linear-gradient(135deg, var(--uofa-red) 0%, #9a1830 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.welcomeCard h1 {
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+}
+
+.welcomeCard p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Input Section */
+.inputSection {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+}
+
+.inputSection h2 {
+    color: var(--uofa-blue);
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+}
+
+.hint {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.warning {
+    color: var(--uofa-red);
+    font-weight: 600;
+}
+
+/* Course Selection */
+.courseGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.courseCard {
+    padding: 15px 20px;
+    background: var(--uofa-light-blue);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--uofa-blue);
+}
+
+.courseCard:hover {
+    border-color: var(--uofa-red);
+}
+
+.selectedCourse {
+    border-color: var(--uofa-red);
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.1) 0%, rgba(0, 51, 102, 0.1) 100%);
+}
+
+.courseName {
+    flex: 1;
+}
+
+.deleteBtn {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+.deleteBtn:hover {
+    color: var(--uofa-red);
+}
+
+.addCourseBtn {
+    padding: 15px 25px;
+    background: transparent;
+    border: 2px dashed var(--border-color);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.addCourseBtn:hover {
+    border-color: var(--uofa-red);
+    color: var(--uofa-red);
+}
+
+.addCourseForm {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.courseInput {
+    padding: 12px 15px;
+    border: 2px solid var(--uofa-red);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    width: 200px;
+    color: var(--text-primary);
+}
+
+.saveBtn {
+    padding: 12px 20px;
+    background: var(--uofa-red);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.saveBtn:hover {
+    background: #a31830;
+}
+
+.cancelBtn {
+    padding: 12px 20px;
+    background: #eee;
+    color: var(--text-secondary);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cancelBtn:hover {
+    background: #ddd;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+}
+
+.componentsList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.componentRow {
+    display: grid;
+    grid-template-columns: 1fr 100px 100px 120px;
+    gap: 15px;
+    align-items: center;
+    padding: 15px;
+    background: var(--uofa-light-blue);
+    border-radius: 10px;
+    border-left: 4px solid var(--uofa-red);
+}
+
+.componentName {
+    font-weight: 600;
+}
+
+.nameInput {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: white;
+}
+
+.componentWeight label,
+.componentScore label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.componentWeight input,
+.componentScore input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    text-align: center;
+    color: var(--text-primary);
+    background: white;
+}
+
+.componentWeight input:disabled,
+.componentScore input:disabled {
+    background: #f0f0f0;
+    color: #999;
+}
+
+.componentCompleted {
+    display: flex;
+    align-items: center;
+}
+
+.componentCompleted label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.componentCompleted input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--uofa-red);
+}
+
+.addBtn {
+    margin-top: 15px;
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.addBtn:hover {
+    border-color: var(--uofa-red);
+    color: var(--uofa-red);
+    background: rgba(196, 30, 58, 0.05);
+}
+
+/* Results Section */
+.resultsSection {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.resultsSection h2 {
+    color: var(--uofa-blue);
+    margin: 0 0 25px 0;
+    font-size: 1.4rem;
+}
+
+.resultsSection h3 {
+    color: var(--uofa-blue);
+    margin: 30px 0 20px 0;
+    font-size: 1.1rem;
+}
+
+.currentGrade {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(0, 51, 102, 0.05) 0%, rgba(196, 30, 58, 0.05) 100%);
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.gradeCircle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--uofa-blue) 0%, var(--uofa-red) 100%);
+    margin: 0 auto 15px;
+    color: white;
+}
+
+.gradeNumber {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.gradeLabel {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.currentGrade>p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.targetGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+}
+
+.targetCard {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    text-align: center;
+    border: 3px solid #ddd;
+    transition: all 0.3s;
+}
+
+.targetCard:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.targetGrade {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--uofa-blue);
+}
+
+.targetMin {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.neededScore {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.neededPercent {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.statusText {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.enterScores {
+    font-size: 0.85rem;
+    color: #999;
+    font-style: italic;
+    padding: 10px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .componentRow {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .componentWeight,
+    .componentScore {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .componentWeight label,
+    .componentScore label {
+        margin-bottom: 0;
+        min-width: 70px;
+    }
+
+    .targetGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

@@ -1,0 +1,268 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.backBtn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.backBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+.uniName {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.authCard {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.authCard h1,
+.authCard h2 {
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.authCard > p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.securityNote {
+  background: linear-gradient(135deg, rgba(51, 102, 153, 0.08) 0%, rgba(196, 30, 58, 0.08) 100%);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+  margin-bottom: 30px;
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+}
+
+.securityNote strong {
+  color: var(--primary-color);
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.formGroup input::placeholder {
+  color: #666666;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.fieldHint {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 5px;
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordWrapper input {
+  padding-right: 45px;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px;
+}
+
+.methodsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.methodCard {
+  padding: 30px 20px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.methodCard:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(196, 30, 58, 0.1);
+}
+
+.methodIcon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.methodCard h3 {
+  color: var(--secondary-color);
+  margin-bottom: 5px;
+}
+
+.methodCard p {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.arrow {
+  display: block;
+  margin-top: 10px;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 20px;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--secondary-color);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #C41E3A;
+  background: #ffe6e6;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.helpText {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
+
+.helpText a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.helpText a:hover {
+  text-decoration: underline;
+}
+
+.toggleMode {
+  text-align: center;
+  margin-top: 20px;
+  color: #444;              /* darker, readable text */
+  font-size: 0.9rem;
+}
+
+.toggleMode p {
+  margin: 0;
+}
+
+.toggleBtn {
+  background: none;
+  border: none;
+  color: #C41E3A;           /* UofA red for visibility */
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.toggleBtn:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .authCard {
+    padding: 20px;
+  }
+
+  .methodsGrid {
+    grid-template-columns: 1fr;
+  }
+}

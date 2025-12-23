@@ -1,0 +1,340 @@
+/* PLACEMENTS PAGE STYLES */
+
+:root {
+    --uofa-red: #C41E3A;
+    --uofa-blue: #003366;
+    --uofa-light-blue: #E3F2FD;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--uofa-blue) 0%, #1a1a2e 100%);
+}
+
+.header {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: white;
+}
+
+.backBtn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.backBtn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    opacity: 0.8;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.main {
+    padding: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Choose Method Section */
+.chooseSection,
+.uploadSection,
+.uaccessSection,
+.resultsSection {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+}
+
+.chooseSection h2,
+.uploadSection h2,
+.uaccessSection h2,
+.resultsSection h2 {
+    color: var(--uofa-blue);
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+.hint {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.optionsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.optionCard {
+    background: var(--uofa-light-blue);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.optionCard:hover {
+    border-color: var(--uofa-red);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.optionIcon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.optionCard h3 {
+    color: var(--uofa-blue);
+    margin: 0 0 15px 0;
+}
+
+.optionCard p {
+    color: var(--text-secondary);
+    margin: 0 0 20px 0;
+    font-size: 0.9rem;
+}
+
+.optionAction {
+    color: var(--uofa-red);
+    font-weight: 600;
+}
+
+/* Upload Section */
+.uploadArea {
+    border: 3px dashed #ddd;
+    border-radius: 12px;
+    padding: 60px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.uploadArea:hover {
+    border-color: var(--uofa-red);
+}
+
+.uploadIcon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.uploadBtn {
+    background: var(--uofa-red);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 15px;
+}
+
+.uploadBtn:hover {
+    background: #a31830;
+}
+
+.formats {
+    color: #999;
+    font-size: 0.8rem;
+    margin-top: 15px;
+}
+
+.uploading,
+.connecting {
+    padding: 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #ddd;
+    border-top: 4px solid var(--uofa-red);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* UAccess Section */
+.uaccessCard {
+    background: linear-gradient(135deg, rgba(0, 51, 102, 0.05) 0%, rgba(196, 30, 58, 0.05) 100%);
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid #eee;
+    margin-bottom: 20px;
+}
+
+.uaccessLogo {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.uaccessCard h3 {
+    color: var(--uofa-blue);
+    margin: 0 0 5px 0;
+}
+
+.uaccessCard>p {
+    color: var(--text-secondary);
+    margin: 0 0 25px 0;
+}
+
+.connectBtn {
+    background: var(--uofa-blue);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.connectBtn:hover {
+    background: #002244;
+}
+
+.securityNote {
+    color: #22c55e;
+    font-size: 0.85rem;
+    margin-top: 15px;
+}
+
+.backLink {
+    background: none;
+    border: none;
+    color: var(--uofa-red);
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: block;
+    margin: 0 auto;
+}
+
+.backLink:hover {
+    text-decoration: underline;
+}
+
+/* Results Section */
+.gradesCard,
+.recommendationCard {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.gradesCard h3,
+.recommendationCard h3 {
+    color: var(--uofa-blue);
+    margin: 0 0 20px 0;
+}
+
+.gradesTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.gradesTable th,
+.gradesTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.gradesTable th {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.gradeCell {
+    font-weight: 700;
+    color: var(--uofa-blue);
+}
+
+.trackBadge {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 25px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.recommendationCard p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.enrollBtn {
+    background: var(--uofa-red);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.enrollBtn:hover {
+    background: #a31830;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .optionsGrid {
+        grid-template-columns: 1fr;
+    }
+}

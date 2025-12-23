@@ -1,0 +1,320 @@
+/* CLUBS & EVENTS PAGE STYLES */
+
+:root {
+    --uofa-red: #C41E3A;
+    --uofa-blue: #003366;
+    --uofa-light-blue: #E3F2FD;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--uofa-blue) 0%, #1a1a2e 100%);
+}
+
+.header {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: white;
+}
+
+.backBtn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.backBtn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    opacity: 0.8;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.main {
+    padding: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.welcomeCard {
+    background: linear-gradient(135deg, var(--uofa-red) 0%, #9a1830 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.welcomeCard h1 {
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+}
+
+.welcomeCard p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Filter Section */
+.filterSection {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.filterSection h2 {
+    color: var(--uofa-blue);
+    margin: 0 0 15px 0;
+    font-size: 1.2rem;
+}
+
+.interestTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.interestTag {
+    padding: 8px 16px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.interestTag:hover {
+    border-color: var(--uofa-red);
+    color: var(--uofa-red);
+}
+
+.interestTag.selected {
+    background: var(--uofa-red);
+    border-color: var(--uofa-red);
+    color: white;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 10px 10px 0 0;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.tab:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.activeTab {
+    background: white;
+    color: var(--uofa-blue);
+}
+
+/* List Section */
+.listSection {
+    background: white;
+    border-radius: 0 0 16px 16px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+/* Clubs Grid */
+.clubsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.clubCard {
+    background: var(--uofa-light-blue);
+    padding: 25px;
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.clubCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.categoryBadge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--uofa-blue);
+    color: white;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+}
+
+.clubCard h3 {
+    color: var(--uofa-blue);
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+}
+
+.description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0 0 15px 0;
+    line-height: 1.5;
+}
+
+.clubMeta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+.joinBtn {
+    background: var(--uofa-red);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.joinBtn:hover {
+    background: #a31830;
+}
+
+/* Events Grid */
+.eventsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.eventCard {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--uofa-light-blue);
+    padding: 20px;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.eventCard:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.eventDate {
+    background: var(--uofa-red);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 70px;
+}
+
+.eventDay {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.eventMonth {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.eventInfo {
+    flex: 1;
+}
+
+.eventInfo h3 {
+    color: var(--uofa-blue);
+    margin: 5px 0 8px 0;
+    font-size: 1.1rem;
+}
+
+.eventMeta {
+    display: flex;
+    gap: 20px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.rsvpBtn {
+    background: var(--uofa-blue);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.rsvpBtn:hover {
+    background: #002244;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .clubsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .eventCard {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .eventMeta {
+        justify-content: center;
+    }
+}
