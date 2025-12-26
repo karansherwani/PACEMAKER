@@ -33,7 +33,7 @@ export default function Dashboard() {
       <header className={styles.header}>
         <div>
           <div className={styles.logo}>🎓 PaceMatch</div>
-          <p className={styles.subtitle}>Smart Course Pacing</p>
+          <p className={styles.subtitle}>Match Your Pace</p>
         </div>
         <div className={styles.userSection}>
           <div className={styles.userAvatar}>{studentName.charAt(0).toUpperCase()}</div>

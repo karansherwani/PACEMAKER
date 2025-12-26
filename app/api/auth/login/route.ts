@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { findUser, saveUser } from '../../../lib/db';
 
 export async function POST(request: NextRequest) {
   try {
@@ -27,46 +28,67 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // MOCK RESPONSE - Accept ANY credentials for demo
-    const mockResponse = {
-      success: true,
-      token: 'auth_token_' + Date.now(),
-      fullName: authMethod === 'email'
-        ? email.split('@')[0].charAt(0).toUpperCase() + email.split('@')[0].slice(1)
-        : netId.charAt(0).toUpperCase() + netId.slice(1),
-      email: email || netId + '@arizona.edu',
-      studentId: 'A00' + Math.random().toString().slice(2, 8),
-      classes: [
-        {
-          code: 'MATH 201',
-          name: 'Calculus II',
-          credits: 4,
-          grade: 'A-',
-          professor: 'Dr. Sarah Chen',
-        },
-        {
-          code: 'PHYS 151',
-          name: 'Physics I',
-          credits: 4,
-          grade: 'B+',
-          professor: 'Prof. John Williams',
-        },
-        {
-          code: 'CSE 120',
-          name: 'Data Structures',
-          credits: 3,
-          grade: 'A',
-          professor: 'Dr. Michael Johnson',
-        },
-      ],
-      grades: [
-        { courseCode: 'MATH 201', grade: 'A-' },
-        { courseCode: 'PHYS 151', grade: 'B+' },
-        { courseCode: 'CSE 120', grade: 'A' },
-      ],
-    };
+    const identifier = authMethod === 'email' ? email : netId;
+    const isSignup = body.isSignup; // Ensure your frontend sends this flag!
 
-    return NextResponse.json(mockResponse, { status: 200 });
+    if (isSignup) {
+      if (findUser(identifier)) {
+        return NextResponse.json({ message: 'User already exists' }, { status: 409 });
+      }
+
+      const newUser = {
+        id: Date.now().toString(),
+        authMethod,
+        identifier,
+        password, // In prod, hash this
+        fullName: authMethod === 'email'
+          ? email.split('@')[0].charAt(0).toUpperCase() + email.split('@')[0].slice(1)
+          : netId.charAt(0).toUpperCase() + netId.slice(1),
+        studentId: 'A00' + Math.random().toString().slice(2, 8),
+      };
+
+      saveUser(newUser);
+
+      // Return successful session immediately after signup
+      return NextResponse.json({
+        success: true,
+        token: 'auth_token_' + Date.now(),
+        fullName: newUser.fullName,
+        email: newUser.identifier + (authMethod === 'netid' ? '@arizona.edu' : ''),
+        studentId: newUser.studentId,
+        classes: [], // Empty for new users
+        grades: [],
+      }, { status: 200 });
+
+    } else {
+      // Sign In
+      const user = findUser(identifier);
+
+      if (!user) {
+        return NextResponse.json({ message: 'User not found' }, { status: 404 });
+      }
+
+      if (user.password !== password) {
+        return NextResponse.json({ message: 'Invalid password' }, { status: 401 });
+      }
+
+      return NextResponse.json({
+        success: true,
+        token: 'auth_token_' + Date.now(),
+        fullName: user.fullName,
+        email: user.identifier + (user.authMethod === 'netid' ? '@arizona.edu' : ''),
+        studentId: user.studentId,
+        // Mock classes for demo if user has none, or could persist them too
+        classes: [
+          { code: 'MATH 201', name: 'Calculus II', credits: 4, grade: 'A-', professor: 'Dr. Sarah Chen' },
+          { code: 'PHYS 151', name: 'Physics I', credits: 4, grade: 'B+', professor: 'Prof. John Williams' }
+        ],
+        grades: [
+          { courseCode: 'MATH 201', grade: 'A-' },
+          { courseCode: 'PHYS 151', grade: 'B+' }
+        ],
+      }, { status: 200 });
+    }
   } catch (error) {
     console.error('Auth error:', error);
     return NextResponse.json(

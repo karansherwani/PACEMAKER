@@ -192,29 +192,10 @@ export default function ProgressPage() {
                 </div>
 
                 {/* Course Selection */}
+                {/* Add Course Section */}
                 <section className={styles.inputSection}>
-                    <h2>Your Courses</h2>
-
-                    <div className={styles.courseGrid}>
-                        {courses.map((course) => (
-                            <div
-                                key={course.id}
-                                className={`${styles.courseCard} ${selectedCourse?.id === course.id ? styles.selectedCourse : ''}`}
-                                onClick={() => setSelectedCourse(course)}
-                            >
-                                <span className={styles.courseName}>{course.name}</span>
-                                <button
-                                    className={styles.deleteBtn}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        deleteCourse(course.id);
-                                    }}
-                                >
-                                    ×
-                                </button>
-                            </div>
-                        ))}
-
+                    <div className={styles.addCourseContainer}>
+                        <h2>Manage Courses</h2>
                         {showAddCourse ? (
                             <div className={styles.addCourseForm}>
                                 <input
@@ -234,10 +215,54 @@ export default function ProgressPage() {
                                 className={styles.addCourseBtn}
                                 onClick={() => setShowAddCourse(true)}
                             >
-                                + Add Course
+                                + Add New Course
                             </button>
                         )}
                     </div>
+                </section>
+
+                {/* Course List Section */}
+                <section className={styles.inputSection}>
+                    <h2>Your Saved Courses</h2>
+                    {courses.length === 0 ? (
+                        <div className={styles.emptyState}>
+                            <p>No courses added yet. Add a course above to get started!</p>
+                        </div>
+                    ) : (
+                        <div className={styles.courseGrid}>
+                            {courses.map((course) => {
+                                const courseComponents = course.components;
+                                const compWeight = courseComponents.filter(c => c.completed && c.score !== null).reduce((sum, c) => sum + c.weight, 0);
+                                const earned = courseComponents.filter(c => c.completed && c.score !== null).reduce((sum, c) => sum + (c.score ?? 0), 0);
+                                const grade = compWeight > 0 ? (earned / compWeight) * 100 : 0;
+
+                                return (
+                                    <div
+                                        key={course.id}
+                                        className={`${styles.courseCard} ${selectedCourse?.id === course.id ? styles.selectedCourse : ''}`}
+                                        onClick={() => setSelectedCourse(course)}
+                                    >
+                                        <div className={styles.courseHeader}>
+                                            <span className={styles.courseName}>{course.name}</span>
+                                            <button
+                                                className={styles.deleteBtn}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    deleteCourse(course.id);
+                                                }}
+                                            >
+                                                ×
+                                            </button>
+                                        </div>
+                                        <div className={styles.courseGradeSummary}>
+                                            <span className={styles.gradeValue}>{grade.toFixed(1)}%</span>
+                                            <span className={styles.gradeLabel}>Current</span>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
                 </section>
 
                 {/* Grade Calculator for Selected Course */}

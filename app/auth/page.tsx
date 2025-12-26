@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import styles from '../styles/auth.module.css';
 
 type AuthMethod = 'email' | 'netid' | null;
-type Mode = 'signin' | 'signup';
+type Mode = 'signin' | 'signup' | 'reset';
 
 export default function AuthPage() {
   const router = useRouter();
@@ -20,6 +20,11 @@ export default function AuthPage() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // Reset Password State
+  const [otp, setOtp] = useState('');
+  const [resetStep, setResetStep] = useState<'request' | 'verify'>('request');
+  const [resetMessage, setResetMessage] = useState('');
 
   useEffect(() => {
     const uni = localStorage.getItem('selectedUniversity');
@@ -80,7 +85,6 @@ export default function AuthPage() {
         const data = await response.json();
         localStorage.setItem('studentName', data.fullName || data.email || netId);
         localStorage.setItem('studentEmail', data.email || '');
-        // IMPORTANT FIX: ensure a string, not `null`
         localStorage.setItem('loginMethod', authMethod || 'email');
         localStorage.setItem('authToken', data.token || '');
 
@@ -99,6 +103,50 @@ export default function AuthPage() {
     } catch (err) {
       setError('Connection failed. Please try again or contact IT support.');
       console.error('Auth Error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReset = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setResetMessage('');
+
+    try {
+      const response = await fetch('/api/auth/reset', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email || undefined,
+          netId: netId || undefined,
+          otp: resetStep === 'verify' ? otp : undefined,
+          newPassword: resetStep === 'verify' ? password : undefined
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        if (resetStep === 'request') {
+          setResetStep('verify');
+          setResetMessage(data.message);
+        } else {
+          setResetMessage('Password reset successfully! Please sign in.');
+          setTimeout(() => {
+            setMode('signin');
+            setResetStep('request');
+            setPassword('');
+            setOtp('');
+            setResetMessage('');
+          }, 2000);
+        }
+      } else {
+        setError(data.message || 'Error processing request');
+      }
+    } catch (err) {
+      setError('Connection failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -158,7 +206,7 @@ export default function AuthPage() {
     );
   }
 
-  // Step 2: sign-in / sign-up form
+  // Step 2-3: Sign In / Sign Up / Reset
   return (
     <div className={styles.container} style={cssVars}>
       <header className={styles.header}>
@@ -175,83 +223,118 @@ export default function AuthPage() {
         <div className={styles.authCard}>
           <h2>
             {mode === 'signin'
-              ? authMethod === 'email'
-                ? 'Email Sign In'
-                : 'NetID Sign In'
-              : authMethod === 'email'
-                ? 'Create Email Account'
-                : 'Create NetID Account'}
+              ? authMethod === 'email' ? 'Email Sign In' : 'NetID Sign In'
+              : mode === 'signup'
+                ? authMethod === 'email' ? 'Create Email Account' : 'Create NetID Account'
+                : 'Reset Password'}
           </h2>
           <p>
-            {mode === 'signin'
-              ? 'Enter your credentials to continue'
-              : 'Create your account to get started'}
+            {mode === 'signin' ? 'Enter your credentials to continue' :
+              mode === 'signup' ? 'Create your account to get started' :
+                'Follow the steps to recover access'}
           </p>
 
-
-
-          <form onSubmit={handleSubmit}>
-            {authMethod === 'email' ? (
+          {mode === 'reset' ? (
+            <form onSubmit={handleReset}>
               <div className={styles.formGroup}>
-                <label htmlFor="email">Email Address</label>
+                <label>{authMethod === 'email' ? 'Email Address' : 'NetID'}</label>
                 <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your.email@example.com"
-                  required
-                  disabled={loading}
-                />
-              </div>
-            ) : (
-              <div className={styles.formGroup}>
-                <label htmlFor="netId">NetID / Student ID</label>
-                <input
-                  id="netId"
                   type="text"
-                  value={netId}
-                  onChange={(e) => setNetId(e.target.value)}
-                  placeholder="e.g., jsmith"
+                  value={authMethod === 'email' ? email : netId}
+                  onChange={(e) => authMethod === 'email' ? setEmail(e.target.value) : setNetId(e.target.value)}
+                  placeholder={authMethod === 'email' ? "your.email@example.com" : "e.g., jsmith"}
                   required
-                  disabled={loading}
+                  disabled={loading || resetStep === 'verify'}
                 />
-                <p className={styles.fieldHint}>Your unique identifier at {uni.name}</p>
               </div>
-            )}
 
-            <div className={styles.formGroup}>
-              <label htmlFor="password">Password</label>
-              <div className={styles.passwordWrapper}>
-                <input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  required
-                  disabled={loading}
-                />
-                <button
-                  type="button"
-                  className={styles.togglePassword}
-                  onClick={() => setShowPassword(!showPassword)}
-                  tabIndex={-1}
-                >
-                  {showPassword ? '🙈' : '👁️'}
-                </button>
-              </div>
-            </div>
+              {resetStep === 'verify' && (
+                <>
+                  <div className={styles.formGroup}>
+                    <label>Enter OTP</label>
+                    <input
+                      type="text"
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value)}
+                      placeholder="Enter 6-digit code"
+                      required
+                      disabled={loading}
+                    />
+                    <p className={styles.fieldHint}>Check console for OTP (Demo: 123456)</p>
+                  </div>
+                  <div className={styles.formGroup}>
+                    <label>New Password</label>
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="New Password"
+                      required
+                      disabled={loading}
+                    />
+                  </div>
+                </>
+              )}
 
-            {mode === 'signup' && (
+              {error && <p className={styles.error}>{error}</p>}
+              {resetMessage && <p className={styles.success} style={{ color: 'green', fontSize: '0.9rem', marginBottom: '15px' }}>{resetMessage}</p>}
+
+              <button type="submit" className={styles.submitBtn} disabled={loading}>
+                {loading ? 'Processing...' : resetStep === 'request' ? 'Send OTP' : 'Reset Password'}
+              </button>
+
+              <button
+                type="button"
+                className={styles.toggleBtn}
+                style={{ marginTop: '15px', width: '100%' }}
+                onClick={() => {
+                  setMode('signin');
+                  setError('');
+                  setResetStep('request');
+                }}
+              >
+                Back to Sign In
+              </button>
+            </form>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              {authMethod === 'email' ? (
+                <div className={styles.formGroup}>
+                  <label htmlFor="email">Email Address</label>
+                  <input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your.email@example.com"
+                    required
+                    disabled={loading}
+                  />
+                </div>
+              ) : (
+                <div className={styles.formGroup}>
+                  <label htmlFor="netId">NetID / Student ID</label>
+                  <input
+                    id="netId"
+                    type="text"
+                    value={netId}
+                    onChange={(e) => setNetId(e.target.value)}
+                    placeholder="e.g., jsmith"
+                    required
+                    disabled={loading}
+                  />
+                  <p className={styles.fieldHint}>Your unique identifier at {uni.name}</p>
+                </div>
+              )}
+
               <div className={styles.formGroup}>
-                <label htmlFor="confirmPassword">Confirm Password</label>
+                <label htmlFor="password">Password</label>
                 <div className={styles.passwordWrapper}>
                   <input
-                    id="confirmPassword"
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
                     required
                     disabled={loading}
@@ -259,80 +342,109 @@ export default function AuthPage() {
                   <button
                     type="button"
                     className={styles.togglePassword}
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    onClick={() => setShowPassword(!showPassword)}
                     tabIndex={-1}
                   >
-                    {showConfirmPassword ? '🙈' : '👁️'}
+                    {showPassword ? '🙈' : '👁️'}
                   </button>
                 </div>
               </div>
-            )}
 
-            {error && <p className={styles.error}>{error}</p>}
-
-            <button
-              type="submit"
-              className={styles.submitBtn}
-              disabled={
-                loading ||
-                !password ||
-                (!email && !netId) ||
-                (mode === 'signup' && !confirmPassword)
-              }
-            >
-              {loading ? 'Processing...' : mode === 'signin' ? 'Sign In' : 'Create Account'}
-            </button>
-
-            {mode === 'signin' && (
-              <p className={styles.helpText}>
-                Forgot your password?{' '}
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert('Password reset coming soon');
-                  }}
-                >
-                  Reset it here
-                </a>
-              </p>
-            )}
-          </form>
-
-          <div className={styles.toggleMode}>
-            <p>
-              {mode === 'signin' ? (
-                <>
-                  Don't have an account?{' '}
-                  <button
-                    type="button"
-                    className={styles.toggleBtn}
-                    onClick={() => {
-                      setMode('signup');
-                      setError('');
-                    }}
-                  >
-                    Sign Up
-                  </button>
-                </>
-              ) : (
-                <>
-                  Already have an account?{' '}
-                  <button
-                    type="button"
-                    className={styles.toggleBtn}
-                    onClick={() => {
-                      setMode('signin');
-                      setError('');
-                      setConfirmPassword('');
-                    }}
-                  >
-                    Sign In
-                  </button>
-                </>
+              {mode === 'signup' && (
+                <div className={styles.formGroup}>
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <div className={styles.passwordWrapper}>
+                    <input
+                      id="confirmPassword"
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="••••••••"
+                      required
+                      disabled={loading}
+                    />
+                    <button
+                      type="button"
+                      className={styles.togglePassword}
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      tabIndex={-1}
+                    >
+                      {showConfirmPassword ? '🙈' : '👁️'}
+                    </button>
+                  </div>
+                </div>
               )}
-            </p>
-          </div>
+
+              {error && <p className={styles.error}>{error}</p>}
+
+              <button
+                type="submit"
+                className={styles.submitBtn}
+                disabled={
+                  loading ||
+                  !password ||
+                  (!email && !netId) ||
+                  (mode === 'signup' && !confirmPassword)
+                }
+              >
+                {loading ? 'Processing...' : mode === 'signin' ? 'Sign In' : 'Create Account'}
+              </button>
+
+              {mode === 'signin' && (
+                <p className={styles.helpText}>
+                  Forgot your password?{' '}
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMode('reset');
+                      setError('');
+                      setResetMessage('');
+                    }}
+                  >
+                    Reset it here
+                  </a>
+                </p>
+              )}
+            </form>
+          )}
+
+          {mode !== 'reset' && (
+            <div className={styles.toggleMode}>
+              <p>
+                {mode === 'signin' ? (
+                  <>
+                    Don't have an account?{' '}
+                    <button
+                      type="button"
+                      className={styles.toggleBtn}
+                      onClick={() => {
+                        setMode('signup');
+                        setError('');
+                      }}
+                    >
+                      Sign Up
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    Already have an account?{' '}
+                    <button
+                      type="button"
+                      className={styles.toggleBtn}
+                      onClick={() => {
+                        setMode('signin');
+                        setError('');
+                        setConfirmPassword('');
+                      }}
+                    >
+                      Sign In
+                    </button>
+                  </>
+                )}
+              </p>
+            </div>
+          )}
         </div>
       </main>
     </div>

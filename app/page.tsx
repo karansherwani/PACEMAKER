@@ -29,9 +29,9 @@ export default function LandingPage() {
       {/* HERO SECTION */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <div className={styles.logo}>🎓 PaceMatch</div>
-          <h1>Find Your Perfect Course Pace</h1>
-          <p>Adaptive learning paths based on your grades and learning speed</p>
+          <div className={styles.logo}>🎓 PaceMatch 🎓</div>
+          <h1>Your Pace. Your Story.</h1>
+          <p>Learn at a pace that fits you. Graduate when you're ready. Build the college experience you actually want.</p>
           <button
             className={styles.ctaButton}
             onClick={() => setShowUniSelect(true)}
@@ -61,7 +61,7 @@ export default function LandingPage() {
           <div className={styles.featureCard}>
             <div className={styles.featureIcon}>📋</div>
             <h3>Course Batches</h3>
-            <p>Choose from Fast Track (7 weeks), Standard (10-12 weeks), or Supported (full semester)</p>
+            <p>Choose from Fast Track (7 weeks), Standard (14 weeks), or Supported (full semester)</p>
           </div>
 
           <div className={styles.featureCard}>

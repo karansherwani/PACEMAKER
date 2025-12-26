@@ -117,23 +117,60 @@
     cursor: pointer;
     transition: all 0.3s;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column;
+    gap: 12px;
     font-weight: 600;
     color: var(--uofa-blue);
+    min-width: 200px;
+}
+
+.courseHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.courseGradeSummary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.gradeValue {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--uofa-red);
+}
+
+.courseCard:hover .gradeValue {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+.gradeLabel {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
 }
 
 .courseCard:hover {
     border-color: var(--uofa-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.15);
 }
 
 .selectedCourse {
     border-color: var(--uofa-red);
     background: linear-gradient(135deg, rgba(196, 30, 58, 0.1) 0%, rgba(0, 51, 102, 0.1) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.2);
 }
 
 .courseName {
-    flex: 1;
+    font-size: 1.1rem;
 }
 
 .deleteBtn {
@@ -150,20 +187,28 @@
     color: var(--uofa-red);
 }
 
+.addCourseContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .addCourseBtn {
-    padding: 15px 25px;
-    background: transparent;
-    border: 2px dashed var(--border-color);
-    border-radius: 10px;
-    color: var(--text-secondary);
+    padding: 12px 24px;
+    background: var(--uofa-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 0.95rem;
+    font-weight: 600;
     transition: all 0.3s;
 }
 
 .addCourseBtn:hover {
-    border-color: var(--uofa-red);
-    color: var(--uofa-red);
+    background: var(--uofa-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.2);
 }
 
 .addCourseForm {

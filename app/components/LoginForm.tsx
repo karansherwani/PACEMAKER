@@ -14,7 +14,7 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // API call to validate credentials
     try {
       const response = await fetch('/api/auth/login', {
