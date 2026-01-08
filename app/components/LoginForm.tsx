@@ -28,7 +28,7 @@ export default function LoginForm({ onLoginSuccess }: LoginFormProps) {
       } else {
         setError('Invalid credentials');
       }
-    } catch (err) {
+    } catch {
       setError('Login failed. Try again.');
     }
   };

@@ -1,53 +1,118 @@
 /* PROGRESS PAGE STYLES - Grade Calculator */
 
 :root {
-    --uofa-red: #C41E3A;
-    --uofa-blue: #003366;
-    --uofa-light-blue: #E3F2FD;
-    --text-primary: #1a1a1a;
-    --text-secondary: #666;
-    --border-color: #ddd;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --uofa-red: var(--color-secondary);
+    --uofa-red-dark: var(--color-secondary-hover);
+    --uofa-blue: var(--color-primary);
+    --uofa-blue-light: var(--color-primary-hover);
+    --bg-light: var(--color-background);
+    --text-primary: var(--color-text);
+    --text-secondary: var(--color-text-secondary);
+    --border-color: var(--color-border);
 }
 
 .container {
+    width: 100%;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--uofa-blue) 0%, #1a1a2e 100%);
+    background: var(--color-surface);
 }
 
-.header {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 20px 30px;
+/* Header - Matching Landing Page */
+.topHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 48px;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.headerLogo {
     display: flex;
     align-items: center;
-    gap: 30px;
-    color: white;
+    gap: 10px;
 }
 
-.backBtn {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    transition: all 0.3s;
-}
-
-.backBtn:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.logo {
-    font-size: 1.8rem;
+.logoMark {
+    width: 32px;
+    height: 32px;
+    background: var(--uofa-blue);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--color-text-inverse);
 }
 
-.subtitle {
-    opacity: 0.8;
+.logoText {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--uofa-blue);
+}
+
+.headerNav {
+    display: flex;
+    gap: 36px;
+}
+
+.headerNav a {
+    color: var(--text-secondary);
+    text-decoration: none;
     font-size: 0.9rem;
-    margin: 0;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.headerNav a:hover {
+    color: var(--uofa-blue);
+}
+
+.headerCta {
+    background: var(--uofa-blue);
+    color: var(--color-text-inverse);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.headerCta:hover {
+    background: var(--uofa-blue-light);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--uofa-blue) 0%, var(--uofa-blue-light) 100%);
+    color: var(--color-text-inverse);
+    padding: 60px 48px 70px;
+    text-align: center;
+}
+
+.heroContent {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+}
+
+.heroSubtext {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.6;
 }
 
 .main {
@@ -57,7 +122,7 @@
 }
 
 .welcomeCard {
-    background: linear-gradient(135deg, var(--uofa-red) 0%, #9a1830 100%);
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-hover) 100%);
     color: white;
     padding: 30px;
     border-radius: 16px;
@@ -85,7 +150,7 @@
 }
 
 .inputSection h2 {
-    color: var(--uofa-blue);
+    color: var(--color-primary);
     margin: 0 0 10px 0;
     font-size: 1.4rem;
 }
@@ -97,7 +162,7 @@
 }
 
 .warning {
-    color: var(--uofa-red);
+    color: var(--color-error);
     font-weight: 600;
 }
 
@@ -109,9 +174,183 @@
     margin-bottom: 20px;
 }
 
+/* New Course List Layout - Inline with Subsections */
+.coursesList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.courseItemRow {
+    background: var(--color-background);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+    overflow: hidden;
+}
+
+.courseItemRow.expanded {
+    border-color: var(--color-secondary);
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.15);
+}
+
+.courseHeaderRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.courseHeaderRow:hover {
+    background: rgba(0, 51, 102, 0.05);
+}
+
+.courseNameSection {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.expandIcon {
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+    width: 20px;
+    display: inline-block;
+}
+
+.courseName {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.gradeSection {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.finalGrade {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    min-width: 80px;
+    text-align: right;
+}
+
+/* Subsections Container */
+.subsectionsContainer {
+    background: var(--color-background);
+    padding: 20px;
+    border-top: 2px solid rgba(0, 51, 102, 0.1);
+}
+
+.subsectionRow {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+    background: var(--color-background);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--color-primary);
+}
+
+.subsectionName {
+    flex: 1;
+}
+
+.subsectionNameInput {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: white;
+}
+
+.subsectionDetails {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.subsectionField {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.subsectionField label {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.subsectionField span {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.subsectionInput {
+    padding: 6px 10px;
+    border: 2px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 70px;
+    text-align: center;
+    color: var(--text-primary);
+    background: white;
+}
+
+.subsectionInput:disabled {
+    background: var(--color-border);
+    color: var(--color-text-tertiary);
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.checkboxLabel input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-secondary);
+}
+
+.addSubsectionBtn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px dashed var(--color-border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.addSubsectionBtn:hover {
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+    background: rgba(196, 30, 58, 0.05);
+}
+
 .courseCard {
     padding: 15px 20px;
-    background: var(--uofa-light-blue);
+    background: var(--color-background);
     border: 2px solid transparent;
     border-radius: 10px;
     cursor: pointer;
@@ -120,7 +359,7 @@
     flex-direction: column;
     gap: 12px;
     font-weight: 600;
-    color: var(--uofa-blue);
+    color: var(--color-primary);
     min-width: 200px;
 }
 
@@ -143,7 +382,7 @@
 .gradeValue {
     font-size: 1.4rem;
     font-weight: 700;
-    color: var(--uofa-red);
+    color: var(--color-secondary);
 }
 
 .courseCard:hover .gradeValue {
@@ -157,13 +396,13 @@
 }
 
 .courseCard:hover {
-    border-color: var(--uofa-red);
+    border-color: var(--color-secondary);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(196, 30, 58, 0.15);
 }
 
 .selectedCourse {
-    border-color: var(--uofa-red);
+    border-color: var(--color-secondary);
     background: linear-gradient(135deg, rgba(196, 30, 58, 0.1) 0%, rgba(0, 51, 102, 0.1) 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(196, 30, 58, 0.2);
@@ -176,7 +415,7 @@
 .deleteBtn {
     background: none;
     border: none;
-    color: #999;
+    color: var(--color-text-tertiary);
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0 5px;
@@ -184,7 +423,7 @@
 }
 
 .deleteBtn:hover {
-    color: var(--uofa-red);
+    color: var(--color-secondary);
 }
 
 .addCourseContainer {
@@ -195,7 +434,7 @@
 
 .addCourseBtn {
     padding: 12px 24px;
-    background: var(--uofa-blue);
+    background: var(--color-primary);
     color: white;
     border: none;
     border-radius: 8px;
@@ -206,7 +445,7 @@
 }
 
 .addCourseBtn:hover {
-    background: var(--uofa-red);
+    background: var(--color-secondary);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(196, 30, 58, 0.2);
 }
@@ -219,7 +458,7 @@
 
 .courseInput {
     padding: 12px 15px;
-    border: 2px solid var(--uofa-red);
+    border: 2px solid var(--color-secondary);
     border-radius: 8px;
     font-size: 0.95rem;
     width: 200px;
@@ -228,7 +467,7 @@
 
 .saveBtn {
     padding: 12px 20px;
-    background: var(--uofa-red);
+    background: var(--color-secondary);
     color: white;
     border: none;
     border-radius: 8px;
@@ -237,12 +476,12 @@
 }
 
 .saveBtn:hover {
-    background: #a31830;
+    background: var(--color-secondary-hover);
 }
 
 .cancelBtn {
     padding: 12px 20px;
-    background: #eee;
+    background: var(--color-border);
     color: var(--text-secondary);
     border: none;
     border-radius: 8px;
@@ -250,7 +489,7 @@
 }
 
 .cancelBtn:hover {
-    background: #ddd;
+    background: var(--color-border-hover);
 }
 
 .emptyState {
@@ -271,9 +510,9 @@
     gap: 15px;
     align-items: center;
     padding: 15px;
-    background: var(--uofa-light-blue);
+    background: var(--color-background);
     border-radius: 10px;
-    border-left: 4px solid var(--uofa-red);
+    border-left: 4px solid var(--color-secondary);
 }
 
 .componentName {
@@ -283,7 +522,7 @@
 .nameInput {
     width: 100%;
     padding: 8px 12px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: 6px;
     font-size: 0.95rem;
     font-weight: 600;
@@ -303,7 +542,7 @@
 .componentScore input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     border-radius: 6px;
     font-size: 0.95rem;
     text-align: center;
@@ -313,8 +552,8 @@
 
 .componentWeight input:disabled,
 .componentScore input:disabled {
-    background: #f0f0f0;
-    color: #999;
+    background: var(--color-border);
+    color: var(--color-text-tertiary);
 }
 
 .componentCompleted {
@@ -334,14 +573,14 @@
 .componentCompleted input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: var(--uofa-red);
+    accent-color: var(--color-secondary);
 }
 
 .addBtn {
     margin-top: 15px;
     padding: 12px 24px;
     background: transparent;
-    border: 2px dashed #ddd;
+    border: 2px dashed var(--color-border);
     border-radius: 10px;
     color: var(--text-secondary);
     cursor: pointer;
@@ -351,27 +590,27 @@
 }
 
 .addBtn:hover {
-    border-color: var(--uofa-red);
-    color: var(--uofa-red);
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
     background: rgba(196, 30, 58, 0.05);
 }
 
 /* Results Section */
 .resultsSection {
-    background: white;
+    background: var(--color-surface);
     border-radius: 16px;
     padding: 30px;
     box-shadow: var(--shadow);
 }
 
 .resultsSection h2 {
-    color: var(--uofa-blue);
+    color: var(--color-primary);
     margin: 0 0 25px 0;
     font-size: 1.4rem;
 }
 
 .resultsSection h3 {
-    color: var(--uofa-blue);
+    color: var(--color-primary);
     margin: 30px 0 20px 0;
     font-size: 1.1rem;
 }
@@ -392,7 +631,7 @@
     width: 140px;
     height: 140px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--uofa-blue) 0%, var(--uofa-red) 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     margin: 0 auto 15px;
     color: white;
 }
@@ -421,10 +660,10 @@
 
 .targetCard {
     padding: 20px;
-    background: #f9f9f9;
+    background: var(--color-background);
     border-radius: 12px;
     text-align: center;
-    border: 3px solid #ddd;
+    border: 3px solid var(--color-border);
     transition: all 0.3s;
 }
 
@@ -436,7 +675,7 @@
 .targetGrade {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--uofa-blue);
+    color: var(--color-primary);
 }
 
 .targetMin {
@@ -464,7 +703,7 @@
 
 .enterScores {
     font-size: 0.85rem;
-    color: #999;
+    color: var(--color-text-tertiary);
     font-style: italic;
     padding: 10px 0;
 }

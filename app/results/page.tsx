@@ -5,21 +5,21 @@ import { useState } from 'react';
 import styles from '../styles/results.module.css';
 
 const SECTIONS = {
-  'fast-track': {
+  'Fast Track': {
     name: 'Fast Track ⚡',
     duration: '7 Weeks',
     meetings: 'MWF 8:00-9:30 AM',
     professor: 'Dr. Sarah Chen',
   },
-  standard: {
+  'Standard Track': {
     name: 'Standard Track 📚',
-    duration: '10-12 Weeks',
+    duration: 'Full Semester',
     meetings: 'MWF 1:00-2:30 PM',
     professor: 'Prof. John Smith',
   },
-  supported: {
+  'Supported Track': {
     name: 'Supported Track 🎯',
-    duration: 'Full Semester',
+    duration: 'Full Semester + Tutoring',
     meetings: 'MWF 3:00-4:30 PM + Tutoring',
     professor: 'Dr. Maria Garcia',
   },
@@ -29,11 +29,16 @@ export default function ResultsPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const score = searchParams.get('score') || '0';
-  const recommended = searchParams.get('section') || 'standard';
-  const [selected, setSelected] = useState(recommended);
+  // Read 'batch' param from quiz, default to Standard Track
+  const recommended = searchParams.get('batch') || 'Standard Track';
+
+  // Ensure selected state matches a valid key, fallback if mismatch
+  const initialSelection = SECTIONS[recommended as keyof typeof SECTIONS] ? recommended : 'Standard Track';
+  const [selected, setSelected] = useState(initialSelection);
 
   const handleEnroll = () => {
-    alert(`✅ Enrolled in ${SECTIONS[selected as keyof typeof SECTIONS].name}!`);
+    // @ts-ignore
+    alert(`✅ Enrolled in ${SECTIONS[selected]?.name || selected}!`);
     router.push('/dashboard');
   };
 
@@ -50,9 +55,8 @@ export default function ResultsPage() {
         {Object.entries(SECTIONS).map(([key, sec]) => (
           <div
             key={key}
-            className={`${styles.sectionCard} ${
-              selected === key ? styles.selected : ''
-            } ${key === recommended ? styles.recommended : ''}`}
+            className={`${styles.sectionCard} ${selected === key ? styles.selected : ''
+              } ${key === recommended ? styles.recommended : ''}`}
             onClick={() => setSelected(key)}
           >
             {key === recommended && <span className={styles.badge}>Recommended</span>}
@@ -70,14 +74,14 @@ export default function ResultsPage() {
         ))}
       </div>
 
-      <button 
+      <button
         className={styles.enrollBtn}
         onClick={handleEnroll}
       >
         Enroll in Selected Section
       </button>
 
-      <button 
+      <button
         className={styles.backBtn}
         onClick={() => router.push('/dashboard')}
       >

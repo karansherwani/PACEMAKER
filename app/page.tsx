@@ -7,16 +7,113 @@ import styles from './styles/landing.module.css';
 export default function LandingPage() {
   const router = useRouter();
   const [showUniSelect, setShowUniSelect] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [uniSearch, setUniSearch] = useState('');
 
   const universities = [
-    { id: 'uofa', name: 'University of Arizona', logo: '🐻', color: '#C41E3A' },
-    { id: 'asu', name: 'Arizona State University', logo: '🦀', color: '#8B0000' },
-    { id: 'uofc', name: 'University of Colorado Boulder', logo: '⛰️', color: '#CFB53B' },
-    { id: 'ucsd', name: 'UC San Diego', logo: '⚓', color: '#0066CC' },
-    { id: 'stanford', name: 'Stanford University', logo: '🌲', color: '#B1040E' },
-    { id: 'mit', name: 'MIT', logo: '🔬', color: '#A6192E' },
-    { id: 'harvard', name: 'Harvard University', logo: '📚', color: '#CE1126' },
-    { id: 'berkeley', name: 'UC Berkeley', logo: '🐻', color: '#003262' },
+    { id: 'uofa', name: 'University of Arizona', domain: 'arizona.edu' },
+    { id: 'asu', name: 'Arizona State University', domain: 'asu.edu' },
+    { id: 'nau', name: 'Northern Arizona University', domain: 'nau.edu' },
+    { id: 'uofc', name: 'University of Colorado Boulder', domain: 'colorado.edu' },
+    { id: 'ucsd', name: 'UC San Diego', domain: 'ucsd.edu' },
+    { id: 'stanford', name: 'Stanford University', domain: 'stanford.edu' },
+    { id: 'mit', name: 'MIT', domain: 'mit.edu' },
+    { id: 'berkeley', name: 'UC Berkeley', domain: 'berkeley.edu' },
+  ];
+
+  const filteredUniversities = universities.filter(uni =>
+    uni.name.toLowerCase().includes(uniSearch.toLowerCase()) ||
+    uni.domain.toLowerCase().includes(uniSearch.toLowerCase())
+  );
+
+  const steps = [
+    {
+      number: '01',
+      title: 'Upload Transcript',
+      description: 'Upload your academic transcript. Our system analyzes your grades and academic history automatically.'
+    },
+    {
+      number: '02',
+      title: 'Get Batch Recommendation',
+      description: 'Based on your prerequisite grades, we recommend the optimal batch placement for your success.'
+    },
+    {
+      number: '03',
+      title: 'Optional Assessment',
+      description: 'If placed in Batch B, take an optional quiz to qualify for the accelerated Batch A track.'
+    },
+    {
+      number: '04',
+      title: 'Start Learning',
+      description: 'Enroll in your matched batch and begin your coursework at the pace designed for you.'
+    }
+  ];
+
+  const features = [
+    {
+      title: 'Transcript Analysis',
+      desc: 'Upload your transcript for instant prerequisite grade evaluation',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14,2 14,8 20,8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+        </svg>
+      )
+    },
+    {
+      title: 'Batch Matching',
+      desc: 'Get placed in Batch A (7 weeks) or Batch B (14 weeks) based on readiness',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12,6 12,12 16,14" />
+        </svg>
+      )
+    },
+    {
+      title: 'Upgrade Path',
+      desc: 'Take the readiness quiz to move from standard to accelerated placement',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <line x1="12" y1="19" x2="12" y2="5" />
+          <polyline points="5,12 12,5 19,12" />
+        </svg>
+      )
+    },
+    {
+      title: 'Grade Calculator',
+      desc: 'Plan your semester and calculate final exam scores needed',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <line x1="18" y1="20" x2="18" y2="10" />
+          <line x1="12" y1="20" x2="12" y2="4" />
+          <line x1="6" y1="20" x2="6" y2="14" />
+        </svg>
+      )
+    }
+  ];
+
+  const testimonials = [
+    {
+      type: 'student',
+      name: 'Sarah Martinez',
+      role: 'Computer Science, Stanford',
+      text: 'PaceMatch placed me in the accelerated track based on my strong calculus background. I completed the course in 7 weeks.',
+    },
+    {
+      type: 'faculty',
+      name: 'Dr. Robert Chen',
+      role: 'Associate Professor, MIT',
+      text: 'The batch matching system has significantly improved student success rates by placing them at the right pace.',
+    },
+    {
+      type: 'student',
+      name: 'Marcus Johnson',
+      role: 'Engineering, UC Berkeley',
+      text: 'I started in Batch B but took the quiz to prove my readiness. Now I am in the fast track and thriving.',
+    }
   ];
 
   const handleUniversitySelect = (uniId: string) => {
@@ -24,104 +121,260 @@ export default function LandingPage() {
     router.push('/auth');
   };
 
+  const handleFeedbackSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert('Thank you for your feedback!');
+    setShowFeedback(false);
+  };
+
   return (
     <div className={styles.container}>
+      {/* HEADER */}
+      <header className={styles.topHeader}>
+        <div className={styles.headerLogo}>
+          <div className={styles.logoMark}>PM</div>
+          <span className={styles.logoText}>PaceMatch</span>
+        </div>
+        <nav className={styles.headerNav}>
+          <a href="#features">Products</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#testimonials">Testimonials</a>
+        </nav>
+        <button className={styles.headerCta} onClick={() => setShowUniSelect(true)}>
+          Get Started
+        </button>
+      </header>
+
       {/* HERO SECTION */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <div className={styles.logo}>🎓 PaceMatch 🎓</div>
-          <h1>Your Pace. Your Story.</h1>
-          <p>Learn at a pace that fits you. Graduate when you're ready. Build the college experience you actually want.</p>
+          <h1>YOUR PACE<br />YOUR STORY</h1>
+          <p className={styles.heroSubtext}>
+            Data-driven batch placement based on your prerequisite grades. Get matched to the right course pace for academic success.
+          </p>
           <button
             className={styles.ctaButton}
             onClick={() => setShowUniSelect(true)}
           >
             Get Started
           </button>
+          <p className={styles.freeText}>Free for students · Trusted by 2,600+ universities</p>
         </div>
       </section>
 
-      {/* FEATURES SECTION */}
-      <section className={styles.features}>
-        <h2>How It Works</h2>
+      {/* HOW IT WORKS */}
+      <section id="how-it-works" className={styles.howItWorks}>
+        <div className={styles.sectionLabel}>How It Works</div>
+        <h2>Get Matched in <span className={styles.accentText}>Four Steps</span></h2>
+        <p className={styles.sectionSubtext}>
+          From transcript analysis to batch placement—our streamlined process ensures you are in the right track.
+        </p>
 
-        <div className={styles.featureGrid}>
-          <div className={styles.featureCard}>
-            <div className={styles.featureIcon}>📊</div>
-            <h3>Analyze Prerequisites</h3>
-            <p>We review your prerequisite grades to understand your foundation</p>
+        <div className={styles.stepsContainer}>
+          {steps.map((step, index) => (
+            <div key={index} className={styles.stepItem}>
+              <div className={styles.stepNumber}>{step.number}</div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FEATURES */}
+      <section id="features" className={styles.featuresSection}>
+        <h2>Everything You Need</h2>
+        <div className={styles.featuresGrid}>
+          {features.map((feature, idx) => (
+            <div key={idx} className={styles.featureCard}>
+              <div className={styles.featureIcon}>
+                {feature.icon}
+              </div>
+              <h3>{feature.title}</h3>
+              <p>{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* STATISTICS */}
+      <section className={styles.stats}>
+        <div className={styles.statsGrid}>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>700M+</div>
+            <div className={styles.statLabel}>Courses Analyzed</div>
           </div>
-
-          <div className={styles.featureCard}>
-            <div className={styles.featureIcon}>🧠</div>
-            <h3>Adaptive Learning</h3>
-            <p>Get personalized course pacing based on your learning speed</p>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>2,600+</div>
+            <div className={styles.statLabel}>Universities</div>
           </div>
-
-          <div className={styles.featureCard}>
-            <div className={styles.featureIcon}>📋</div>
-            <h3>Course Batches</h3>
-            <p>Choose from Fast Track (7 weeks), Standard (14 weeks), or Supported (full semester)</p>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>140K+</div>
+            <div className={styles.statLabel}>Instructors</div>
           </div>
-
-          <div className={styles.featureCard}>
-            <div className={styles.featureIcon}>✅</div>
-            <h3>Real-time Progress</h3>
-            <p>Track your progress with detailed analytics and insights</p>
+          <div className={styles.statCard}>
+            <div className={styles.statNumber}>3.2M+</div>
+            <div className={styles.statLabel}>Students</div>
           </div>
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
-      <section className={styles.whyUs}>
-        <h2>Why Choose PaceMatch?</h2>
-        <div className={styles.reasonsList}>
-          <div className={styles.reason}>
-            <span className={styles.checkmark}>✓</span>
-            <p>Integrated with your university's system (UAccess)</p>
+      {/* TESTIMONIALS */}
+      <section id="testimonials" className={styles.testimonials}>
+        <h2>What People Say</h2>
+        <div className={styles.testimonialsGrid}>
+          {testimonials.map((testimonial, idx) => (
+            <div key={idx} className={styles.testimonialCard}>
+              <p className={styles.testimonialText}>&ldquo;{testimonial.text}&rdquo;</p>
+              <div className={styles.testimonialAuthor}>
+                <div className={styles.authorName}>{testimonial.name}</div>
+                <div className={styles.authorRole}>{testimonial.role}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SUPPORT */}
+      <section className={styles.support}>
+        <div className={styles.supportGrid}>
+          <div className={styles.supportCard}>
+            <h3>Help Center</h3>
+            <p>Get help with our comprehensive knowledge base.</p>
+            <button className={styles.supportBtn} onClick={() => alert('Help center coming soon')}>
+              Visit Help Center
+            </button>
           </div>
-          <div className={styles.reason}>
-            <span className={styles.checkmark}>✓</span>
-            <p>Personalized learning paths for your major</p>
+          <div className={styles.supportCard}>
+            <h3>Contact Us</h3>
+            <p>Have questions? Our team is here to help.</p>
+            <a href="mailto:support@pacematch.edu" className={styles.supportBtn}>
+              Email Support
+            </a>
           </div>
-          <div className={styles.reason}>
-            <span className={styles.checkmark}>✓</span>
-            <p>Real-time feedback and progress tracking</p>
-          </div>
-          <div className={styles.reason}>
-            <span className={styles.checkmark}>✓</span>
-            <p>Flexible course pacing to fit your schedule</p>
+          <div className={styles.supportCard}>
+            <h3>Feedback</h3>
+            <p>Help us improve with your suggestions.</p>
+            <button className={styles.supportBtn} onClick={() => setShowFeedback(true)}>
+              Give Feedback
+            </button>
           </div>
         </div>
       </section>
 
-      {/* UNIVERSITY SELECTION MODAL */}
+      {/* FINAL CTA */}
+      <section className={styles.finalCTA}>
+        <h2>Ready to Find Your Batch?</h2>
+        <p>Join thousands of students in the right course pace.</p>
+        <button className={styles.ctaButton} onClick={() => setShowUniSelect(true)}>
+          Get Started
+        </button>
+      </section>
+
+      {/* FOOTER */}
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
+          <div className={styles.footerSection}>
+            <h4>PaceMatch</h4>
+            <p>Matching students to the right course pace.</p>
+          </div>
+          <div className={styles.footerSection}>
+            <h4>Product</h4>
+            <a href="#features">Features</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/placements">My Grades</a>
+          </div>
+          <div className={styles.footerSection}>
+            <h4>Resources</h4>
+            <a href="/help">Help Center</a>
+            <a href="/feedback">Feedback</a>
+            <a href="/privacy">Privacy</a>
+          </div>
+        </div>
+        <div className={styles.footerBottom}>
+          © 2026 PaceMatch. All rights reserved.
+        </div>
+      </footer>
+
+      {/* UNIVERSITY MODAL */}
       {showUniSelect && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <button
               className={styles.closeBtn}
-              onClick={() => setShowUniSelect(false)}
+              onClick={() => { setShowUniSelect(false); setUniSearch(''); }}
             >
-              ✕
+              ×
             </button>
 
-            <h2>Select Your University</h2>
-            <p>Choose your institution to get started</p>
+            <div className={styles.modalHeader}>
+              <div className={styles.modalLogo}>PM</div>
+              <h2>PaceMatch</h2>
+              <p className={styles.modalTagline}>Your academic success partner</p>
+            </div>
 
-            <div className={styles.universityGrid}>
-              {universities.map((uni) => (
+            <h3 className={styles.findUniTitle}>Find Your University</h3>
+            <p className={styles.findUniDesc}>Search and select your institution</p>
+
+            <div className={styles.searchWrapper}>
+              <svg className={styles.searchIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search universities..."
+                value={uniSearch}
+                onChange={(e) => setUniSearch(e.target.value)}
+                className={styles.searchInput}
+              />
+            </div>
+
+            <div className={styles.universityList}>
+              {filteredUniversities.map((uni) => (
                 <button
                   key={uni.id}
-                  className={styles.universityCard}
+                  className={styles.universityItem}
                   onClick={() => handleUniversitySelect(uni.id)}
-                  style={{ borderColor: uni.color }}
                 >
-                  <div className={styles.uniLogo}>{uni.logo}</div>
-                  <div className={styles.uniName}>{uni.name}</div>
+                  <div className={styles.uniIcon}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M3 21h18" />
+                      <path d="M9 8h1" />
+                      <path d="M14 8h1" />
+                      <path d="M9 12h1" />
+                      <path d="M14 12h1" />
+                      <path d="M9 16h1" />
+                      <path d="M14 16h1" />
+                      <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
+                    </svg>
+                  </div>
+                  <div className={styles.uniInfo}>
+                    <div className={styles.uniName}>{uni.name}</div>
+                    <div className={styles.uniDomain}>{uni.domain}</div>
+                  </div>
                 </button>
               ))}
+              {filteredUniversities.length === 0 && (
+                <p className={styles.noResults}>No universities found.</p>
+              )}
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* FEEDBACK MODAL */}
+      {showFeedback && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <button className={styles.closeBtn} onClick={() => setShowFeedback(false)}>×</button>
+            <h2>Share Your Feedback</h2>
+            <p>We value your input.</p>
+            <form onSubmit={handleFeedbackSubmit} className={styles.feedbackForm}>
+              <input type="email" placeholder="Your email" required className={styles.feedbackInput} />
+              <textarea placeholder="Your feedback..." required rows={5} className={styles.feedbackTextarea}></textarea>
+              <button type="submit" className={styles.submitBtn}>Submit</button>
+            </form>
           </div>
         </div>
       )}

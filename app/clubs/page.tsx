@@ -59,6 +59,8 @@ export default function ClubsPage() {
             router.push('/');
             return;
         }
+        // Initialize name
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         setStudentName(name);
     }, [router]);
 
@@ -83,21 +85,33 @@ export default function ClubsPage() {
 
     return (
         <div className={styles.container}>
-            <header className={styles.header}>
-                <button className={styles.backBtn} onClick={() => router.push('/dashboard')}>
-                    ← Back to Dashboard
-                </button>
-                <div>
-                    <div className={styles.logo}>🎪 Clubs & Events</div>
-                    <p className={styles.subtitle}>Discover opportunities based on your interests</p>
+            {/* HEADER */}
+            <header className={styles.topHeader}>
+                <div className={styles.headerLogo}>
+                    <div className={styles.logoMark}>PM</div>
+                    <span className={styles.logoText}>PaceMatch</span>
                 </div>
+                <nav className={styles.headerNav}>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/placements">My Courses</a>
+                    <a href="/progress">Calculate Grades</a>
+                </nav>
+                <button className={styles.headerCta} onClick={() => router.push('/dashboard')}>
+                    ← Back
+                </button>
             </header>
 
-            <main className={styles.main}>
-                <div className={styles.welcomeCard}>
-                    <h1>Hi {studentName}! 👋</h1>
-                    <p>Find clubs and events that match your interests to enhance your college experience</p>
+            {/* HERO SECTION */}
+            <section className={styles.hero}>
+                <div className={styles.heroContent}>
+                    <h1>Clubs &amp; Events</h1>
+                    <p className={styles.heroSubtext}>
+                        Discover clubs and events that match your interests to enhance your college experience.
+                    </p>
                 </div>
+            </section>
+
+            <main className={styles.main}>
 
                 {/* Interest Filter */}
                 <section className={styles.filterSection}>

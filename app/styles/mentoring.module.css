@@ -1,0 +1,553 @@
+:root {
+    --uofa-red: var(--color-secondary);
+    --uofa-red-dark: var(--color-secondary-hover);
+    --uofa-blue: var(--color-primary);
+    --uofa-blue-light: var(--color-primary-hover);
+    --bg-light: var(--color-background);
+    --text-primary: var(--color-text);
+    --text-secondary: var(--color-text-secondary);
+    --border-color: var(--color-border);
+    --success-bg: var(--color-success-bg);
+    --success-text: var(--color-success);
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--color-surface);
+}
+
+/* Header - Matching Landing Page */
+.topHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 48px;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.headerLogo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logoMark {
+    width: 32px;
+    height: 32px;
+    background: var(--uofa-blue);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--color-text-inverse);
+}
+
+.logoText {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--uofa-blue);
+}
+
+.headerNav {
+    display: flex;
+    gap: 36px;
+}
+
+.headerNav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.headerNav a:hover {
+    color: var(--uofa-blue);
+}
+
+.headerCta {
+    background: var(--uofa-blue);
+    color: var(--color-text-inverse);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.headerCta:hover {
+    background: var(--uofa-blue-light);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--uofa-blue) 0%, var(--uofa-blue-light) 100%);
+    color: var(--color-text-inverse);
+    padding: 60px 48px 70px;
+    text-align: center;
+}
+
+.heroContent {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+}
+
+.heroSubtext {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.pageHeader {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.userIcon {
+    background: var(--color-warning-bg);
+    color: var(--color-warning);
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+}
+
+.pageHeader h1 {
+    font-size: 2.25rem;
+    color: var(--uofa-blue);
+    margin: 0 0 12px 0;
+    font-weight: 800;
+}
+
+.pageHeader p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: 0 0 16px 0;
+}
+
+.fixedRate {
+    background: var(--color-success-bg);
+    color: var(--color-success);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Search Bar */
+.searchWrapper {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.searchInputContainer {
+    position: relative;
+    background: var(--color-background);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border: 1px solid var(--color-border);
+}
+
+.searchIcon {
+    color: var(--text-secondary);
+}
+
+.searchInput {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+}
+
+.searchInput:focus {
+    outline: none;
+}
+
+/* Mentors Grid */
+.mentorsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.mentorCard {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mentorCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.mentorCardHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.mentorAvatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background: var(--uofa-blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.mentorAvatarAlt {
+    background: var(--uofa-red);
+}
+
+.mentorInfo {
+    flex: 1;
+    margin-left: 16px;
+}
+
+.mentorName {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--uofa-blue);
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    /* Darker text */
+}
+
+.starIcon {
+    color: var(--color-warning);
+}
+
+.reviews {
+    color: var(--color-text-secondary);
+    /* Darker secondary text */
+}
+
+.price {
+    text-align: right;
+}
+
+.priceAmount {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--uofa-blue);
+    /* Changed from green to blue */
+    display: block;
+}
+
+.pricePeriod {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.bio {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-text);
+    /* Darker text */
+    margin-bottom: 16px;
+}
+
+.coursesList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.courseTag {
+    background: rgba(12, 35, 75, 0.05);
+    color: var(--uofa-blue);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.cardFooter {
+    display: flex;
+    gap: 20px;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+}
+
+.footerItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Meeting Options Toggle */
+.meetingTypeToggle {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.typeBtn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+    background: white;
+    color: var(--text-primary);
+    transition: all 0.2s;
+}
+
+.typeBtnActive {
+    background: var(--uofa-blue);
+    color: white;
+    border-color: var(--uofa-blue);
+}
+
+/* Booking Detail View */
+.backLink {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--uofa-blue);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.detailCard {
+    background: linear-gradient(to right, var(--color-background), var(--color-border));
+    padding: 32px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    border: 1px solid var(--border-color);
+}
+
+.bookingSection {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 32px;
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+    color: var(--uofa-blue);
+    font-weight: 700;
+}
+
+.calendarIcon {
+    color: var(--uofa-blue);
+}
+
+.slotsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.slotCard {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.slotCard:hover {
+    border-color: var(--uofa-blue);
+    background: var(--color-surface);
+}
+
+.slotDay {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.slotDate {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.slotTime {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+/* Reviews List */
+.reviewsSection {
+    margin-top: 40px;
+}
+
+.reviewCard {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.reviewHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.reviewerName {
+    font-weight: 600;
+}
+
+.reviewStars {
+    color: var(--color-warning);
+}
+
+.reviewText {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.reviewDate {
+    font-size: 0.8rem;
+    color: var(--color-text-tertiary);
+}
+
+/* Modal for Bursar Confirmation */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modalContent {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+}
+
+.successIcon {
+    width: 80px;
+    height: 80px;
+    background: var(--color-success-bg);
+    color: var(--color-success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 2.5rem;
+}
+
+.modalContent h2 {
+    font-size: 1.75rem;
+    margin-bottom: 12px;
+    color: var(--uofa-blue);
+}
+
+.modalContent p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.bursarBadge {
+    background: rgba(12, 35, 75, 0.1);
+    color: var(--uofa-blue);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 24px;
+}
+
+.doneBtn {
+    background: var(--uofa-blue);
+    color: white;
+    border: none;
+    padding: 14px 0;
+    width: 100%;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+    .mentorsGrid,
+    .slotsGrid {
+        grid-template-columns: 1fr;
+    }
+}

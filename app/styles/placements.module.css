@@ -1,168 +1,294 @@
-/* PLACEMENTS PAGE STYLES */
+/* MY COURSES PAGE STYLES - Clean Professional UofA Theme */
 
 :root {
-    --uofa-red: #C41E3A;
-    --uofa-blue: #003366;
-    --uofa-light-blue: #E3F2FD;
-    --text-primary: #1a1a1a;
-    --text-secondary: #666;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --uofa-red: var(--color-secondary);
+    --uofa-red-dark: var(--color-secondary-hover);
+    --uofa-blue: var(--color-primary);
+    --uofa-blue-light: var(--color-primary-hover);
+    --bg-light: var(--color-background);
+    --text-primary: var(--color-text);
+    --text-secondary: var(--color-text-secondary);
+    --border-color: var(--color-border);
 }
 
 .container {
+    width: 100%;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--uofa-blue) 0%, #1a1a2e 100%);
+    background: var(--color-surface);
 }
 
-.header {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 20px 30px;
+/* Header - Matching Landing Page */
+.topHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 48px;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.headerLogo {
     display: flex;
     align-items: center;
-    gap: 30px;
-    color: white;
+    gap: 10px;
 }
 
-.backBtn {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    transition: all 0.3s;
-}
-
-.backBtn:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.logo {
-    font-size: 1.8rem;
+.logoMark {
+    width: 32px;
+    height: 32px;
+    background: var(--uofa-blue);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--color-text-inverse);
 }
 
-.subtitle {
-    opacity: 0.8;
+.logoText {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--uofa-blue);
+}
+
+.headerNav {
+    display: flex;
+    gap: 36px;
+}
+
+.headerNav a {
+    color: var(--text-secondary);
+    text-decoration: none;
     font-size: 0.9rem;
-    margin: 0;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.headerNav a:hover {
+    color: var(--uofa-blue);
+}
+
+.headerCta {
+    background: var(--uofa-blue);
+    color: var(--color-text-inverse);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.headerCta:hover {
+    background: var(--uofa-blue-light);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--uofa-blue) 0%, var(--uofa-blue-light) 100%);
+    color: var(--color-text-inverse);
+    padding: 60px 48px 70px;
+    text-align: center;
+}
+
+.heroContent {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+}
+
+.heroSubtext {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.6;
 }
 
 .main {
-    padding: 30px;
+    padding: 32px;
     max-width: 900px;
     margin: 0 auto;
 }
 
-/* Choose Method Section */
+/* Sections */
 .chooseSection,
 .uploadSection,
 .uaccessSection,
 .resultsSection {
-    background: white;
-    border-radius: 16px;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
     padding: 40px;
-    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
 .chooseSection h2,
 .uploadSection h2,
-.uaccessSection h2,
-.resultsSection h2 {
-    color: var(--uofa-blue);
-    margin: 0 0 10px 0;
+.uaccessSection h2 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
     text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .hint {
     color: var(--text-secondary);
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
+    font-size: 0.95rem;
 }
 
+/* Options Grid */
 .optionsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
 .optionCard {
-    background: var(--uofa-light-blue);
-    padding: 30px;
-    border-radius: 12px;
+    background: var(--color-background);
+    padding: 28px;
+    border-radius: var(--radius-md);
     text-align: center;
     cursor: pointer;
-    border: 3px solid transparent;
-    transition: all 0.3s;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
 }
 
 .optionCard:hover {
-    border-color: var(--uofa-red);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
 }
 
 .optionIcon {
-    font-size: 3rem;
-    margin-bottom: 15px;
+    width: 56px;
+    height: 56px;
+    background: var(--color-primary);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 0 auto 16px;
 }
 
 .optionCard h3 {
-    color: var(--uofa-blue);
-    margin: 0 0 15px 0;
+    color: var(--text-primary);
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .optionCard p {
     color: var(--text-secondary);
-    margin: 0 0 20px 0;
+    margin: 0 0 16px 0;
     font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.optionFeatures {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.optionFeatures span {
+    font-size: 0.8rem;
+    color: var(--color-success);
+}
+
+.optionFeatures span::before {
+    content: "✓ ";
 }
 
 .optionAction {
-    color: var(--uofa-red);
+    color: var(--color-secondary);
     font-weight: 600;
+    font-size: 0.9rem;
 }
 
 /* Upload Section */
 .uploadArea {
-    border: 3px dashed #ddd;
-    border-radius: 12px;
-    padding: 60px;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 50px 30px;
     text-align: center;
-    margin-bottom: 20px;
-    transition: all 0.3s;
+    margin-bottom: 24px;
+    transition: all 0.2s;
 }
 
 .uploadArea:hover {
-    border-color: var(--uofa-red);
+    border-color: var(--color-primary);
+}
+
+.dragActive {
+    border-color: var(--color-primary) !important;
+    background: rgba(12, 35, 75, 0.02);
 }
 
 .uploadIcon {
-    font-size: 4rem;
-    margin-bottom: 15px;
+    color: var(--color-primary);
+    margin-bottom: 16px;
 }
 
-.uploadBtn {
-    background: var(--uofa-red);
+.uploadArea p {
+    color: var(--text-secondary);
+    margin: 0 0 8px 0;
+}
+
+.browseBtn {
+    display: inline-block;
+    background: var(--color-primary);
     color: white;
-    border: none;
-    padding: 15px 30px;
-    border-radius: 8px;
-    cursor: pointer;
+    padding: 10px 24px;
+    border-radius: var(--radius-sm);
     font-weight: 600;
-    font-size: 1rem;
-    margin-top: 15px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 12px 0;
+    transition: background 0.2s;
 }
 
-.uploadBtn:hover {
-    background: #a31830;
+.browseBtn:hover {
+    background: var(--color-primary-hover);
 }
 
 .formats {
-    color: #999;
+    color: var(--text-secondary);
     font-size: 0.8rem;
-    margin-top: 15px;
+}
+
+.errorIcon {
+    color: var(--color-error);
+    margin-bottom: 12px;
+}
+
+.errorText {
+    color: var(--color-error);
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.retryBtn {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: 600;
 }
 
 .uploading,
@@ -170,171 +296,751 @@
     padding: 20px;
 }
 
+.uploading p,
+.connecting p {
+    color: var(--text-secondary);
+}
+
 .spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid #ddd;
-    border-top: 4px solid var(--uofa-red);
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top: 3px solid var(--color-primary);
     border-radius: 50%;
-    margin: 0 auto 20px;
-    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+    animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
+    to {
         transform: rotate(360deg);
     }
 }
 
 /* UAccess Section */
 .uaccessCard {
-    background: linear-gradient(135deg, rgba(0, 51, 102, 0.05) 0%, rgba(196, 30, 58, 0.05) 100%);
+    background: var(--color-background);
     padding: 40px;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     text-align: center;
-    border: 2px solid #eee;
-    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 24px;
 }
 
 .uaccessLogo {
-    font-size: 4rem;
-    margin-bottom: 15px;
+    color: var(--color-primary);
+    margin-bottom: 16px;
 }
 
 .uaccessCard h3 {
-    color: var(--uofa-blue);
-    margin: 0 0 5px 0;
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .uaccessCard>p {
     color: var(--text-secondary);
-    margin: 0 0 25px 0;
+    margin: 0 0 24px 0;
+    font-size: 0.9rem;
 }
 
 .connectBtn {
-    background: var(--uofa-blue);
+    background: var(--color-primary);
     color: white;
     border: none;
-    padding: 15px 40px;
-    border-radius: 8px;
+    padding: 12px 32px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    transition: background 0.2s;
 }
 
 .connectBtn:hover {
-    background: #002244;
+    background: var(--color-primary-hover);
 }
 
 .securityNote {
-    color: #22c55e;
-    font-size: 0.85rem;
-    margin-top: 15px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: 16px;
 }
 
 .backLink {
     background: none;
     border: none;
-    color: var(--uofa-red);
+    color: var(--text-secondary);
     cursor: pointer;
-    font-size: 0.95rem;
-    display: block;
-    margin: 0 auto;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 24px auto 0;
+    transition: color 0.2s;
 }
 
 .backLink:hover {
-    text-decoration: underline;
+    color: var(--color-primary);
 }
 
 /* Results Section */
-.gradesCard,
-.recommendationCard {
-    background: #f9f9f9;
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 25px;
+.resultsSection {
+    background: transparent;
+    padding: 0;
+    border: none;
 }
 
-.gradesCard h3,
-.recommendationCard h3 {
-    color: var(--uofa-blue);
-    margin: 0 0 20px 0;
+.successBanner {
+    background: var(--color-success-bg);
+    border: 1px solid rgba(5, 150, 105, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
 }
 
-.gradesTable {
-    width: 100%;
-    border-collapse: collapse;
+.successIcon {
+    width: 48px;
+    height: 48px;
+    background: rgba(5, 150, 105, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-success);
 }
 
-.gradesTable th,
-.gradesTable td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-}
-
-.gradesTable th {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-}
-
-.gradeCell {
-    font-weight: 700;
-    color: var(--uofa-blue);
-}
-
-.trackBadge {
-    display: inline-block;
-    padding: 12px 25px;
-    border-radius: 25px;
-    color: white;
-    font-weight: 700;
+.successBanner h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
     font-size: 1.1rem;
-    margin-bottom: 15px;
+    font-weight: 600;
 }
 
-.recommendationCard p {
+.successBanner p {
     color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Plan Section */
+.planSection {
+    background: var(--color-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.planHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.planIcon {
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.planHeader h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-weight: 600;
+}
+
+.planHeader p {
+    color: var(--text-secondary);
+    margin: 4px 0 0 0;
+    font-size: 0.85rem;
+}
+
+/* Search */
+.searchContainer {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.searchWrapper {
+    position: relative;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.searchIconText {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    z-index: 1;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 12px 12px 12px 44px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    color: var(--text-primary);
+}
+
+.searchInput::placeholder {
+    color: var(--text-secondary);
+    opacity: 1;
+    /* Ensure firefox matches */
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    margin-top: 4px;
+    box-shadow: var(--shadow-md);
+    z-index: 10;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.suggestionItem {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.suggestionItem:hover {
+    background: var(--color-background);
+}
+
+.suggestionItem:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.suggestionCode {
+    font-weight: 600;
+    color: var(--text-primary);
     margin: 0;
 }
 
-.actions {
+.suggestionName {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    margin: 2px 0 0 0;
+}
+
+.suggestionItem svg {
+    color: var(--color-primary);
+}
+
+/* Planned Courses */
+.plannedCourses {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
+}
+
+.plannedCard {
+    background: var(--color-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 20px;
+}
+
+.plannedHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.plannedCode {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.plannedName {
+    color: var(--text-secondary);
+    margin: 4px 0 0 0;
+    font-size: 0.85rem;
+}
+
+.removeBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 4px;
+}
+
+.removeBtn:hover {
+    color: var(--color-error);
+}
+
+/* Prerequisites */
+.prereqList {
+    margin-bottom: 16px;
+}
+
+.prereqTitle {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 8px 0;
+}
+
+.prereqItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    margin-bottom: 8px;
+}
+
+.prereqMet {
+    background: var(--color-success-bg);
+    border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.prereqMet svg {
+    color: var(--color-success);
+}
+
+.prereqNotMet {
+    background: var(--color-error-bg);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.prereqNotMet svg {
+    color: var(--color-error);
+}
+
+.prereqCode {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.prereqName {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 2px 0 0 0;
+}
+
+.prereqStatus {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.prereqGrade {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* Batch Recommendation */
+.batchRec {
+    padding: 16px;
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.batchA {
+    background: var(--color-success-bg);
+    border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.batchB {
+    background: rgba(12, 35, 75, 0.05);
+    border: 1px solid rgba(12, 35, 75, 0.2);
+}
+
+.batchC {
+    background: var(--color-error-bg);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.batchLabel {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 4px 0;
+}
+
+.batchName {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.quizBtn {
+    background: var(--color-success);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+}
+
+.quizBtn:hover {
+    background: #047857;
+}
+
+/* Empty Plan */
+.emptyPlan {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+}
+
+.emptyPlan svg {
+    opacity: 0.3;
+    margin-bottom: 16px;
+}
+
+.emptyPlan p {
+    margin: 0;
+}
+
+.emptySubtext {
+    font-size: 0.85rem;
+    margin-top: 4px !important;
+    opacity: 0.8;
+}
+
+/* History Section */
+.historySection {
+    margin-top: 32px;
+}
+
+.historyTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+}
+
+.historyTitle svg {
+    color: var(--uofa-blue);
+}
+
+.semesterCard {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.semesterHeader {
+    background: linear-gradient(135deg, rgba(12, 35, 75, 0.05) 0%, transparent 100%);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.enrollBtn {
-    background: var(--uofa-red);
+.semesterHeader h4 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.currentBadge {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3B82F6;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.plannedBadge {
+    background: rgba(5, 150, 105, 0.1);
+    color: #059669;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.courseList {
+    padding: 0;
+}
+
+.courseRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    transition: background 0.2s;
+}
+
+.courseRow:hover {
+    background: var(--bg-light);
+}
+
+.courseRow:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.courseInfo {
+    flex: 1;
+}
+
+.courseCode {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.courseName {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 2px 0 0 0;
+}
+
+.courseRight {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.credits {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.grade {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* Grade Colors */
+/* Grade Colors */
+.gradeA {
+    background: rgba(5, 150, 105, 0.1);
+    color: var(--color-text);
+}
+
+.gradeB {
+    background: rgba(12, 35, 75, 0.1);
+    color: var(--color-text);
+}
+
+.gradeC {
+    background: rgba(217, 119, 6, 0.1);
+    color: var(--color-text);
+}
+
+.gradeD {
+    background: rgba(234, 88, 12, 0.1);
+    color: var(--color-text);
+}
+
+.gradeF {
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--color-text);
+}
+
+.gradeIP {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--color-text);
+}
+
+/* Section Title */
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+}
+
+/* Course Description */
+.courseDesc {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+/* Grade Badge */
+.gradeBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(5, 150, 105, 0.15);
+    color: #059669;
+    border: 2px solid #059669;
+}
+
+.gradeE {
+    background: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+    border-color: #EF4444;
+}
+
+/* In Progress Badge */
+.inProgressBadge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    background: transparent;
+    color: #3B82F6;
+    border: 1px solid #3B82F6;
+}
+
+/* Semester Header h3 override */
+.semesterHeader h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Selected File Display */
+.selectedFile {
+    margin: 16px 0;
+    padding: 12px 16px;
+    background: rgba(12, 35, 75, 0.05);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fileName {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+/* Submit Button */
+.submitBtn {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
     color: white;
     border: none;
-    padding: 15px 40px;
-    border-radius: 8px;
-    cursor: pointer;
+    padding: 16px 32px;
+    border-radius: var(--radius-md);
+    font-size: 1.1rem;
     font-weight: 600;
-    font-size: 1rem;
-    width: 100%;
-    max-width: 400px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(12, 35, 75, 0.15);
 }
 
-.enrollBtn:hover {
-    background: #a31830;
+.submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(12, 35, 75, 0.25);
 }
 
+.submitBtn:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .header {
+        padding: 12px 20px;
         flex-direction: column;
         align-items: flex-start;
-        gap: 15px;
+    }
+
+    .main {
+        padding: 20px;
+    }
+
+    .chooseSection,
+    .uploadSection,
+    .uaccessSection {
+        padding: 28px 20px;
     }
 
     .optionsGrid {
         grid-template-columns: 1fr;
+    }
+
+    .batchRec {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .quizBtn {
+        justify-content: center;
     }
 }

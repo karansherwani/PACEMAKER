@@ -5,6 +5,18 @@
     "identifier": "Karankumar1",
     "password": "Ssdn@3589",
     "fullName": "Karankumar1",
-    "studentId": "A00654259"
+    "studentId": "A00654259",
+    "takenQuizzes": [
+      "math122b",
+      "chem151"
+    ]
+  },
+  {
+    "id": "1767439833072",
+    "authMethod": "netid",
+    "identifier": "karankumar1",
+    "password": "Ssdn1234",
+    "fullName": "Karankumar1",
+    "studentId": "A00552754"
   }
 ]

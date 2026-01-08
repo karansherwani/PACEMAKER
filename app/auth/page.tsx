@@ -83,8 +83,14 @@ export default function AuthPage() {
 
       if (response.ok) {
         const data = await response.json();
+
+        // ✅ STORE USER EMAIL FOR QUIZ PAGE
+        const userEmail = email || `${netId}@${selectedUniversity}.edu`;
+        localStorage.setItem('userEmail', userEmail);
+
         localStorage.setItem('studentName', data.fullName || data.email || netId);
-        localStorage.setItem('studentEmail', data.email || '');
+        localStorage.setItem('userId', data.userId || '');
+        localStorage.setItem('studentEmail', data.email || userEmail);
         localStorage.setItem('loginMethod', authMethod || 'email');
         localStorage.setItem('authToken', data.token || '');
 
@@ -95,7 +101,12 @@ export default function AuthPage() {
           localStorage.setItem('studentGrades', JSON.stringify(data.grades));
         }
 
-        window.location.href = '/dashboard';
+        console.log('✓ Login successful. Email stored:', userEmail);
+
+        // Small delay to ensure localStorage is saved
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 100);
       } else {
         const errorData = await response.json();
         setError(errorData.message || 'Authentication failed. Please try again.');
@@ -122,7 +133,7 @@ export default function AuthPage() {
           email: email || undefined,
           netId: netId || undefined,
           otp: resetStep === 'verify' ? otp : undefined,
-          newPassword: resetStep === 'verify' ? password : undefined
+          newPassword: resetStep === 'verify' ? password : undefined,
         }),
       });
 
@@ -145,8 +156,8 @@ export default function AuthPage() {
       } else {
         setError(data.message || 'Error processing request');
       }
-    } catch (err) {
-      setError('Connection failed. Please try again.');
+    } catch {
+      setError('An error occurred during authentication');
     } finally {
       setLoading(false);
     }
@@ -183,7 +194,7 @@ export default function AuthPage() {
         <main className={styles.main}>
           <div className={styles.authCard}>
             <h1>Sign In or Create Account</h1>
-            <p>Choose how you'd like to authenticate</p>
+            <p>Choose how you&apos;d like to authenticate</p>
 
             <div className={styles.methodsGrid}>
               <button className={styles.methodCard} onClick={() => setAuthMethod('email')}>
@@ -223,15 +234,21 @@ export default function AuthPage() {
         <div className={styles.authCard}>
           <h2>
             {mode === 'signin'
-              ? authMethod === 'email' ? 'Email Sign In' : 'NetID Sign In'
+              ? authMethod === 'email'
+                ? 'Email Sign In'
+                : 'NetID Sign In'
               : mode === 'signup'
-                ? authMethod === 'email' ? 'Create Email Account' : 'Create NetID Account'
+                ? authMethod === 'email'
+                  ? 'Create Email Account'
+                  : 'Create NetID Account'
                 : 'Reset Password'}
           </h2>
           <p>
-            {mode === 'signin' ? 'Enter your credentials to continue' :
-              mode === 'signup' ? 'Create your account to get started' :
-                'Follow the steps to recover access'}
+            {mode === 'signin'
+              ? 'Enter your credentials to continue'
+              : mode === 'signup'
+                ? 'Create your account to get started'
+                : 'Follow the steps to recover access'}
           </p>
 
           {mode === 'reset' ? (
@@ -241,8 +258,10 @@ export default function AuthPage() {
                 <input
                   type="text"
                   value={authMethod === 'email' ? email : netId}
-                  onChange={(e) => authMethod === 'email' ? setEmail(e.target.value) : setNetId(e.target.value)}
-                  placeholder={authMethod === 'email' ? "your.email@example.com" : "e.g., jsmith"}
+                  onChange={(e) =>
+                    authMethod === 'email' ? setEmail(e.target.value) : setNetId(e.target.value)
+                  }
+                  placeholder={authMethod === 'email' ? 'your.email@example.com' : 'e.g., jsmith'}
                   required
                   disabled={loading || resetStep === 'verify'}
                 />
@@ -277,7 +296,14 @@ export default function AuthPage() {
               )}
 
               {error && <p className={styles.error}>{error}</p>}
-              {resetMessage && <p className={styles.success} style={{ color: 'green', fontSize: '0.9rem', marginBottom: '15px' }}>{resetMessage}</p>}
+              {resetMessage && (
+                <p
+                  className={styles.success}
+                  style={{ color: 'green', fontSize: '0.9rem', marginBottom: '15px' }}
+                >
+                  {resetMessage}
+                </p>
+              )}
 
               <button type="submit" className={styles.submitBtn} disabled={loading}>
                 {loading ? 'Processing...' : resetStep === 'request' ? 'Send OTP' : 'Reset Password'}
@@ -387,7 +413,11 @@ export default function AuthPage() {
                   (mode === 'signup' && !confirmPassword)
                 }
               >
-                {loading ? 'Processing...' : mode === 'signin' ? 'Sign In' : 'Create Account'}
+                {loading
+                  ? 'Processing...'
+                  : mode === 'signin'
+                    ? 'Sign In'
+                    : 'Create Account'}
               </button>
 
               {mode === 'signin' && (
@@ -414,7 +444,7 @@ export default function AuthPage() {
               <p>
                 {mode === 'signin' ? (
                   <>
-                    Don't have an account?{' '}
+                    Don&apos;t have an account?{' '}
                     <button
                       type="button"
                       className={styles.toggleBtn}

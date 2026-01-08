@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
         // Step 1: Request OTP (Mock)
         if (!newPassword && !otp) {
             const identifier = email || netId;
-            const user = findUser(identifier);
+            const user = await findUser(identifier);
 
             if (!user) {
                 return NextResponse.json({ message: 'User not found' }, { status: 404 });
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
             }
 
             const identifier = email || netId;
-            const success = updateUserPassword(identifier, newPassword);
+            const success = await updateUserPassword(identifier, newPassword);
 
             if (success) {
                 return NextResponse.json({ success: true, message: 'Password updated successfully' });

@@ -27,10 +27,10 @@ const GRADE_THRESHOLDS = [
 ];
 
 const DEFAULT_COMPONENTS: GradeComponent[] = [
-    { id: '1', name: 'Midterm 1', weight: 25, score: null, completed: true },
-    { id: '2', name: 'Midterm 2', weight: 25, score: null, completed: true },
-    { id: '3', name: 'Homework', weight: 20, score: null, completed: true },
-    { id: '4', name: 'Attendance', weight: 5, score: null, completed: true },
+    { id: '1', name: 'Midterm 1', weight: 25, score: null, completed: false },
+    { id: '2', name: 'Midterm 2', weight: 25, score: null, completed: false },
+    { id: '3', name: 'Homework', weight: 20, score: null, completed: false },
+    { id: '4', name: 'Attendance', weight: 5, score: null, completed: false },
     { id: '5', name: 'Final Exam', weight: 25, score: null, completed: false },
 ];
 
@@ -43,6 +43,7 @@ export default function ProgressPage() {
     const [showAddCourse, setShowAddCourse] = useState(false);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         const name = localStorage.getItem('studentName');
         if (!name) {
             router.push('/');
@@ -111,7 +112,7 @@ export default function ProgressPage() {
             name: 'New Component',
             weight: 0,
             score: null,
-            completed: true,
+            completed: false,
         };
 
         const updatedCourse = {
@@ -175,15 +176,31 @@ export default function ProgressPage() {
 
     return (
         <div className={styles.container}>
-            <header className={styles.header}>
-                <button className={styles.backBtn} onClick={() => router.push('/dashboard')}>
-                    ← Back to Dashboard
-                </button>
-                <div>
-                    <div className={styles.logo}>📊 Calculate Grades</div>
-                    <p className={styles.subtitle}>Track your courses</p>
+            {/* HEADER */}
+            <header className={styles.topHeader}>
+                <div className={styles.headerLogo}>
+                    <div className={styles.logoMark}>PM</div>
+                    <span className={styles.logoText}>PaceMatch</span>
                 </div>
+                <nav className={styles.headerNav}>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/placements">My Courses</a>
+                    <a href="/mentoring">Mentoring</a>
+                </nav>
+                <button className={styles.headerCta} onClick={() => router.push('/dashboard')}>
+                    ← Back
+                </button>
             </header>
+
+            {/* HERO SECTION */}
+            <section className={styles.hero}>
+                <div className={styles.heroContent}>
+                    <h1>Calculate Your Grades</h1>
+                    <p className={styles.heroSubtext}>
+                        Track your progress and calculate what you need on your final exams to achieve your target grades.
+                    </p>
+                </div>
+            </section>
 
             <main className={styles.main}>
                 <div className={styles.welcomeCard}>
@@ -229,35 +246,108 @@ export default function ProgressPage() {
                             <p>No courses added yet. Add a course above to get started!</p>
                         </div>
                     ) : (
-                        <div className={styles.courseGrid}>
+                        <div className={styles.coursesList}>
                             {courses.map((course) => {
                                 const courseComponents = course.components;
                                 const compWeight = courseComponents.filter(c => c.completed && c.score !== null).reduce((sum, c) => sum + c.weight, 0);
                                 const earned = courseComponents.filter(c => c.completed && c.score !== null).reduce((sum, c) => sum + (c.score ?? 0), 0);
                                 const grade = compWeight > 0 ? (earned / compWeight) * 100 : 0;
+                                const isExpanded = selectedCourse?.id === course.id;
 
                                 return (
                                     <div
                                         key={course.id}
-                                        className={`${styles.courseCard} ${selectedCourse?.id === course.id ? styles.selectedCourse : ''}`}
-                                        onClick={() => setSelectedCourse(course)}
+                                        className={`${styles.courseItemRow} ${isExpanded ? styles.expanded : ''}`}
                                     >
-                                        <div className={styles.courseHeader}>
-                                            <span className={styles.courseName}>{course.name}</span>
-                                            <button
-                                                className={styles.deleteBtn}
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    deleteCourse(course.id);
-                                                }}
-                                            >
-                                                ×
-                                            </button>
+                                        {/* Course header with name and grade */}
+                                        <div
+                                            className={styles.courseHeaderRow}
+                                            onClick={() => setSelectedCourse(isExpanded ? null : course)}
+                                        >
+                                            <div className={styles.courseNameSection}>
+                                                <span className={styles.expandIcon}>
+                                                    {isExpanded ? '▼' : '▶'}
+                                                </span>
+                                                <span className={styles.courseName}>{course.name}</span>
+                                                {/* <span className={styles.gradeHint}>Needs calculated% for an &quot;A&quot;</span> */}
+                                            </div>
+                                            <div className={styles.gradeSection}>
+                                                <span className={styles.finalGrade}>{grade.toFixed(1)}%</span>
+                                                <button
+                                                    className={styles.deleteBtn}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        deleteCourse(course.id);
+                                                    }}
+                                                    title="Delete course"
+                                                >
+                                                    ×
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div className={styles.courseGradeSummary}>
-                                            <span className={styles.gradeValue}>{grade.toFixed(1)}%</span>
-                                            <span className={styles.gradeLabel}>Current</span>
-                                        </div>
+
+                                        {/* Subsections (components) */}
+                                        {isExpanded && (
+                                            <div className={styles.subsectionsContainer}>
+                                                {courseComponents.map((comp) => (
+                                                    <div key={comp.id} className={styles.subsectionRow}>
+                                                        <div className={styles.subsectionName}>
+                                                            <input
+                                                                type="text"
+                                                                value={comp.name}
+                                                                onChange={(e) => updateComponentName(comp.id, e.target.value)}
+                                                                className={styles.subsectionNameInput}
+                                                            />
+                                                        </div>
+                                                        <div className={styles.subsectionDetails}>
+                                                            <div className={styles.subsectionField}>
+                                                                <label>Weight: </label>
+                                                                <input
+                                                                    type="number"
+                                                                    min="0"
+                                                                    max="100"
+                                                                    value={comp.weight}
+                                                                    onChange={(e) => updateComponent(comp.id, 'weight', Number(e.target.value))}
+                                                                    className={styles.subsectionInput}
+                                                                />
+                                                                <span>%</span>
+                                                            </div>
+                                                            <div className={styles.subsectionField}>
+                                                                <label>Score: </label>
+                                                                <input
+                                                                    type="number"
+                                                                    min="0"
+                                                                    max={comp.weight}
+                                                                    step="0.1"
+                                                                    value={comp.score ?? ''}
+                                                                    onChange={(e) => {
+                                                                        const value = e.target.value === '' ? null : Number(e.target.value);
+                                                                        updateComponent(comp.id, 'score', value);
+                                                                    }}
+                                                                    disabled={!comp.completed}
+                                                                    placeholder="Enter"
+                                                                    className={styles.subsectionInput}
+                                                                />
+                                                                <span>pts</span>
+                                                            </div>
+                                                            <div className={styles.subsectionField}>
+                                                                <label className={styles.checkboxLabel}>
+                                                                    <input
+                                                                        type="checkbox"
+                                                                        checked={comp.completed}
+                                                                        onChange={(e) => updateComponent(comp.id, 'completed', e.target.checked)}
+                                                                    />
+                                                                    Done
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                                <button className={styles.addSubsectionBtn} onClick={addComponent}>
+                                                    + Add Component
+                                                </button>
+                                            </div>
+                                        )}
                                     </div>
                                 );
                             })}
@@ -397,7 +487,7 @@ export default function ProgressPage() {
                 {!selectedCourse && courses.length === 0 && (
                     <section className={styles.inputSection}>
                         <div className={styles.emptyState}>
-                            <p>No courses added yet. Click "+ Add Course" to get started!</p>
+                            <p>No courses added yet. Click &quot;+ Add Course&quot; to get started!</p>
                         </div>
                     </section>
                 )}

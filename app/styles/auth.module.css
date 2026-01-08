@@ -1,41 +1,55 @@
+/* AUTH PAGE STYLES - Modern PaceMatch Design */
+
+:root {
+  --uofa-red: var(--color-secondary);
+  --uofa-blue: var(--color-primary);
+  --bg-light: #F8F9FB;
+  --text-primary: var(--color-text);
+  --text-secondary: var(--color-text-secondary);
+  --border-color: var(--color-border);
+}
+
 .container {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: var(--color-background);
   display: flex;
   flex-direction: column;
 }
 
 .header {
-  padding: 20px;
-  color: white;
+  padding: 20px 32px;
   display: flex;
   align-items: center;
   gap: 20px;
-  background: rgba(0, 0, 0, 0.1);
 }
 
 .backBtn {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 10px 15px;
-  border-radius: 6px;
+  background: var(--color-surface);
+  border: 1px solid var(--border-color);
+  color: var(--color-primary);
+  padding: 8px 16px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
 .backBtn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary);
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
 }
 
 .uniName {
-  font-size: 0.9rem;
-  opacity: 0.9;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -48,76 +62,83 @@
 }
 
 .authCard {
-  background: white;
-  border-radius: 12px;
-  padding: 40px;
-  max-width: 500px;
+  background: var(--color-surface);
+  border-radius: 20px;
+  padding: 48px 40px;
+  max-width: 440px;
   width: 100%;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  text-align: center;
 }
 
 .authCard h1,
 .authCard h2 {
-  color: var(--secondary-color);
-  margin-bottom: 10px;
-  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 
-.authCard > p {
-  color: #666;
-  margin-bottom: 30px;
+.authCard>p {
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  font-size: 0.95rem;
 }
 
 .securityNote {
-  background: linear-gradient(135deg, rgba(51, 102, 153, 0.08) 0%, rgba(196, 30, 58, 0.08) 100%);
-  padding: 15px;
-  border-radius: 8px;
-  border-left: 4px solid var(--primary-color);
-  margin-bottom: 30px;
-  color: var(--secondary-color);
-  font-size: 0.9rem;
+  background: var(--color-background);
+  padding: 14px;
+  border-radius: 10px;
+  border-left: 3px solid var(--color-primary);
+  margin-bottom: 28px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-align: left;
 }
 
 .securityNote strong {
-  color: var(--primary-color);
+  color: var(--color-primary);
 }
 
 .formGroup {
   margin-bottom: 20px;
+  text-align: left;
 }
 
 .formGroup label {
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
-  color: var(--secondary-color);
+  color: var(--text-primary);
   font-size: 0.9rem;
 }
 
 .formGroup input {
   width: 100%;
-  padding: 12px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
   font-size: 1rem;
-  transition: border-color 0.3s;
-  background-color: #ffffff;
-  color: #1a1a1a;
+  transition: all 0.2s;
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 .formGroup input::placeholder {
-  color: #666666;
+  color: var(--color-text-tertiary);
 }
 
 .formGroup input:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: var(--color-primary);
+  background: var(--color-surface);
 }
 
 .fieldHint {
   font-size: 0.8rem;
-  color: #999;
-  margin-top: 5px;
+  color: var(--text-secondary);
+  margin-top: 6px;
 }
 
 .passwordWrapper {
@@ -127,103 +148,129 @@
 }
 
 .passwordWrapper input {
-  padding-right: 45px;
+  padding-right: 48px;
 }
 
 .togglePassword {
   position: absolute;
-  right: 12px;
+  right: 14px;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.2rem;
-  padding: 5px;
+  font-size: 1.1rem;
+  padding: 4px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.togglePassword:hover {
+  opacity: 1;
 }
 
 .methodsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .methodCard {
-  padding: 30px 20px;
-  border: 2px solid #ddd;
+  padding: 20px;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
-  background: white;
+  background: var(--color-surface);
   cursor: pointer;
-  transition: all 0.3s;
-  text-align: center;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
 }
 
 .methodCard:hover {
-  border-color: var(--primary-color);
-  transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(196, 30, 58, 0.1);
+  border-color: var(--color-primary);
+  background: var(--color-background);
 }
 
 .methodIcon {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  font-size: 1.8rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .methodCard h3 {
-  color: var(--secondary-color);
-  margin-bottom: 5px;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .methodCard p {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-secondary);
+  margin: 0;
 }
 
 .arrow {
-  display: block;
-  margin-top: 10px;
-  color: var(--primary-color);
-  font-size: 1.5rem;
+  margin-left: auto;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
 }
 
 .submitBtn {
   width: 100%;
   padding: 14px;
-  background: var(--primary-color);
+  background: var(--uofa-blue);
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
+  border-radius: 10px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
-  margin-top: 20px;
+  transition: all 0.2s;
+  margin-top: 12px;
 }
 
 .submitBtn:hover:not(:disabled) {
-  background: var(--secondary-color);
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
 }
 
 .submitBtn:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .error {
-  color: #C41E3A;
-  background: #ffe6e6;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 20px;
+  color: var(--color-error);
+  background: var(--color-error-bg);
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.success {
+  color: var(--color-success);
+  background: var(--color-success-bg);
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
   font-size: 0.9rem;
 }
 
 .helpText {
   text-align: center;
   margin-top: 20px;
-  color: #666;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
 .helpText a {
-  color: var(--primary-color);
+  color: var(--color-secondary);
   text-decoration: none;
   font-weight: 600;
 }
@@ -234,9 +281,11 @@
 
 .toggleMode {
   text-align: center;
-  margin-top: 20px;
-  color: #444;              /* darker, readable text */
+  margin-top: 24px;
+  color: var(--text-secondary);
   font-size: 0.9rem;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
 }
 
 .toggleMode p {
@@ -246,7 +295,7 @@
 .toggleBtn {
   background: none;
   border: none;
-  color: #C41E3A;           /* UofA red for visibility */
+  color: var(--color-secondary);
   font-weight: 600;
   cursor: pointer;
   padding: 0;
@@ -257,12 +306,27 @@
   text-decoration: underline;
 }
 
+/* Responsive */
 @media (max-width: 600px) {
+  .header {
+    padding: 16px 20px;
+  }
+
   .authCard {
-    padding: 20px;
+    padding: 32px 24px;
+    border-radius: 16px;
+  }
+
+  .authCard h1,
+  .authCard h2 {
+    font-size: 1.4rem;
   }
 
   .methodsGrid {
-    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .methodCard {
+    padding: 16px;
   }
 }

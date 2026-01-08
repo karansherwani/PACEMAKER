@@ -1,165 +1,484 @@
-/* LANDING PAGE STYLES - UofA Red & Blue Theme */
+/* LANDING PAGE STYLES - Clean Professional UofA Theme */
 
 :root {
-  --uofa-red: #C41E3A;
-  --uofa-blue: #003366;
-  --uofa-light-blue: #E3F2FD;
-  --text-primary: #1a1a1a;
-  --text-secondary: #666;
-  --border-color: #ddd;
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --uofa-red: var(--color-secondary);
+  --uofa-red-dark: var(--color-secondary-hover);
+  --uofa-blue: var(--color-primary);
+  --uofa-blue-light: var(--color-primary-hover);
+  --bg-light: var(--color-background);
+  --text-primary: var(--color-text);
+  --text-secondary: var(--color-text-secondary);
+  --border-color: var(--color-border);
 }
 
 .container {
   width: 100%;
   min-height: 100vh;
+  background: var(--color-surface);
 }
 
-/* HERO SECTION */
-.hero {
-  background: linear-gradient(135deg, var(--uofa-blue) 0%, var(--uofa-red) 100%);
-  color: white;
-  padding: 80px 20px;
-  text-align: center;
-  min-height: 60vh;
+/* Header */
+.topHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 48px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.headerLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoMark {
+  width: 32px;
+  height: 32px;
+  background: var(--uofa-blue);
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--color-text-inverse);
+}
+
+.logoText {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--uofa-blue);
+}
+
+.headerNav {
+  display: flex;
+  gap: 36px;
+}
+
+.headerNav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.headerNav a:hover {
+  color: var(--uofa-blue);
+}
+
+.headerCta {
+  background: var(--uofa-blue);
+  color: var(--color-text-inverse);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.headerCta:hover {
+  background: var(--uofa-blue-light);
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, var(--uofa-blue) 0%, var(--uofa-blue-light) 100%);
+  color: var(--color-text-inverse);
+  padding: 80px 48px 100px;
+  text-align: center;
 }
 
 .heroContent {
   max-width: 600px;
-}
-
-.logo {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  display: block;
+  margin: 0 auto;
 }
 
 .hero h1 {
-  font-size: 3.5rem;
-  margin-bottom: 15px;
+  font-size: 2.75rem;
+  margin-bottom: 20px;
   font-weight: 700;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
 }
 
-.hero p {
-  font-size: 1.3rem;
-  margin-bottom: 30px;
-  opacity: 0.95;
+.heroSubtext {
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+  opacity: 0.9;
+  line-height: 1.6;
 }
 
 .ctaButton {
-  background: white;
-  color: var(--uofa-red);
+  background: var(--color-surface);
+  color: var(--uofa-blue);
   border: none;
-  padding: 15px 40px;
-  font-size: 1.1rem;
+  padding: 14px 36px;
+  font-size: 1rem;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow);
+  transition: all 0.2s;
 }
 
 .ctaButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* FEATURES SECTION */
-.features {
-  padding: 80px 20px;
-  background: white;
+.freeText {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-top: 20px;
 }
 
-.features h2 {
-  font-size: 2.5rem;
+/* How It Works */
+.howItWorks {
+  padding: 80px 48px;
   text-align: center;
-  margin-bottom: 50px;
-  color: var(--uofa-blue);
+  background: var(--bg-light);
 }
 
-.featureGrid {
+.sectionLabel {
+  display: inline-block;
+  background: var(--color-surface);
+  border: 1px solid var(--border-color);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.howItWorks h2 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.accentText {
+  color: var(--uofa-red);
+}
+
+.sectionSubtext {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto 50px;
+  line-height: 1.5;
+}
+
+.stepsContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  max-width: 1200px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stepItem {
+  text-align: center;
+  padding: 24px 20px;
+}
+
+.stepNumber {
+  width: 40px;
+  height: 40px;
+  background: var(--uofa-blue);
+  color: var(--color-text-inverse);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 auto 20px;
+}
+
+.stepItem h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.stepItem p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Features */
+.featuresSection {
+  padding: 80px 48px;
+  text-align: center;
+}
+
+.featuresSection h2 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .featureCard {
-  padding: 30px;
-  background: var(--uofa-light-blue);
-  border-left: 4px solid var(--uofa-red);
-  border-radius: 8px;
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 28px 24px;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: all 0.2s;
 }
 
 .featureCard:hover {
-  transform: translateY(-5px);
+  border-color: var(--uofa-blue);
+  box-shadow: 0 4px 12px rgba(12, 35, 75, 0.08);
 }
 
 .featureIcon {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-  display: block;
+  width: 48px;
+  height: 48px;
+  background: var(--uofa-blue);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-inverse);
+  margin: 0 auto 16px;
 }
 
 .featureCard h3 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-  color: var(--uofa-blue);
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .featureCard p {
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
 }
 
-/* WHY US SECTION */
-.whyUs {
-  padding: 80px 20px;
-  background: linear-gradient(to right, rgba(196, 30, 58, 0.05), rgba(0, 51, 102, 0.05));
+/* Stats */
+.stats {
+  background: var(--uofa-blue);
+  padding: 50px 48px;
 }
 
-.whyUs h2 {
-  font-size: 2.5rem;
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.statNumber {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-text-inverse);
+  margin-bottom: 4px;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Testimonials */
+.testimonials {
+  padding: 80px 48px;
+  background: var(--bg-light);
+}
+
+.testimonials h2 {
+  font-size: 2rem;
   text-align: center;
   margin-bottom: 50px;
-  color: var(--uofa-blue);
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
-.reasonsList {
-  max-width: 600px;
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-.reason {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  margin-bottom: 15px;
-  background: white;
-  border-radius: 8px;
-  border-left: 4px solid var(--uofa-red);
+.testimonialCard {
+  background: var(--color-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 28px;
 }
 
-.checkmark {
-  color: var(--uofa-red);
-  font-size: 1.5rem;
-  margin-right: 15px;
-  font-weight: bold;
-}
-
-.reason p {
-  font-size: 1rem;
+.testimonialText {
+  font-size: 0.95rem;
   color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+  font-style: italic;
 }
 
-/* MODAL */
+.testimonialAuthor {
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
+}
+
+.authorName {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  font-size: 0.9rem;
+}
+
+.authorRole {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Support */
+.support {
+  padding: 60px 48px;
+}
+
+.supportGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.supportCard {
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 28px;
+  text-align: center;
+}
+
+.supportCard h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.supportCard p {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.supportBtn {
+  background: var(--uofa-blue);
+  color: var(--color-text-inverse);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s;
+}
+
+.supportBtn:hover {
+  background: var(--uofa-blue-light);
+}
+
+/* Final CTA */
+.finalCTA {
+  background: linear-gradient(135deg, var(--uofa-blue) 0%, var(--uofa-red) 100%);
+  color: var(--color-text-inverse);
+  padding: 70px 48px;
+  text-align: center;
+}
+
+.finalCTA h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.finalCTA p {
+  font-size: 1rem;
+  margin-bottom: 28px;
+  opacity: 0.9;
+}
+
+/* Footer */
+.footer {
+  background: var(--uofa-blue);
+  color: var(--color-text-inverse);
+  padding: 50px 48px 30px;
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  max-width: 900px;
+  margin: 0 auto 30px;
+}
+
+.footerSection h4 {
+  margin-bottom: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.footerSection p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.footerSection a {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footerSection a:hover {
+  color: var(--color-text-inverse);
+}
+
+.footerBottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+/* Modal */
 .modal {
   position: fixed;
   top: 0;
@@ -175,10 +494,10 @@
 }
 
 .modalContent {
-  background: white;
+  background: var(--color-surface);
   border-radius: 12px;
-  padding: 40px;
-  max-width: 900px;
+  padding: 36px;
+  max-width: 420px;
   width: 100%;
   position: relative;
   max-height: 90vh;
@@ -187,84 +506,240 @@
 
 .closeBtn {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 12px;
+  right: 16px;
   background: none;
   border: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
   color: var(--text-secondary);
-  padding: 0;
-  width: 40px;
-  height: 40px;
+  line-height: 1;
 }
 
 .closeBtn:hover {
-  color: var(--uofa-red);
+  color: var(--text-primary);
 }
 
-.modalContent h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: var(--uofa-blue);
+.modalHeader {
+  text-align: center;
+  margin-bottom: 28px;
 }
 
-.modalContent p {
-  color: var(--text-secondary);
-  margin-bottom: 30px;
-}
-
-.universityGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-}
-
-.universityCard {
-  padding: 30px 20px;
-  border: 3px solid var(--border-color);
-  border-radius: 12px;
-  background: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.modalLogo {
+  width: 48px;
+  height: 48px;
+  background: var(--uofa-blue);
+  border-radius: 10px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text-inverse);
+  margin: 0 auto 12px;
 }
 
-.universityCard:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow);
+.modalHeader h2 {
+  font-size: 1.25rem;
+  color: var(--uofa-blue);
+  margin: 0 0 4px 0;
 }
 
-.uniLogo {
-  font-size: 2.5rem;
+.modalTagline {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
 }
 
-.uniName {
-  font-size: 0.9rem;
+.findUniTitle {
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
   text-align: center;
+  margin: 0 0 4px 0;
 }
 
-/* RESPONSIVE */
+.findUniDesc {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0 0 20px 0;
+}
+
+.searchWrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 12px 12px 44px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--uofa-blue);
+}
+
+.universityList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.universityItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  width: 100%;
+}
+
+.universityItem:hover {
+  border-color: var(--uofa-blue);
+  background: var(--bg-light);
+}
+
+.uniIcon {
+  color: var(--uofa-blue);
+}
+
+.uniInfo {
+  flex: 1;
+}
+
+.uniName {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.uniDomain {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.noResults {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+/* Feedback Form */
+.feedbackForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.feedbackInput,
+.feedbackTextarea {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.feedbackInput:focus,
+.feedbackTextarea:focus {
+  outline: none;
+  border-color: var(--uofa-blue);
+}
+
+.feedbackTextarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submitBtn {
+  background: var(--uofa-blue);
+  color: var(--color-text-inverse);
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submitBtn:hover {
+  background: var(--uofa-blue-light);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+
+  .stepsContainer,
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonialsGrid,
+  .supportGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
+  .topHeader {
+    padding: 12px 20px;
+  }
+
+  .headerNav {
+    display: none;
+  }
+
+  .hero {
+    padding: 60px 20px 80px;
+  }
+
   .hero h1 {
     font-size: 2rem;
   }
 
-  .hero p {
-    font-size: 1rem;
+  .howItWorks,
+  .featuresSection,
+  .testimonials,
+  .support {
+    padding: 60px 20px;
   }
 
-  .features h2,
-  .whyUs h2 {
-    font-size: 1.8rem;
+  .stepsContainer,
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
   }
 
-  .universityGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
   }
 }

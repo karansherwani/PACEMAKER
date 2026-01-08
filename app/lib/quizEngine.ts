@@ -18,10 +18,10 @@ export interface QuizQuestion {
   export const QUIZ_QUESTIONS: QuizQuestion[] = [
     {
       id: 1,
-      question: 'What is the derivative of x³?',
-      options: ['x²', '3x²', '3x³', 'x⁴'],
+      question: 'What is the derivative of xÂ³?',
+      options: ['xÂ²', '3xÂ²', '3xÂ³', 'xâ´'],
       correct: 1,
-      explanation: 'Using power rule: d/dx(x^n) = n*x^(n-1), so d/dx(x³) = 3x²',
+      explanation: 'Using power rule: d/dx(x^n) = n*x^(n-1), so d/dx(xÂ³) = 3xÂ²',
     },
     // ... more questions
   ];

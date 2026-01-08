@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     const isSignup = body.isSignup; // Ensure your frontend sends this flag!
 
     if (isSignup) {
-      if (findUser(identifier)) {
+      if (await findUser(identifier)) {
         return NextResponse.json({ message: 'User already exists' }, { status: 409 });
       }
 
@@ -47,12 +47,13 @@ export async function POST(request: NextRequest) {
         studentId: 'A00' + Math.random().toString().slice(2, 8),
       };
 
-      saveUser(newUser);
+      await saveUser(newUser);
 
       // Return successful session immediately after signup
       return NextResponse.json({
         success: true,
         token: 'auth_token_' + Date.now(),
+        userId: newUser.id,
         fullName: newUser.fullName,
         email: newUser.identifier + (authMethod === 'netid' ? '@arizona.edu' : ''),
         studentId: newUser.studentId,
@@ -62,7 +63,7 @@ export async function POST(request: NextRequest) {
 
     } else {
       // Sign In
-      const user = findUser(identifier);
+      const user = await findUser(identifier);
 
       if (!user) {
         return NextResponse.json({ message: 'User not found' }, { status: 404 });
@@ -75,6 +76,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: true,
         token: 'auth_token_' + Date.now(),
+        userId: user.id,
         fullName: user.fullName,
         email: user.identifier + (user.authMethod === 'netid' ? '@arizona.edu' : ''),
         studentId: user.studentId,
