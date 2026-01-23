@@ -1,9 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const pdfParse = require('pdf-parse');
+// lib/parseTranscriptPDF.ts
+// Use pdf-parse v2 with the named PDFParse export
+import { PDFParse } from 'pdf-parse';
 
 export interface ParsedTranscript {
-    studentName: string;
-    studentId: string;
     courses: CourseGrade[];
 }
 
@@ -16,40 +15,39 @@ export interface CourseGrade {
 }
 
 /**
- * Parse a PDF transcript to extract student info and course grades
- * Uses pdf-parse library which works reliably in Node.js
+ * Parse a PDF transcript to extract course grades
+ * Uses pdf-parse v2 API for Node.js/Next.js server environment
  */
 export async function parseTranscriptPDF(buffer: Buffer): Promise<ParsedTranscript> {
     try {
-        // Parse PDF using pdf-parse
-        const data = await pdfParse(buffer);
-        const text = data.text;
+        // Convert Buffer to Uint8Array for pdf-parse v2
+        const uint8Array = new Uint8Array(buffer);
+        // Create PDFParse instance and get text
+        const pdfParser = new PDFParse({ data: uint8Array });
+        const result = await pdfParser.getText();
+        const text = result.text;
 
-        // 1. Extract Student Info
-        // Format: Name: Karan Kumar  Student ID: 23841840
-        const nameMatch = text.match(/Name:\s*([^\n]+?)(?:\s+Student ID:|$)/i);
-        let studentName = nameMatch ? nameMatch[1].trim() : "";
 
-        const idMatch = text.match(/Student ID:\s*(\d+)/i);
-        const studentId = idMatch ? idMatch[1].trim() : "";
 
-        // 2. Extract Courses
+        // Extract Courses
         const courses: CourseGrade[] = [];
         const lines = text.split('\n');
-        let currentTerm = "Unknown Term";
+        let currentTerm = 'Unknown Term';
 
-        // Match term headers like "Fall 2023" or "Spring 2024"
         const termPattern = /(Fall|Spring|Summer|Winter)\s+(20\d{2})/i;
+        // Pattern for completed courses with grades (AHRS EHRS Grade Points format)
+        const coursePattern = /^([A-Z]{2,4}\s+\d{3}[A-Z0-9]{0,3})\s+(.+?)\s+(\d+\.\d{3})\s+(\d+\.\d{3})\s+([A-FW][+-]?|IP|P|S)\s+(\d+\.\d{3})/;
+        const simpleCoursePattern = /([A-Z]{2,4}\s+\d{3}[A-Z0-9]{0,3})\s+(.+?)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+([A-FW][+-]?|IP|P|S)/;
 
-        // UofA transcript course pattern:
-        // COURSE_CODE  DESCRIPTION  AHRS  EHRS  Grade  Points
-        // Examples from image:
-        // CSC 110  Computer Programming I  4.000  4.000  B  12.000
-        // MATH 125  Calculus I  3.000  3.000  A  12.000
-        const coursePattern = /^([A-Z]{2,4}\s+\d{3}[A-Z]?)\s+(.+?)\s+(\d+\.\d{3})\s+(\d+\.\d{3})\s+([A-FW][+-]?|IP|P|S)\s+(\d+\.\d{3})/;
+        // Pattern for in-progress courses: CourseCode Description AHRS EHRS Points (no grade, EHRS=0.000)
+        // Format: "CSC 210    Software Development    4.000    0.000    0.000"
+        const inProgressWithPointsPattern = /^([A-Z]{2,4}\s+\d{3}[A-Z0-9]{0,3})\s+(.+?)\s+(\d+\.\d{3})\s+(0\.000)\s+(\d+\.\d{3})$/;
 
-        // Simpler pattern for lines that might have different spacing
-        const simpleCoursePattern = /([A-Z]{2,4}\s+\d{3}[A-Z]?)\s+(.+?)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+([A-FW][+-]?|IP|P|S)/;
+        // Alternative pattern for courses with just AHRS and EHRS (no points column visible)
+        const inProgressPattern = /^([A-Z]{2,4}\s+\d{3}[A-Z0-9]{0,3})\s+(.+?)\s+(\d+\.?\d*)\s+(0\.000)\s*$/;
+
+        // Generic pattern for courses with credits but no grade
+        const noGradePattern = /^([A-Z]{2,4}\s+\d{3}[A-Z0-9]{0,3})\s+(.+?)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s*$/;
 
         for (const line of lines) {
             const trimmedLine = line.trim();
@@ -61,7 +59,13 @@ export async function parseTranscriptPDF(buffer: Buffer): Promise<ParsedTranscri
                 continue;
             }
 
-            // Try to match course pattern
+            // Skip header lines and non-course lines
+            if (trimmedLine.includes('Course') && trimmedLine.includes('Description')) continue;
+            if (trimmedLine.includes('AHRS') || trimmedLine.includes('EHRS')) continue;
+            if (trimmedLine.includes('GPA') || trimmedLine.includes('Term GPA')) continue;
+            if (trimmedLine.startsWith('Course Attrib')) continue;
+
+            // Try to match completed courses first (with grade)
             let courseMatch = trimmedLine.match(coursePattern);
             if (!courseMatch) {
                 courseMatch = trimmedLine.match(simpleCoursePattern);
@@ -70,41 +74,64 @@ export async function parseTranscriptPDF(buffer: Buffer): Promise<ParsedTranscri
             if (courseMatch) {
                 const courseCode = courseMatch[1].trim();
                 const description = courseMatch[2].trim();
-                const credits = parseFloat(courseMatch[4]) || parseFloat(courseMatch[3]) || 3;
+                const credits = parseFloat(courseMatch[3]) || 3;
                 const grade = courseMatch[5];
 
-                // Skip if grade is empty or invalid
                 if (grade && /^[A-FW][+-]?$|^IP$|^P$|^S$/.test(grade)) {
                     courses.push({
                         course: courseCode,
                         description: description,
                         grade: grade,
                         credits: credits,
-                        term: currentTerm
+                        term: currentTerm,
+                    });
+                }
+                continue;
+            }
+
+            // Try to match in-progress courses (no grade, EHRS = 0.000)
+            let inProgressMatch = trimmedLine.match(inProgressWithPointsPattern);
+            if (!inProgressMatch) {
+                inProgressMatch = trimmedLine.match(inProgressPattern);
+            }
+            if (!inProgressMatch) {
+                // Check if it matches generic no-grade pattern and EHRS is 0
+                const genericMatch = trimmedLine.match(noGradePattern);
+                if (genericMatch && parseFloat(genericMatch[4]) === 0) {
+                    inProgressMatch = genericMatch;
+                }
+            }
+
+            if (inProgressMatch) {
+                const courseCode = inProgressMatch[1].trim();
+                const description = inProgressMatch[2].trim();
+                const credits = parseFloat(inProgressMatch[3]) || 3;
+
+                // Check if this looks like a valid course (not a header or other text)
+                if (courseCode && description && description.length > 2 && !description.includes('Description')) {
+                    courses.push({
+                        course: courseCode,
+                        description: description,
+                        grade: 'IP', // In Progress
+                        credits: credits,
+                        term: currentTerm,
                     });
                 }
             }
         }
 
-        // De-duplicate courses (keep most recent)
         const uniqueCoursesMap = new Map<string, CourseGrade>();
-        courses.forEach(c => uniqueCoursesMap.set(c.course, c));
+        courses.forEach((c) => uniqueCoursesMap.set(c.course, c));
 
         return {
-            studentName,
-            studentId,
-            courses: Array.from(uniqueCoursesMap.values())
+            courses: Array.from(uniqueCoursesMap.values()),
         };
-
     } catch (error) {
         console.error('Error parsing PDF:', error);
         throw new Error(`Failed to parse transcript PDF: ${(error as Error).message}`);
     }
 }
 
-/**
- * Image parsing placeholder
- */
 export async function parseTranscriptImage(_buffer: Buffer): Promise<CourseGrade[]> {
     return [];
 }

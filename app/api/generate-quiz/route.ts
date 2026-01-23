@@ -51,10 +51,16 @@ export async function POST(request: NextRequest) {
 
     } catch (error) {
         console.error('Quiz API error:', error);
+        let errorMessage = (error as Error).message;
+
+        if (errorMessage.includes('API key not valid')) {
+            errorMessage = 'System Configuration Error: Invalid API Key. Please check server logs.';
+        }
+
         return NextResponse.json(
             {
                 error: 'Failed to generate quiz',
-                details: (error as Error).message
+                details: errorMessage
             },
             { status: 500 }
         );

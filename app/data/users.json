@@ -18,5 +18,29 @@
     "password": "Ssdn1234",
     "fullName": "Karankumar1",
     "studentId": "A00552754"
+  },
+  {
+    "id": "1768415823046",
+    "authMethod": "netid",
+    "identifier": "kkumar",
+    "password": "123456a",
+    "fullName": "Kkumar",
+    "studentId": "A00851860"
+  },
+  {
+    "id": "1769201861762",
+    "authMethod": "netid",
+    "identifier": "23841840",
+    "password": "Ssdn12345",
+    "fullName": "23841840",
+    "studentId": "A00650375"
+  },
+  {
+    "id": "1769202815643",
+    "authMethod": "netid",
+    "identifier": "23864879",
+    "password": "112233",
+    "fullName": "23864879",
+    "studentId": "A00329068"
   }
 ]

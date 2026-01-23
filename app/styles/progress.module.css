@@ -122,7 +122,7 @@
 }
 
 .welcomeCard {
-    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-hover) 100%);
+    background: linear-gradient(135deg, var(--uofa-blue) 0%, var(--uofa-blue-light) 100%);
     color: white;
     padding: 30px;
     border-radius: 16px;

@@ -719,7 +719,7 @@
 }
 
 .quizBtn {
-    background: var(--color-success);
+    background: var(--color-primary);
     color: white;
     border: none;
     padding: 10px 16px;
@@ -734,7 +734,7 @@
 }
 
 .quizBtn:hover {
-    background: #047857;
+    background: var(--color-primary-hover);
 }
 
 /* Empty Plan */

@@ -37,13 +37,15 @@ export default function QuizPage() {
   const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>([]);
   const [showExplanation, setShowExplanation] = useState(false);
   const [courseNumber, setCourseNumber] = useState('');
-  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
   const [error, setError] = useState('');
   const [quizStarted, setQuizStarted] = useState(false);
   const [previousAttempt, setPreviousAttempt] = useState<PreviousAttempt | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [preReqCourse, setPreReqCourse] = useState<{ courseNumber: string; courseName: string } | null>(null);
   const tabSwitchRef = useRef(false);
+
+  // Quiz phase: 'loading' | 'instructions' | 'quiz' | 'no-course'
+  const [quizPhase, setQuizPhase] = useState<'loading' | 'instructions' | 'quiz' | 'no-course'>('loading');
 
   // Get user email from localStorage on mount
   useEffect(() => {
@@ -61,7 +63,6 @@ export default function QuizPage() {
   // Load CSV and check for selected course
   useEffect(() => {
     const loadData = async () => {
-      // 1. Load CSV
       try {
         const response = await fetch('/data/uofa_courses.csv');
         const text = await response.text();
@@ -87,18 +88,15 @@ export default function QuizPage() {
         });
         setCourseCatalog(catalog);
 
-        // 2. Check for passed course
+        // Check for passed course from placements page
         const upgradeFor = localStorage.getItem('upgradeFor');
         if (upgradeFor) {
           const { courseCode } = JSON.parse(upgradeFor);
           setCourseNumber(courseCode);
 
-          // Look up prereq in our new catalog
           const courseInfo = catalog[courseCode];
+
           if (courseInfo && courseInfo.prereqs.length > 0) {
-            // For now, take the first prerequisite as the target quiz topic
-            // In a clear mapping like MATH 122A -> MATH 113, this works.
-            // We might need to fetch the Name of the prereq course too.
             const preReqCode = courseInfo.prereqs[0];
             const preReqName = catalog[preReqCode]?.name || 'Prerequisite Course';
 
@@ -106,38 +104,26 @@ export default function QuizPage() {
               courseNumber: preReqCode,
               courseName: preReqName
             });
-            setQuizPhase('instructions');
           } else {
-            setError(`No prerequisite assessment found for ${courseCode}`);
+            // If no prereqs or not in catalog, assess for the course itself (general readiness)
+            setPreReqCourse({
+              courseNumber: courseCode,
+              courseName: courseInfo?.name || 'General Readiness'
+            });
           }
-          // Clear it so it doesn't persist forever? Maybe keep it for refresh safety.
+          setQuizPhase('instructions');
         } else {
-          // Redirect or show error if strictly no selection allowed
-          // For now, we'll let it stay on "selection" but maybe show a message
-          // or we can redirect to /placements
+          // No course selected - redirect back to My Courses
+          setQuizPhase('no-course');
         }
       } catch (err) {
         console.error('Failed to load course data', err);
+        setQuizPhase('no-course');
       }
     };
 
     loadData();
   }, [router]);
-
-  // Handle course number change (Legacy/Fallback)
-  const handleCourseNumberChange = (value: string) => {
-    setCourseNumber(value.toUpperCase());
-    const courseInfo = courseCatalog[value.toUpperCase()];
-    if (courseInfo && courseInfo.prereqs.length > 0) {
-      const preReqCode = courseInfo.prereqs[0];
-      setPreReqCourse({
-        courseNumber: preReqCode,
-        courseName: courseCatalog[preReqCode]?.name || 'Prerequisite Course'
-      });
-    } else {
-      setPreReqCourse(null);
-    }
-  };
 
   // Wrap handleSubmit in useCallback
   const handleSubmit = useCallback(async () => {
@@ -193,6 +179,9 @@ export default function QuizPage() {
         timestamp: new Date().toISOString(),
       }));
 
+      // Clear the upgradeFor so user can take another quiz later
+      localStorage.removeItem('upgradeFor');
+
       // Redirect to results
       router.push(`/results?score=${score}&total=${quizData.questions.length}&percentage=${percentage}&batch=${batch.name}`);
     } catch (err) {
@@ -215,22 +204,7 @@ export default function QuizPage() {
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [quizStarted, quizData, handleSubmit]);
 
-  const [quizPhase, setQuizPhase] = useState<'selection' | 'instructions' | 'quiz'>('selection');
-
-  // ... (keeping existing refs and state) ...
-
-  // Update handleGenerateQuiz to just set loading and call API, then switch to quiz phase
-  // But wait, handleGenerateQuiz currently does everything.
-  // We need to split "Proceed to Instructions" and "Actually Start Quiz".
-
-  const handleProceedToInstructions = () => {
-    if (courseNumber && preReqCourse) {
-      setQuizPhase('instructions');
-    }
-  };
-
   const handleStartQuiz = async () => {
-    // Logic from handleGenerateQuiz
     if (!courseNumber || !preReqCourse || !userEmail) return;
 
     setLoading(true);
@@ -246,7 +220,7 @@ export default function QuizPage() {
         body: JSON.stringify({
           courseNumber: preReqCourse.courseNumber,
           courseName: preReqCourse.courseName,
-          difficulty,
+          difficulty: 'medium',
         }),
       });
 
@@ -261,7 +235,6 @@ export default function QuizPage() {
             attemptDate: new Date(data.attemptDate).toLocaleDateString(),
           });
           setError('');
-          setQuizPhase('selection');
           return;
         }
         throw new Error(data.error || 'Failed to generate quiz');
@@ -272,7 +245,7 @@ export default function QuizPage() {
       setCurrentQuestion(0);
       setShowExplanation(false);
       setQuizPhase('quiz');
-      setQuizStarted(true); // Keep for compatibility if needed, but phase is better
+      setQuizStarted(true);
       setPreviousAttempt(null);
       setError('');
     } catch (err) {
@@ -283,9 +256,6 @@ export default function QuizPage() {
       setLoading(false);
     }
   };
-
-
-
 
   const handleSelectAnswer = (optionIndex: number) => {
     if (showExplanation) return;
@@ -307,7 +277,6 @@ export default function QuizPage() {
     }
   };
 
-
   // Shared Header Component
   const QuizHeader = () => (
     <>
@@ -321,7 +290,7 @@ export default function QuizPage() {
           <a href="/placements">My Courses</a>
           <a href="/progress">Calculate Grades</a>
         </nav>
-        <button className={styles.headerCta} onClick={() => router.push('/dashboard')}>
+        <button className={styles.headerCta} onClick={() => router.push('/placements')}>
           ← Back
         </button>
       </header>
@@ -337,29 +306,62 @@ export default function QuizPage() {
     </>
   );
 
-  if (!userEmail) {
+  // Loading state
+  if (quizPhase === 'loading') {
     return (
       <div className={styles.container}>
         <QuizHeader />
         <main className={styles.main}>
           <div className={styles.quizForm}>
-            <p>Loading...</p>
+            <div className={styles.loadingState}>
+              <div className={styles.spinner}></div>
+              <p>Loading quiz data...</p>
+            </div>
           </div>
         </main>
       </div>
     );
   }
 
-  if (quizPhase === 'selection') {
+  // No course selected - redirect message
+  if (quizPhase === 'no-course') {
     return (
       <div className={styles.container}>
         <QuizHeader />
         <main className={styles.main}>
           <div className={styles.quizForm}>
-            {/* Removed the header h1 here since we have a hero now */}
-            <p className={styles.subtitle}>Select your upcoming course to see assessment options</p>
-            <p className={styles.userInfo}>👤 {userEmail}</p>
+            <div className={styles.noCourseMessage}>
+              <div className={styles.noCourseIcon}>📚</div>
+              <h2>No Course Selected</h2>
+              <p>Please select a course from the My Courses page to take the prerequisite assessment.</p>
+              <button
+                className={styles.generateBtn}
+                onClick={() => router.push('/placements')}
+              >
+                Go to My Courses
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
+  // Instructions phase
+  if (quizPhase === 'instructions') {
+    return (
+      <div className={styles.container}>
+        <QuizHeader />
+        <main className={styles.main}>
+          <div className={styles.quizForm}>
+            {/* Course Info */}
+            <div className={styles.courseHeader}>
+              <p className={styles.assessingFor}>Assessing prerequisite knowledge for:</p>
+              <h2 className={styles.courseName}>{courseNumber}</h2>
+              <p className={styles.prereqInfo}>Quiz Topic: {preReqCourse?.courseNumber} - {preReqCourse?.courseName}</p>
+            </div>
+
+            {/* Previous Attempt Warning */}
             {previousAttempt && (
               <div className={styles.previousAttempt}>
                 <h3>✅ Already Completed</h3>
@@ -369,102 +371,83 @@ export default function QuizPage() {
                 <p>
                   <strong>Date:</strong> {previousAttempt.attemptDate}
                 </p>
+                <p className={styles.attemptNote}>You cannot retake this assessment.</p>
               </div>
             )}
 
-            <div className={styles.formGroup}>
-              <label>Select Your Upcoming Course *</label>
-              <select
-                value={courseNumber}
-                onChange={(e) => handleCourseNumberChange(e.target.value)}
-                disabled={loading || !!previousAttempt}
-                required
-              >
-                <option value="">-- Select a Course --</option>
-                {Object.entries(courseCatalog).map(([code, details]) => (
-                  <option key={code} value={code}>
-                    {code} - {details.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {preReqCourse && !previousAttempt && (
-              <div className={styles.suggestionBox}>
-                <h3>Recommended Assessment Available</h3>
-                <p>Based on your selection of <strong>{courseNumber}</strong>, we recommend taking the prerequisite assessment for <strong>{preReqCourse.courseNumber}</strong>.</p>
-
-                <div className={styles.formGroup}>
-                  <label>Difficulty Level</label>
-                  <select
-                    value={difficulty}
-                    onChange={(e) => setDifficulty(e.target.value as 'easy' | 'medium' | 'hard')}
-                    disabled={loading}
-                  >
-                    <option value="easy">Easy - Foundational concepts</option>
-                    <option value="medium">Medium - Standard understanding</option>
-                    <option value="hard">Hard - Deep mastery</option>
-                  </select>
+            {!previousAttempt && (
+              <>
+                {/* Quiz Details */}
+                <h3 className={styles.sectionTitle}>Quiz Details</h3>
+                <div className={styles.detailsGrid}>
+                  <div className={styles.detailCard}>
+                    <span className={styles.detailValue}>10</span>
+                    <span className={styles.detailLabel}>Questions</span>
+                  </div>
+                  <div className={styles.detailCard}>
+                    <span className={styles.detailValue}>~30 min</span>
+                    <span className={styles.detailLabel}>Duration</span>
+                  </div>
                 </div>
 
+                {/* One Attempt Warning */}
+                <div className={styles.attemptWarning}>
+                  <div className={styles.warningIcon}>⚠️</div>
+                  <div>
+                    <h4>One Attempt Per Course</h4>
+                    <p>You can only take this quiz once for each course. Make sure you&apos;re ready before starting.</p>
+                  </div>
+                </div>
+
+                {/* Academic Integrity Notice */}
+                <div className={styles.integrityNotice}>
+                  <div className={styles.integrityHeader}>
+                    <div className={styles.integrityIcon}>👁️</div>
+                    <h4>Academic Integrity Notice</h4>
+                  </div>
+                  <ul className={styles.integrityList}>
+                    <li>Switching tabs or windows will <strong>automatically submit</strong> your quiz</li>
+                    <li>Using external resources during the quiz is not permitted</li>
+                    <li>Ensure you have a stable internet connection before starting</li>
+                    <li>Your quiz results determine your batch placement recommendation</li>
+                  </ul>
+                </div>
+
+                {error && <div className={styles.error}>{error}</div>}
+
+                {/* Start Button */}
                 <button
-                  className={styles.generateBtn}
-                  onClick={handleProceedToInstructions}
+                  className={styles.startQuizBtn}
+                  onClick={handleStartQuiz}
+                  disabled={loading}
                 >
-                  Take Quiz
+                  {loading ? (
+                    <>
+                      <span className={styles.btnSpinner}></span>
+                      Generating Quiz...
+                    </>
+                  ) : (
+                    'Start Quiz'
+                  )}
                 </button>
-              </div>
+
+                <button
+                  className={styles.cancelBtn}
+                  onClick={() => router.push('/placements')}
+                >
+                  Cancel
+                </button>
+              </>
             )}
-          </div>
-        </main>
-      </div>
-    );
-  }
 
-  // Phase 2: Instructions
-  if (quizPhase === 'instructions') {
-    return (
-      <div className={styles.container}>
-        <QuizHeader />
-        <main className={styles.main}>
-          <div className={styles.quizForm}> {/* Reuse container style */}
-            <h1>âš ï¸ Academic Integrity & Instructions</h1>
-
-            <div className={styles.instructionCard}>
-              <h3>Assessment Details</h3>
-              <p><strong>Topic:</strong> {preReqCourse?.courseNumber} - {preReqCourse?.courseName}</p>
-              <p><strong>Questions:</strong> 10 Questions</p>
-              <p><strong>Duration:</strong> ~10-15 Minutes</p>
-              <p><strong>Difficulty:</strong> {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</p>
-            </div>
-
-            <div className={styles.integrityNotice}>
-              <h3> Academic Integrity Notice</h3>
-              <p>
-                Switching tabs during the quiz will <strong>automatically submit your answers</strong>.
-                Please ensure you have all materials ready before starting.
-                You have only <strong>ONE</strong> attempt for this assessment.
-              </p>
-            </div>
-
-            <div className={styles.actions} style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
-              <button
-                className={styles.secondaryBtn}
-                onClick={() => setQuizPhase('selection')}
-              >
-                Cancel
-              </button>
+            {previousAttempt && (
               <button
                 className={styles.generateBtn}
-                onClick={handleStartQuiz}
-                disabled={loading}
+                onClick={() => router.push('/placements')}
               >
-                {loading ? 'â³ Generating...' : 'ðŸš€ Start Assessment'}
+                Return to My Courses
               </button>
-            </div>
-
-
-            {error && <div className={styles.error}>{error}</div>}
+            )}
           </div>
         </main>
       </div>
