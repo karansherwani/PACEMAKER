@@ -56,6 +56,7 @@ export async function parseTranscriptPDF(buffer: Buffer): Promise<ParsedTranscri
             const termMatch = trimmedLine.match(termPattern);
             if (termMatch) {
                 currentTerm = `${termMatch[1]} ${termMatch[2]}`;
+                console.log('Found term:', currentTerm);
                 continue;
             }
 
@@ -120,11 +121,30 @@ export async function parseTranscriptPDF(buffer: Buffer): Promise<ParsedTranscri
             }
         }
 
+        // De-duplicate courses by keeping the most recent occurrence
+        // Build a map with course code as key, but keep courses in reverse order
+        // so the last occurrence (most recent) is kept
         const uniqueCoursesMap = new Map<string, CourseGrade>();
-        courses.forEach((c) => uniqueCoursesMap.set(c.course, c));
+        
+        // Process in reverse to prioritize most recent terms when de-duplicating
+        for (let i = courses.length - 1; i >= 0; i--) {
+            const course = courses[i];
+            const key = course.course;
+            // Only add if not already in map (since we're going backwards, first hit is most recent)
+            if (!uniqueCoursesMap.has(key)) {
+                uniqueCoursesMap.set(key, course);
+            }
+        }
+
+        // Convert back to array and reverse to maintain chronological order
+        const finalCourses = Array.from(uniqueCoursesMap.values()).reverse();
+
+        console.log('Total courses parsed:', courses.length);
+        console.log('Unique courses after de-duplication:', finalCourses.length);
+        console.log('Terms found:', [...new Set(courses.map(c => c.term))]);
 
         return {
-            courses: Array.from(uniqueCoursesMap.values()),
+            courses: finalCourses,
         };
     } catch (error) {
         console.error('Error parsing PDF:', error);

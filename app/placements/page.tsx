@@ -529,42 +529,56 @@ export default function PlacementsPage() {
             {/* Academic History */}
             <h2 className={styles.sectionTitle}>↗ Your Complete Academic History</h2>
 
-            {/* Group courses by term */}
-            {['Fall 2023', 'Spring 2024', 'Fall 2024', 'Spring 2025', 'Fall 2025'].map(term => {
-              const termCourses = grades.filter(g => g.term === term);
-              if (termCourses.length === 0) return null;
-              const isCurrentTerm = term === 'Fall 2025';
+            {/* Group courses by term - dynamically get all unique terms */}
+            {Array.from(new Set(grades.map(g => g.term)))
+              .sort((a, b) => {
+                // Sort terms chronologically
+                const termOrder: Record<string, number> = { 'Spring': 0, 'Summer': 1, 'Fall': 2, 'Winter': 3 };
+                const [seasonA, yearA] = a.split(' ');
+                const [seasonB, yearB] = b.split(' ');
+                const yearDiff = parseInt(yearA) - parseInt(yearB);
+                if (yearDiff !== 0) return yearDiff;
+                return termOrder[seasonA] - termOrder[seasonB];
+              })
+              .map(term => {
+                const termCourses = grades.filter(g => g.term === term);
+                if (termCourses.length === 0) return null;
+                
+                // Check if this is the most recent term with IP courses
+                const hasInProgress = termCourses.some(c => c.grade === 'IP');
+                const isCurrentTerm = hasInProgress;
 
-              return (
-                <div key={term} className={styles.semesterCard}>
-                  <div className={styles.semesterHeader}>
-                    <h3>{term}</h3>
-                    {isCurrentTerm && <span className={styles.currentBadge}>Current</span>}
-                  </div>
+                return (
+                  <div key={term} className={styles.semesterCard}>
+                    <div className={styles.semesterHeader}>
+                      <h3>{term}</h3>
+                      {isCurrentTerm && <span className={styles.currentBadge}>Current</span>}
+                    </div>
 
-                  <div className={styles.courseList}>
-                    {termCourses.map((g, i) => (
-                      <div key={i} className={styles.courseRow}>
-                        <div className={styles.courseInfo}>
-                          <span className={styles.courseCode}>{g.course}</span>
-                          <span className={styles.courseDesc}>{g.description}</span>
+                    <div className={styles.courseList}>
+                      {termCourses.map((g, i) => (
+                        <div key={i} className={styles.courseRow}>
+                          <div className={styles.courseInfo}>
+                            <span className={styles.courseCode}>{g.course}</span>
+                            <span className={styles.courseDesc}>{g.description}</span>
+                          </div>
+                          <div className={styles.courseRight}>
+                            <span className={styles.credits}>{g.credits} credits</span>
+                            {g.grade === 'IP' ? (
+                              <span className={styles.inProgressBadge}>In Progress</span>
+                            ) : (
+                              <span className={`${styles.gradeBadge} ${g.grade === 'E' ? styles.gradeE : ''}`}>
+                                {g.grade}
+                              </span>
+                            )}
+                          </div>
                         </div>
-                        <div className={styles.courseRight}>
-                          <span className={styles.credits}>{g.credits} credits</span>
-                          {g.grade === 'IP' ? (
-                            <span className={styles.inProgressBadge}>In Progress</span>
-                          ) : (
-                            <span className={`${styles.gradeBadge} ${g.grade === 'E' ? styles.gradeE : ''}`}>
-                              {g.grade}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+
 
             <div className={styles.recommendationCard}>
               {calculateRecommendation() === 'fast' && (
