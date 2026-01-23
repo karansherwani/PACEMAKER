@@ -5,7 +5,7 @@ import { hasUserAttemptedQuiz } from '@/app/lib/db';
 export async function POST(request: NextRequest) {
     try {
         // Get data from request
-        const { courseNumber, courseName, difficulty } = await request.json();
+        const { courseNumber, courseName } = await request.json();
         const userId = request.headers.get('x-user-email');
 
         if (!userId || !courseNumber || !courseName) {
@@ -15,14 +15,9 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // For now, use a simple check - implement proper JWT/auth in production
-        const authHeader = request.headers.get('authorization');
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            return NextResponse.json(
-                { error: 'Unauthorized - No valid token' },
-                { status: 401 }
-            );
-        }
+        // User identification is handled via x-user-email header
+        // The Gemini API key is configured server-side in environment variables
+        // For production, consider adding JWT/session-based authentication
 
         // Check if user already attempted this quiz
         const hasAttempted = await hasUserAttemptedQuiz(userId, courseNumber);
@@ -38,8 +33,7 @@ export async function POST(request: NextRequest) {
         const quiz = await generateQuizForCourse(
             userId,
             courseNumber,
-            courseName,
-            difficulty || 'medium'
+            courseName
         );
 
         return NextResponse.json({

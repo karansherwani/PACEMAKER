@@ -240,8 +240,14 @@ export default function QuizPage() {
         throw new Error(data.error || 'Failed to generate quiz');
       }
 
-      setQuizData(data);
-      setSelectedAnswers(new Array(data.questions.length).fill(null));
+      // Extract the quiz from the response wrapper
+      const quiz = data.quiz;
+      if (!quiz || !quiz.questions) {
+        throw new Error('Invalid quiz data received from server');
+      }
+
+      setQuizData(quiz);
+      setSelectedAnswers(new Array(quiz.questions.length).fill(null));
       setCurrentQuestion(0);
       setShowExplanation(false);
       setQuizPhase('quiz');

@@ -1,11 +1,38 @@
-/* Header */
+/* Quiz Page Styles - UofA Theme */
+
+/* UofA Colors - Explicit definitions for consistency */
+:root {
+  --uofa-blue: #0C234B;
+  --uofa-blue-light: #1E3A6C;
+  --uofa-red: #AB0520;
+  --bg-light: #FCFCF9;
+  --text-primary: #000000;
+  --text-secondary: #374151;
+  --text-muted: #6B7280;
+  --border-color: #E5E7EB;
+  --success: #059669;
+  --success-bg: #ECFDF5;
+  --error: #DC2626;
+  --error-bg: #FEF2F2;
+  --warning: #D97706;
+  --warning-bg: #FFFBEB;
+}
+
+/* Container */
+.container {
+  min-height: 100vh;
+  background: var(--bg-light);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header - Matching Landing Page */
 .topHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 48px;
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -20,7 +47,7 @@
 .logoMark {
   width: 32px;
   height: 32px;
-  background: var(--color-primary);
+  background: var(--uofa-blue);
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -33,7 +60,7 @@
 .logoText {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--uofa-blue);
 }
 
 .headerNav {
@@ -42,7 +69,7 @@
 }
 
 .headerNav a {
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -50,11 +77,11 @@
 }
 
 .headerNav a:hover {
-  color: var(--color-primary);
+  color: var(--uofa-blue);
 }
 
 .headerCta {
-  background: var(--color-primary);
+  background: var(--uofa-blue);
   color: white;
   border: none;
   padding: 10px 24px;
@@ -66,12 +93,12 @@
 }
 
 .headerCta:hover {
-  background: var(--color-primary-hover);
+  background: var(--uofa-blue-light);
 }
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  background: linear-gradient(135deg, var(--uofa-blue) 0%, var(--uofa-blue-light) 100%);
   color: white;
   padding: 60px 48px 80px;
   text-align: center;
@@ -87,6 +114,7 @@
   margin-bottom: 16px;
   font-weight: 700;
   letter-spacing: -0.5px;
+  color: white;
 }
 
 .heroSubtext {
@@ -94,6 +122,7 @@
   opacity: 0.9;
   line-height: 1.6;
   margin: 0;
+  color: white;
 }
 
 /* Main Content */
@@ -103,22 +132,17 @@
   margin: 0 auto;
 }
 
-.container {
-  min-height: 100vh;
-  background: var(--color-background);
-}
-
 .quizForm {
-  background: var(--color-surface);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-md);
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .quizForm h1 {
   margin-bottom: 2rem;
-  color: var(--color-text);
+  color: var(--text-primary);
 }
 
 .formGroup {
@@ -128,19 +152,19 @@
 .formGroup label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: var(--color-text);
+  font-weight: 600;
+  color: var(--text-primary);
   font-size: 0.95rem;
 }
 
 .formGroup input,
 .formGroup select {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--color-border);
+  padding: 0.875rem;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  background: var(--color-background);
-  color: var(--color-text);
+  background: white;
+  color: var(--text-primary);
   font-size: 1rem;
   transition: border-color 0.2s;
 }
@@ -148,21 +172,15 @@
 .formGroup input:focus,
 .formGroup select:focus {
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-focus-ring);
-}
-
-.formGroup input:disabled,
-.formGroup select:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  border-color: var(--uofa-blue);
+  box-shadow: 0 0 0 3px rgba(12, 35, 75, 0.1);
 }
 
 .generateBtn {
   width: 100%;
   padding: 1rem;
-  background: var(--color-primary);
-  color: var(--color-btn-primary-text);
+  background: var(--uofa-blue);
+  color: white;
   border: none;
   border-radius: 8px;
   font-size: 1.1rem;
@@ -172,9 +190,9 @@
 }
 
 .generateBtn:hover:not(:disabled) {
-  background: var(--color-primary-hover);
+  background: var(--uofa-blue-light);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 4px 12px rgba(12, 35, 75, 0.2);
 }
 
 .generateBtn:disabled {
@@ -184,9 +202,9 @@
 
 .error {
   padding: 1rem;
-  background: rgba(var(--color-error-rgb), var(--status-bg-opacity));
-  border: 1px solid var(--color-error);
-  color: var(--color-error);
+  background: var(--error-bg);
+  border: 1px solid var(--error);
+  color: var(--error);
   border-radius: 8px;
   margin-bottom: 1rem;
   font-weight: 500;
@@ -199,17 +217,19 @@
 
 .courseInfo h2 {
   margin-bottom: 0.5rem;
-  color: var(--color-text);
+  color: var(--uofa-blue);
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .courseInfo p {
-  color: var(--color-text-secondary);
-  margin: 0;
+  color: var(--text-secondary);
+  margin: 0.25rem 0;
 }
 
 .progressBar {
   height: 8px;
-  background: var(--color-secondary);
+  background: #E5E7EB;
   border-radius: 10px;
   overflow: hidden;
   margin-top: 1rem;
@@ -217,55 +237,56 @@
 
 .progress {
   height: 100%;
-  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--uofa-blue) 0%, var(--uofa-blue-light) 100%);
   transition: width 0.3s ease;
 }
 
 .questionCard {
-  background: var(--color-surface);
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid var(--color-border);
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
   margin-bottom: 2rem;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .questionCard h3 {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   margin-bottom: 1.5rem;
-  color: var(--color-text);
-  line-height: 1.6;
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-weight: 600;
 }
 
 .options {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.875rem;
   margin-bottom: 2rem;
 }
 
 .option {
   display: flex;
   align-items: flex-start;
-  padding: 1rem;
-  border: 2px solid var(--color-border);
-  border-radius: 8px;
+  padding: 1.125rem 1.25rem;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s;
   position: relative;
-  background: var(--color-background);
+  background: white;
 }
 
 .option:hover {
-  border-color: var(--color-primary);
-  background: rgba(var(--color-primary-rgb), 0.05);
+  border-color: var(--uofa-blue);
+  background: rgba(12, 35, 75, 0.02);
 }
 
 .option input[type="radio"] {
   margin-top: 0.2rem;
   margin-right: 1rem;
   cursor: pointer;
-  accent-color: var(--color-primary);
+  accent-color: var(--uofa-blue);
   width: 20px;
   height: 20px;
   flex-shrink: 0;
@@ -277,23 +298,24 @@
 
 .optionText {
   flex: 1;
-  color: var(--color-text);
-  line-height: 1.5;
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 1rem;
 }
 
 .option.selected {
-  border-color: var(--color-primary);
-  background: rgba(var(--color-primary-rgb), 0.1);
+  border-color: var(--uofa-blue);
+  background: rgba(12, 35, 75, 0.05);
 }
 
 .option.correct {
-  border-color: var(--color-success);
-  background: rgba(var(--color-success-rgb), 0.1);
+  border-color: var(--success);
+  background: var(--success-bg);
 }
 
 .option.incorrect {
-  border-color: var(--color-error);
-  background: rgba(var(--color-error-rgb), 0.1);
+  border-color: var(--error);
+  background: var(--error-bg);
 }
 
 .badge {
@@ -306,33 +328,34 @@
 }
 
 .option.correct .badge {
-  background: var(--color-success);
+  background: var(--success);
   color: white;
 }
 
 .option.incorrect .badge {
-  background: var(--color-error);
+  background: var(--error);
   color: white;
 }
 
 .explanation {
-  padding: 1rem;
-  background: rgba(var(--color-info-rgb), 0.1);
-  border-left: 4px solid var(--color-info);
-  border-radius: 6px;
+  padding: 1.25rem;
+  background: rgba(12, 35, 75, 0.05);
+  border-left: 4px solid var(--uofa-blue);
+  border-radius: 8px;
   margin-bottom: 1.5rem;
 }
 
 .explanation h4 {
   margin: 0 0 0.5rem 0;
-  color: var(--color-text);
+  color: var(--uofa-blue);
   font-size: 1rem;
+  font-weight: 600;
 }
 
 .explanation p {
   margin: 0;
-  color: var(--color-text);
-  line-height: 1.6;
+  color: var(--text-primary);
+  line-height: 1.7;
 }
 
 .actions {
@@ -343,7 +366,7 @@
 
 .explainBtn,
 .nextBtn {
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 1.75rem;
   border: none;
   border-radius: 8px;
   font-size: 1rem;
@@ -353,30 +376,30 @@
 }
 
 .explainBtn {
-  background: var(--color-secondary);
-  color: var(--color-text);
+  background: #F3F4F6;
+  color: var(--text-primary);
 }
 
 .explainBtn:hover {
-  background: var(--color-secondary-hover);
+  background: #E5E7EB;
 }
 
 .nextBtn {
-  background: var(--color-primary);
-  color: var(--color-btn-primary-text);
+  background: var(--uofa-blue);
+  color: white;
 }
 
 .nextBtn:hover {
-  background: var(--color-primary-hover);
+  background: var(--uofa-blue-light);
   transform: translateX(4px);
 }
 
 .warning {
-  padding: 0.75rem 1rem;
-  background: rgba(var(--color-warning-rgb), var(--status-bg-opacity));
-  border: 1px solid var(--color-warning);
-  border-radius: 6px;
-  color: var(--color-warning);
+  padding: 0.875rem 1.25rem;
+  background: var(--warning-bg);
+  border: 1px solid var(--warning);
+  border-radius: 8px;
+  color: var(--warning);
   text-align: center;
   font-weight: 500;
   font-size: 0.9rem;
@@ -396,7 +419,7 @@
   }
 
   .option {
-    padding: 0.75rem;
+    padding: 0.875rem;
   }
 
   .actions {
@@ -407,125 +430,49 @@
   .nextBtn {
     width: 100%;
   }
+
+  .topHeader {
+    padding: 16px 24px;
+  }
+
+  .hero {
+    padding: 40px 24px 60px;
+  }
+
+  .main {
+    padding: 24px 16px;
+  }
 }
 
 .subtitle {
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   margin: 0.5rem 0 2rem 0;
   font-size: 0.95rem;
 }
 
 .previousAttempt {
   padding: 1.5rem;
-  background: rgba(var(--color-success-rgb), 0.1);
-  border: 2px solid var(--color-success);
-  border-radius: 8px;
+  background: var(--success-bg);
+  border: 2px solid var(--success);
+  border-radius: 12px;
   margin-bottom: 2rem;
 }
 
 .previousAttempt h3 {
-  color: var(--color-success);
+  color: var(--success);
   margin: 0 0 1rem 0;
   font-size: 1.1rem;
 }
 
 .previousAttempt p {
   margin: 0.5rem 0;
-  color: var(--color-text);
+  color: var(--text-primary);
 }
 
 .userInfo {
   font-size: 0.9rem;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   margin-top: 0.5rem;
-}
-
-.info {
-  margin-top: 2rem;
-  padding: 1rem;
-  background: var(--color-secondary);
-  border-radius: 8px;
-  border-left: 4px solid var(--color-primary);
-}
-
-.info p {
-  margin: 0.5rem 0;
-  color: var(--color-text);
-  font-size: 0.95rem;
-}
-
-.info p:first-child {
-  margin-top: 0;
-}
-
-.info p:last-child {
-  margin-bottom: 0;
-}
-
-.suggestionBox {
-  padding: 2rem;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  box-shadow: var(--shadow-md);
-  margin-top: 2rem;
-  text-align: center;
-}
-
-.suggestionBox h3 {
-  color: var(--color-primary);
-  margin-bottom: 1rem;
-}
-
-.instructionCard {
-  background: var(--color-background);
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
-  margin-bottom: 1.5rem;
-}
-
-.instructionCard p {
-  margin: 0.5rem 0;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px dotted var(--color-border);
-  padding-bottom: 0.25rem;
-}
-
-.integrityNotice {
-  background-color: var(--color-warning-bg);
-  border: 1px solid var(--color-warning);
-  color: var(--color-warning);
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 1.5rem 0;
-  text-align: left;
-}
-
-.integrityNotice h3 {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-  color: var(--color-warning);
-}
-
-.secondaryBtn {
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  color: var(--color-text);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 1rem;
-}
-
-.secondaryBtn:hover {
-  background: var(--color-background);
-  border-color: var(--color-text-secondary);
 }
 
 /* Loading State */
@@ -539,15 +486,15 @@
 }
 
 .loadingState p {
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   font-size: 1rem;
 }
 
 .spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid var(--color-border);
-  border-top-color: var(--color-primary);
+  border: 3px solid var(--border-color);
+  border-top-color: var(--uofa-blue);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -570,13 +517,13 @@
 }
 
 .noCourseMessage h2 {
-  color: var(--color-text);
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
 }
 
 .noCourseMessage p {
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   margin-bottom: 2rem;
   font-size: 1rem;
 }
@@ -586,32 +533,32 @@
   text-align: center;
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .assessingFor {
-  color: var(--color-text-secondary);
-  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
   margin-bottom: 0.5rem;
 }
 
 .courseHeader .courseName {
-  color: var(--color-primary);
-  font-size: 1.75rem;
+  color: var(--uofa-blue);
+  font-size: 2rem;
   font-weight: 700;
   margin: 0.5rem 0;
 }
 
 .prereqInfo {
-  color: var(--color-text-secondary);
-  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
 }
 
 /* Section Title */
 .sectionTitle {
-  color: var(--color-text);
+  color: var(--text-primary);
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
@@ -624,8 +571,8 @@
 }
 
 .detailCard {
-  background: var(--color-background);
-  border: 1px solid var(--color-border);
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 1.5rem;
   text-align: center;
@@ -637,12 +584,12 @@
 .detailValue {
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--uofa-blue);
 }
 
 .detailLabel {
   font-size: 0.9rem;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
 }
 
 /* Attempt Warning */
@@ -650,8 +597,8 @@
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  background: var(--color-background);
-  border: 1px solid var(--color-border);
+  background: var(--warning-bg);
+  border: 1px solid rgba(217, 119, 6, 0.3);
   border-radius: 12px;
   padding: 1.25rem;
   margin-bottom: 1.5rem;
@@ -663,22 +610,22 @@
 }
 
 .attemptWarning h4 {
-  color: var(--color-text);
+  color: var(--text-primary);
   font-size: 1rem;
   font-weight: 600;
   margin: 0 0 0.25rem 0;
 }
 
 .attemptWarning p {
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   font-size: 0.9rem;
   margin: 0;
   line-height: 1.5;
 }
 
-/* Academic Integrity Notice - Redesigned */
+/* Academic Integrity Notice */
 .integrityNotice {
-  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(245, 158, 11, 0.03) 100%);
   border: 1px solid rgba(251, 191, 36, 0.3);
   border-left: 4px solid #F59E0B;
   border-radius: 12px;
@@ -706,7 +653,7 @@
 }
 
 .integrityHeader h4 {
-  color: var(--color-text);
+  color: var(--text-primary);
   font-size: 1rem;
   font-weight: 600;
   margin: 0;
@@ -719,7 +666,7 @@
 }
 
 .integrityList li {
-  color: var(--color-text);
+  color: var(--text-primary);
   font-size: 0.9rem;
   line-height: 1.6;
   padding-left: 1.5rem;
@@ -740,17 +687,17 @@
 }
 
 .integrityList li strong {
-  color: var(--color-text);
+  color: var(--text-primary);
 }
 
 /* Start Quiz Button */
 .startQuizBtn {
   width: 100%;
-  padding: 1rem;
-  background: var(--color-primary);
+  padding: 1.125rem;
+  background: var(--uofa-blue);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
@@ -763,9 +710,9 @@
 }
 
 .startQuizBtn:hover:not(:disabled) {
-  background: var(--color-primary-hover);
+  background: var(--uofa-blue-light);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(12, 35, 75, 0.25);
 }
 
 .startQuizBtn:disabled {
@@ -785,11 +732,11 @@
 /* Cancel Button */
 .cancelBtn {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.875rem;
   background: transparent;
-  color: var(--color-text-secondary);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
@@ -797,13 +744,13 @@
 }
 
 .cancelBtn:hover {
-  background: var(--color-background);
-  border-color: var(--color-text-secondary);
+  background: var(--bg-light);
+  border-color: var(--text-secondary);
 }
 
 /* Previous Attempt Note */
 .attemptNote {
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   font-size: 0.85rem;
   margin-top: 0.5rem;
   font-style: italic;

@@ -305,6 +305,107 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* AI Advisor Section */
+.aiAdvisorSection {
+  padding: 80px 48px;
+  background: linear-gradient(135deg, var(--uofa-blue) 0%, #1a3a6e 50%, var(--uofa-blue-light) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.aiAdvisorSection::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.aiAdvisorWrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.aiAdvisorLabel {
+  display: inline-block;
+  background: var(--uofa-red);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(171, 5, 32, 0.3);
+}
+
+.aiAdvisorSection h2 {
+  font-size: 2.25rem;
+  color: white;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.aiAdvisorDesc {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.aiAdvisorFeatures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 32px;
+  margin-bottom: 36px;
+  text-align: left;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.aiAdvisorFeature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.aiCheckmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .aiAdvisorSection {
+    padding: 60px 20px;
+  }
+
+  .aiAdvisorSection h2 {
+    font-size: 1.75rem;
+  }
+
+  .aiAdvisorFeatures {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Testimonials */
 .testimonials {
   padding: 80px 48px;

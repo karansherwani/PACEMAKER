@@ -85,6 +85,29 @@ export default function Dashboard() {
           </div>
         </section>
 
+        {/* AI ADVISOR HERO SECTION - MVP */}
+        <section className={styles.aiAdvisorHero}>
+          <span className={styles.aiAdvisorBadge}>New Feature</span>
+          <div className={styles.aiAdvisorContent}>
+            <div className={styles.aiAdvisorText}>
+              <h2>AI Academic Advisor</h2>
+              <p>
+                Get personalized guidance for your graduation journey. Our AI-powered advisor analyzes your
+                transcript, learning pace, and goals to create the perfect academic plan.
+              </p>
+              <div className={styles.aiAdvisorFeatures}>
+                <div className={styles.aiAdvisorFeature}>Personalized course recommendations</div>
+                <div className={styles.aiAdvisorFeature}>Smart graduation timeline</div>
+                <div className={styles.aiAdvisorFeature}>Prerequisite analysis</div>
+                <div className={styles.aiAdvisorFeature}>Pace matching for your style</div>
+              </div>
+              <button className={styles.aiAdvisorCta} onClick={() => router.push('/advisor')}>
+                Start Planning with AI
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* FEATURES/OPTIONS GRID */}
         <div className={styles.sectionHeader}>
           <h2>Academic Tools</h2>

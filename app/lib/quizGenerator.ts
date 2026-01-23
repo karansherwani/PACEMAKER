@@ -29,12 +29,11 @@ export async function generateQuizForCourse(
     userId: string,
     courseNumber: string,
     courseName: string,
-    difficulty: "easy" | "medium" | "hard" = "medium",
     attemptNumber: number = 1
 ): Promise<GeneratedQuiz> {
     try {
         const seed = generateQuizSeed(userId, courseNumber, attemptNumber);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         const difficultyHint = {
             easy: "fundamental concepts, basic definitions, and simple problems",
@@ -52,8 +51,14 @@ Generate exactly 10 UNIQUE multiple-choice questions.
 CRITICAL REQUIREMENTS:
 1. SUBJECT MATTER: Every question MUST be a technical problem-solving question or a core concept check from ${courseNumber} - ${courseName}.
 2. NO META QUESTIONS: Do not ask about the course name, study habits, or importance. Ask about formulas, logic, and subject-specific content.
-3. DIFFICULTY: ${difficultyHint[difficulty]}.
-4. FORMAT: Return ONLY valid JSON as specified.
+3. FORMAT: Return ONLY valid JSON as specified.
+4. PLAIN TEXT ONLY: Do NOT use LaTeX, MathJax, or any special math formatting. Write all math expressions in plain readable text.
+   - Instead of "$\\sqrt{21}$" write "√21" or "sqrt(21)"
+   - Instead of "$\\frac{1}{2}$" write "1/2"
+   - Instead of "$x^2$" write "x²" or "x^2"
+   - Instead of "$\\theta$" write "θ" or "theta"
+   - Instead of "$\\mathbf{v}$" write "v" (just the letter)
+   - Use Unicode symbols: ² ³ √ π θ ∫ ∑ ∞ ≤ ≥ ≠ ± × ÷
 
 RESPONSE FORMAT (JSON ONLY):
 {
@@ -68,12 +73,14 @@ RESPONSE FORMAT (JSON ONLY):
   ]
 }
 
-For MATH: Focus on calculus, algebra, or proofs as relevant.
+For MATH: Focus on calculus, algebra, or proofs as relevant. Write expressions in plain text.
 For CS: Focus on algorithms, syntax, or logic.
 For SCIENCES: Focus on laws, formulas, and observations.`;
 
         const result = await model.generateContent(prompt);
         const responseText = result.response.text();
+
+        console.log('Raw AI response:', responseText.substring(0, 500));
 
         // Clean up response
         let cleanedText = responseText
@@ -86,21 +93,40 @@ For SCIENCES: Focus on laws, formulas, and observations.`;
         if (jsonMatch) {
             cleanedText = jsonMatch[0];
         } else {
-            // If no JSON found, try to parse the entire text as JSON (might fail)
-            // But in this case, we throw an error
+            console.error('No JSON found in response:', cleanedText);
             throw new Error('No JSON found in AI response');
         }
 
-        const parsedQuestions = JSON.parse(cleanedText);
+        let parsedQuestions;
+        try {
+            parsedQuestions = JSON.parse(cleanedText);
+        } catch (parseError) {
+            console.error('JSON parse error:', parseError);
+            console.error('Attempted to parse:', cleanedText.substring(0, 500));
+            throw new Error('Failed to parse AI response as JSON');
+        }
+
+        console.log('Parsed response keys:', Object.keys(parsedQuestions));
 
         if (!parsedQuestions.questions || !Array.isArray(parsedQuestions.questions)) {
+            console.error('Invalid structure:', JSON.stringify(parsedQuestions).substring(0, 500));
             throw new Error('Invalid response structure from AI: missing questions array');
         }
+
+        console.log('Number of questions:', parsedQuestions.questions.length);
 
         // Validate each question has required fields
         const validatedQuestions: QuizQuestion[] = parsedQuestions.questions.map(
             (q: QuizQuestion, idx: number) => {
-                if (!q.question || !q.options || q.options.length !== 4 || q.correct === undefined || !q.explanation) {
+                const hasOptions = q.options && Array.isArray(q.options);
+                if (!q.question || !hasOptions || q.options.length !== 4 || q.correct === undefined || !q.explanation) {
+                    console.error(`Question ${idx + 1} validation failed:`, {
+                        hasQuestion: !!q.question,
+                        hasOptions: hasOptions,
+                        optionsLength: hasOptions ? q.options.length : 'N/A',
+                        hasCorrect: q.correct !== undefined,
+                        hasExplanation: !!q.explanation
+                    });
                     throw new Error(`Question ${idx + 1} is missing required fields`);
                 }
 

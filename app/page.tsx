@@ -51,20 +51,19 @@ export default function LandingPage() {
 
   const features = [
     {
-      title: 'Transcript Analysis',
-      desc: 'Upload your transcript for instant prerequisite grade evaluation',
+      title: 'AI Academic Advisor',
+      desc: 'Get personalized graduation plans powered by AI that adapts to your pace',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <polyline points="14,2 14,8 20,8" />
-          <line x1="16" y1="13" x2="8" y2="13" />
-          <line x1="16" y1="17" x2="8" y2="17" />
+          <path d="M12 2L2 7l10 5 10-5-10-5z" />
+          <path d="M2 17l10 5 10-5" />
+          <path d="M2 12l10 5 10-5" />
         </svg>
       )
     },
     {
-      title: 'Batch Matching',
-      desc: 'Get placed in Batch A (7 weeks) or Batch B (14 weeks) based on readiness',
+      title: 'Smart Batch Matching',
+      desc: 'Upload your transcript and get instantly placed in Batch A (7 weeks) or Batch B (14 weeks)',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="12" cy="12" r="10" />
@@ -73,8 +72,8 @@ export default function LandingPage() {
       )
     },
     {
-      title: 'Upgrade Path',
-      desc: 'Take the readiness quiz to move from standard to accelerated placement',
+      title: 'Readiness Quiz',
+      desc: 'Take the optional assessment to upgrade from standard to accelerated placement',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <line x1="12" y1="19" x2="12" y2="5" />
@@ -84,7 +83,7 @@ export default function LandingPage() {
     },
     {
       title: 'Grade Calculator',
-      desc: 'Plan your semester and calculate final exam scores needed',
+      desc: 'Plan your semester and calculate final exam scores needed for your target grade',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <line x1="18" y1="20" x2="18" y2="10" />
@@ -216,6 +215,39 @@ export default function LandingPage() {
             <div className={styles.statNumber}>3.2M+</div>
             <div className={styles.statLabel}>Students</div>
           </div>
+        </div>
+      </section>
+
+      {/* AI ADVISOR HIGHLIGHT */}
+      <section className={styles.aiAdvisorSection}>
+        <div className={styles.aiAdvisorWrapper}>
+          <div className={styles.aiAdvisorLabel}>MVP Feature</div>
+          <h2>AI-Powered <span className={styles.accentText}>Academic Planning</span></h2>
+          <p className={styles.aiAdvisorDesc}>
+            Our AI Academic Advisor analyzes your transcript, learning style, and goals to create
+            a personalized graduation plan. Graduate at your own pace with confidence.
+          </p>
+          <div className={styles.aiAdvisorFeatures}>
+            <div className={styles.aiAdvisorFeature}>
+              <span className={styles.aiCheckmark}>✓</span>
+              Personalized course recommendations
+            </div>
+            <div className={styles.aiAdvisorFeature}>
+              <span className={styles.aiCheckmark}>✓</span>
+              Smart graduation timeline
+            </div>
+            <div className={styles.aiAdvisorFeature}>
+              <span className={styles.aiCheckmark}>✓</span>
+              Prerequisite analysis
+            </div>
+            <div className={styles.aiAdvisorFeature}>
+              <span className={styles.aiCheckmark}>✓</span>
+              Adaptive pace matching
+            </div>
+          </div>
+          <button className={styles.ctaButton} onClick={() => setShowUniSelect(true)}>
+            Try AI Advisor Free
+          </button>
         </div>
       </section>
 
