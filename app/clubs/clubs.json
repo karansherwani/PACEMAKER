@@ -1,45 +1,15 @@
 [
     {
-        "name": "Beta Theta Pi Fraternity",
-        "Description": "Greek-Letter Organization - Leadership, Social Greek Letter",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/BTP/"
-    },
-    {
-        "name": "Hemp Exploration and Research Board",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4304835_try_4_722203636.png",
-        "Url": "https://arizona.campusgroups.com/HERB/"
-    },
-    {
         "name": "MotoClub",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2083630_UAMC_Round_crop_1122162551.png",
         "Url": "https://arizona.campusgroups.com/CLUB602/"
     },
     {
-        "name": "number sign SKY@ZONA",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_2084559_uofaskyjpg_313145141.jpeg",
-        "Url": "https://arizona.campusgroups.com/SKYMEDITATION/"
-    },
-    {
-        "name": "’Zona Sax Cats",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/ZSC/"
-    },
-    {
         "name": "8 Minute Meals",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
         "Url": "https://arizona.campusgroups.com/8MM/"
-    },
-    {
-        "name": "Academy of Managed Care Pharmacy ( AMCP )",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2048279_download_925124118.png",
-        "Url": "https://arizona.campusgroups.com/AMCPUACOP/"
     },
     {
         "name": "Active Minds",
@@ -96,12 +66,6 @@
         "Url": "https://aalsclubua.wixsite.com/aalsua"
     },
     {
-        "name": "African Student Association",
-        "Description": "Student Organization - Cultural/International, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_5027509_Green_Brown_Black_Awareness_Day_Instagram_Post_3_10903558.png",
-        "Url": "https://arizona.campusgroups.com/ASAUARIZONA/"
-    },
-    {
         "name": "AfroConnect",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_4306479_AfroConnect_logo_1029181037.png",
@@ -132,12 +96,6 @@
         "Url": "https://arizona.campusgroups.com/alleycats/"
     },
     {
-        "name": "Allied Scholars for Animal Protection",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3176005_alllied_scholars_logojpg_815115121.jpeg",
-        "Url": "https://arizona.campusgroups.com/AlliedScholars/"
-    },
-    {
         "name": "Alpha and Omega Christian Club",
         "Description": "Student Organization - Leadership",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_2061794_AlphaOmegaFall24jpg_95185653.jpeg",
@@ -162,12 +120,6 @@
         "Url": "https://arizona.campusgroups.com/AKA/"
     },
     {
-        "name": "Alpha Omega Campus Ministry",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_4207884_AO_Logo_8222739.png",
-        "Url": "https://arizona.campusgroups.com/AOT/"
-    },
-    {
         "name": "Alpha Phi Gamma",
         "Description": "Greek-Letter Organization - Social Greek Letter",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_3178933_aphigcirclemarklarge_82317310.png",
@@ -184,18 +136,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
         "Url": "https://arizona.campusgroups.com/SCAAEP/"
-    },
-    {
-        "name": "American Association of Psychiatric Pharmacists",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2351072_thumbnail_AAPP_Collegiate_Chapter_Logojpg_91222136.jpeg",
-        "Url": "https://arizona.campusgroups.com/CLUB252/"
-    },
-    {
-        "name": "American Association of Veterinary Parasitologists Student Chapter",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_2058620_AAVP_logo_blackjpg_822191839.jpeg",
-        "Url": "https://arizona.campusgroups.com/AAVP/"
     },
     {
         "name": "American College of Veterinary Pharmacists",
@@ -226,12 +166,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2060513_WREC_Logo_1022142444.png",
         "Url": "https://arizona.campusgroups.com/CLUB1114/"
-    },
-    {
-        "name": "American Institute of Architecture Students",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2047789_aias_logo_arizona_1214165336.png",
-        "Url": "https://arizona.campusgroups.com/AIAS/"
     },
     {
         "name": "American Institute of Chemical Engineers",
@@ -276,22 +210,10 @@
         "Url": "https://arizona.campusgroups.com/CLUB52/"
     },
     {
-        "name": "American Society of Landscape Architects",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_5025040_asla_logogif_818223435.jpeg",
-        "Url": "https://arizona.campusgroups.com/ASLA/"
-    },
-    {
         "name": "American Society of Mechanical Engineers",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2057166_asmeLogo_82313649.png",
         "Url": "https://arizona.campusgroups.com/CLUB56/"
-    },
-    {
-        "name": "American String Teacher Association",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2054954_Arizona_ChapterLogo_Purple_RGB_10216117.png",
-        "Url": "https://arizona.campusgroups.com/UAASTA/"
     },
     {
         "name": "American String Teachers Association",
@@ -348,30 +270,6 @@
         "Url": "https://arizona.campusgroups.com/CLUB69/"
     },
     {
-        "name": "Arizona Ambassadors",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2050058_Ambassadors_Logo_Copy_3JPG_81714483.jpeg",
-        "Url": "https://arizona.campusgroups.com/CLUB74/"
-    },
-    {
-        "name": "Arizona Asian American Native Hawaiian Pacific Islander Students for Equity",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2075469_D78ACF1FC73640D6BFD38DF60BA13DF3_85162752.png",
-        "Url": "https://azaanhpisfe.wixsite.com/azaanhpiuasfe"
-    },
-    {
-        "name": "Arizona Autonomous Vehicles Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2066382_azalogosvg_990169.jpeg",
-        "Url": "https://discord.gg/7hRtYc7uDg"
-    },
-    {
-        "name": "Arizona Club Golf",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2366375_golf_logo_81721245.png",
-        "Url": "https://arizona.campusgroups.com/ACG/"
-    },
-    {
         "name": "Arizona Club Swimming",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
@@ -384,46 +282,10 @@
         "Url": "https://arizona.campusgroups.com/AZClubTennis/"
     },
     {
-        "name": "Arizona College Moxie",
-        "Description": "Student Organization - Leadership, Social Greek Letter, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3173657_IMG_2277JPG_1024182015.jpeg",
-        "Url": "https://arizona.campusgroups.com/AZCM/"
-    },
-    {
-        "name": "Arizona Consulting Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/ACC/"
-    },
-    {
-        "name": "Arizona Crypto and Finance",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/AZCF/"
-    },
-    {
         "name": "Arizona Cycling",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2082544_AZ_chain_ring_logojpg_1029163532.jpeg",
         "Url": "http://uacycling.com/"
-    },
-    {
-        "name": "Arizona Diabetes Initiative",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4299893_ADI_LOGOjpg_812172633.jpeg",
-        "Url": "https://arizona.campusgroups.com/ADI/"
-    },
-    {
-        "name": "Arizona Esports",
-        "Description": "Student Organization - Special Interest, Hybrid/virtual/online",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3178319_logo_ver_2_81916321.png",
-        "Url": "https://arizona.campusgroups.com/AZEsports/"
-    },
-    {
-        "name": "Arizona Journal of Environmental Law and Policy",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3179663_AJELP_logo_1jpg_129223714.jpeg",
-        "Url": "https://arizona.campusgroups.com/AJELP/"
     },
     {
         "name": "Arizona Kyudo Club",
@@ -438,12 +300,6 @@
         "Url": "https://arizona.campusgroups.com/mockmediation/"
     },
     {
-        "name": "Arizona MEDLIFE",
-        "Description": "Student Organization",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/CLUB95/"
-    },
-    {
         "name": "Arizona Men’s Club Soccer",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_4310817_AZMS_logo_7319357.png",
@@ -454,12 +310,6 @@
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2068337_EE8C069CE64942D4BD5FF94599915FE4_11616505.png",
         "Url": "https://arizona.campusgroups.com/Laxcats/"
-    },
-    {
-        "name": "Arizona Men’s Rugby",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2058778_Arizona_Logo_130214358.jpeg",
-        "Url": "https://arizona.campusgroups.com/CLUB97/"
     },
     {
         "name": "Arizona Men’s Volleyball Club",
@@ -480,12 +330,6 @@
         "Url": "https://arizona.campusgroups.com/AMBC/"
     },
     {
-        "name": "Arizona Phaeax",
-        "Description": "Greek-Letter Organization - Social Greek Letter",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4316100_APX_FINAL_CADENCY_MARK_123143623.png",
-        "Url": "https://arizona.campusgroups.com/APX/"
-    },
-    {
         "name": "Arizona Sketch Society",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5048905_Sketch_Society_Logo_616233111.png",
@@ -504,12 +348,6 @@
         "Url": "https://arizona.campusgroups.com/ASAUA/"
     },
     {
-        "name": "Arizona Swing Cats",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2080526_Shirt_designJPG_812231946.jpeg",
-        "Url": "https://arizona.campusgroups.com/CLUB116/"
-    },
-    {
         "name": "Arizona Taiwanese Student Association",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2500997_ATSA_LogoPNG_82522412.jpeg",
@@ -526,12 +364,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
         "Url": "https://arizona.campusgroups.com/CLUB122/"
-    },
-    {
-        "name": "Armenian Student Association of Arizona",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_4669468_Screen_Shot_20230428_at_53230_PM_61314817.png",
-        "Url": "https://arizona.campusgroups.com/ASAA/"
     },
     {
         "name": "Artificial Intelligence Club",
@@ -562,12 +394,6 @@
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2077415_ACELlogohighresgif_8241208.jpeg",
         "Url": "https://arizona.campusgroups.com/CLUB135/"
-    },
-    {
-        "name": "Asian, Pacific Islander, and Desi Student Pharmacists Organization",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2407964_APIDSPO_Logo_914194717.png",
-        "Url": "https://arizona.campusgroups.com/APIDSPO/"
     },
     {
         "name": "Aspiring Latino Lawyers",
@@ -612,12 +438,6 @@
         "Url": "https://uaastroclub.org/"
     },
     {
-        "name": "Autistic and Neurodivergent Student Association",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_4298048_ANDSA_logo_5_113015253.png",
-        "Url": "https://arizona.campusgroups.com/ANDSA/"
-    },
-    {
         "name": "Aviation Flying Club",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5056692_ChatGPT_Image_Jun_7_2025_11_02_49_AM_12195215.png",
@@ -628,12 +448,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4312245_AZ_Wellness_Society_Logo_7_89175258.png",
         "Url": "https://arizona.campusgroups.com/AWS/"
-    },
-    {
-        "name": "Azara Branch Tucson",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_4193751_Azara_Branch_HD_logo_918132826.jpeg",
-        "Url": "https://arizona.campusgroups.com/ABTuscon/"
     },
     {
         "name": "Badminton Sports Club",
@@ -666,18 +480,6 @@
         "Url": "https://arizona.campusgroups.com/CLUB164/"
     },
     {
-        "name": "Bear Down Barbecue Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_2050654_IMG_6080JPG_730223816.jpeg",
-        "Url": "https://arizona.campusgroups.com/BDBC/"
-    },
-    {
-        "name": "Bear Down Tournaments",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_3176121_Slide1PNG_928133627.jpeg",
-        "Url": "https://arizona.campusgroups.com/BDTournaments/"
-    },
-    {
         "name": "Biomedical Engineering Society",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2053784_BMES_LOGOjpg_42119059.jpeg",
@@ -688,12 +490,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5042857_BEE_1120225431.png",
         "Url": "https://arizona.campusgroups.com/BEE/"
-    },
-    {
-        "name": "Biosystems engineering Club",
-        "Description": "Student Organization - Leadership, Political, Social Greek Letter, Special Interest, Hybrid/virtual/online",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_2047021__12115817.png",
-        "Url": "https://arizona.campusgroups.com/BEC/"
     },
     {
         "name": "Black N’ Blue Hip Hop Crew",
@@ -714,22 +510,10 @@
         "Url": "https://arizona.campusgroups.com/uabookworms/"
     },
     {
-        "name": "Boot Scootin’ Cats",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/BSC/"
-    },
-    {
         "name": "Brazilian Student Association in Tucson",
         "Description": "Student Organization - Leadership",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
         "Url": "https://arizona.campusgroups.com/BRASATucson/"
-    },
-    {
-        "name": "Broader Ways",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/UABW/"
     },
     {
         "name": "Business of Entertainment",
@@ -750,40 +534,10 @@
         "Url": "https://arizona.campusgroups.com/CampConf/"
     },
     {
-        "name": "Car Cats",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2060709_IMG_4185JPG_118175023.jpeg",
-        "Url": "https://arizona.campusgroups.com/CLUB208/"
-    },
-    {
-        "name": "Case Conference Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2080917_Case_Club_Logojpg_816133229.jpeg",
-        "Url": "https://arizona.campusgroups.com/caseclub/"
-    },
-    {
-        "name": "CatPAC",
-        "Description": "Student Organization - Political",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2050694_catpac_logopdf_102144552.jpeg",
-        "Url": "https://arizona.campusgroups.com/CatPac/"
-    },
-    {
         "name": "Chaarg Workout club",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
         "Url": "https://arizona.campusgroups.com/Chaarg/"
-    },
-    {
-        "name": "Chabad Jewish Student Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/Chabad/"
-    },
-    {
-        "name": "Cheerleaders and Mascots",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2069789_Cheer_Mascots_Logo_HORZ_913115444.png",
-        "Url": "https://arizona.campusgroups.com/arizonacheermascots/"
     },
     {
         "name": "Chi Alpha Campus Ministry",
@@ -802,12 +556,6 @@
         "Description": "Student Organization - Leadership",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2048578_ChristianChallengeFullLogo_Blue_1117124531.png",
         "Url": "https://uofa.challengeaz.com/"
-    },
-    {
-        "name": "Christian Veterinary Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_5031762_IMG_3756_96125922.jpeg",
-        "Url": "https://arizona.campusgroups.com/CVC/"
     },
     {
         "name": "Classics Club",
@@ -858,28 +606,10 @@
         "Url": "https://arizona.campusgroups.com/UAZCVMSGA/"
     },
     {
-        "name": "College Republicans",
-        "Description": "Student Organization - Leadership, Political",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_4311968_IMG_9371_821142040.jpeg",
-        "Url": "https://arizona.campusgroups.com/CRS/"
-    },
-    {
         "name": "Colleges Against Cancer",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5044728_Untitled_design_4_71022336.png",
         "Url": "https://arizona.campusgroups.com/CAC/"
-    },
-    {
-        "name": "Collegians for Christ",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/CFC/"
-    },
-    {
-        "name": "Collegiate 4-H",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/AZC4H/"
     },
     {
         "name": "Collegiate Livestock Growers Association",
@@ -900,12 +630,6 @@
         "Url": "https://arizona.campusgroups.com/CLUB259/"
     },
     {
-        "name": "Community Cat Coalition",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4302785_OFFICIAL_CLUB_LOGO_5721829.png",
-        "Url": "https://arizona.campusgroups.com/communitycats/"
-    },
-    {
         "name": "Community HealthEd - Tucson Chapter",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4316523_1_8714257.png",
@@ -922,12 +646,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5046982_crafty_cats_5_828225856.png",
         "Url": "https://arizona.campusgroups.com/CraftyCats/"
-    },
-    {
-        "name": "Creative Writing Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2066081_0001jpg_48193722.jpeg",
-        "Url": "https://arizona.campusgroups.com/CLUB267/"
     },
     {
         "name": "Creative Writing Club",
@@ -954,28 +672,10 @@
         "Url": "https://arizona.campusgroups.com/CLUB270/"
     },
     {
-        "name": "Culinary Kaleidoscope Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/culinarycats/"
-    },
-    {
         "name": "Cutting Edge",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3175652_Screenshot_20240314_at_114618AM_7282265.png",
         "Url": "https://arizona.campusgroups.com/CLUB273/"
-    },
-    {
-        "name": "Cyber Saguaros",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5051830_cybersaguaros_logo_7222223.png",
-        "Url": "https://cybersaguaros.com/"
-    },
-    {
-        "name": "Daily Wildcat",
-        "Description": "Student Organization - Departmental",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/DailyW/"
     },
     {
         "name": "Damascus Road",
@@ -1014,22 +714,10 @@
         "Url": "https://arizona.campusgroups.com/DKA/"
     },
     {
-        "name": "Delta Lambda Phi",
-        "Description": "Student Organization",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/CLUB287/"
-    },
-    {
         "name": "Delta Sigma Pi",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3180936_DSP_Seal_Logojpg_124175547.jpeg",
         "Url": "https://arizona.campusgroups.com/CLUB283/"
-    },
-    {
-        "name": "Delta Sigma Theta Sorority, Incorporated",
-        "Description": "Greek-Letter Organization - Cultural/International, Social Greek Letter",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_1645312_thumbnail_Screen_Shot_20201109_at_83617_PM_1110105318.png",
-        "Url": "https://arizona.campusgroups.com/DST/"
     },
     {
         "name": "Dental Specialists Tucson",
@@ -1072,12 +760,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2059190_UofA_Disc_Golf_Logo_315224924.png",
         "Url": "https://arizona.campusgroups.com/discgolf/"
-    },
-    {
-        "name": "Doctors Without Borders slash Médecins Sans Frontières ( MSF ) Friends of MSF chapter",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/MSF/"
     },
     {
         "name": "Dolce Vita Club",
@@ -1224,12 +906,6 @@
         "Url": "https://arizona.campusgroups.com/CLUB338/"
     },
     {
-        "name": "End Overdose",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_3176978_2_1_725232415.png",
-        "Url": "https://arizona.campusgroups.com/EndOverdose/"
-    },
-    {
         "name": "Engineering Student Council",
         "Description": "Student Organization - Leadership",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2056111_Screenshot_20230824_075201_824105241.png",
@@ -1308,12 +984,6 @@
         "Url": "https://arizona.campusgroups.com/FinancialModeling/"
     },
     {
-        "name": "Financial Planning Club",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_4301429_Financial_Planning_Logo_81016343.png",
-        "Url": "https://arizona.campusgroups.com/FPC/"
-    },
-    {
         "name": "First Love",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_3179749_Unknown_224162953.jpeg",
@@ -1324,18 +994,6 @@
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2075220_Flying_Sams_Logojpg_10354852.jpeg",
         "Url": "https://arizona.campusgroups.com/CLUB385/"
-    },
-    {
-        "name": "Food Animal Club ( AABP slash AASRP slash AASV )",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/FAC/"
-    },
-    {
-        "name": "Food Science Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/CLUB387/"
     },
     {
         "name": "Frame by Frame",
@@ -1374,12 +1032,6 @@
         "Url": "https://arizona.campusgroups.com/GIVC/"
     },
     {
-        "name": "GIVE Volunteers",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/GIVEUA/"
-    },
-    {
         "name": "Giving a Little Arizona Magic",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2076352_glam_logo_20_126151221.png",
@@ -1402,12 +1054,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_2080321_uofagoclublogo2_829162412.png",
         "Url": "https://arizona.campusgroups.com/GoClub/"
-    },
-    {
-        "name": "Golden Lotus",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2061310_gl_logojpg_1126172255.jpeg",
-        "Url": "https://arizona.campusgroups.com/UAGL/"
     },
     {
         "name": "Graduate Art Education Association",
@@ -1458,40 +1104,10 @@
         "Url": "https://arizona.campusgroups.com/HPSA/"
     },
     {
-        "name": "HAUS OF STYLE",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_3175832_HAUS_OF_STYLE_LOGOjpg_615223650.jpeg",
-        "Url": "https://arizona.campusgroups.com/HOS/"
-    },
-    {
-        "name": "Health Education and Learning",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/HEAL/"
-    },
-    {
-        "name": "Hillel Foundation",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2078199_New_LogoBlueUAURL_819121458.png",
-        "Url": "https://arizona.campusgroups.com/UAHillel/"
-    },
-    {
-        "name": "History Club",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4128979_campusgroups_PAT_background_7518934.png",
-        "Url": "https://arizona.campusgroups.com/CLUB447/"
-    },
-    {
         "name": "History Graduate Association",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_2086187_Copy_of_HGA_Logo_2021_final_transparent_backgroundgif_829202621.jpeg",
         "Url": "https://arizona.campusgroups.com/HGA/"
-    },
-    {
-        "name": "Home Brewers of Arizona",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2047143_hbAzPNG_916142029.jpeg",
-        "Url": "https://arizona.campusgroups.com/CLUB449/"
     },
     {
         "name": "Home Brewers of Arizona",
@@ -1524,18 +1140,6 @@
         "Url": "https://arizona.campusgroups.com/UAHOSA/"
     },
     {
-        "name": "Human Development and Family Science Ambassadors",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2056365_FSHDAmbassadorLogo_923164623.png",
-        "Url": "http://fshdambassadors.weebly.com/"
-    },
-    {
-        "name": "Human Performance and Sports Nutrition Club",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/HPSNC/"
-    },
-    {
         "name": "Hydrology and Atmospheric Sciences Student Association",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2081316_311395_10150965085175523_236607301_njpg_72121921.jpeg",
@@ -1552,12 +1156,6 @@
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2047422_Club_Logo_82513207.png",
         "Url": "https://arizona.campusgroups.com/IISE/"
-    },
-    {
-        "name": "Improving Deaf Healthcare",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5024886_IMG_9151JPG_220164716.jpeg",
-        "Url": "https://arizona.campusgroups.com/IDH/"
     },
     {
         "name": "IN-OUR-ZONA",
@@ -1614,12 +1212,6 @@
         "Url": "https://arizona.campusgroups.com/ICAT/"
     },
     {
-        "name": "J Street",
-        "Description": "Student Organization - Political",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3177236_J_Street_Club_Logo_818142834.png",
-        "Url": "https://arizona.campusgroups.com/JStreetUA/"
-    },
-    {
         "name": "Japanese American Student Association",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5036035_JASA_Logo_202526_2_63017566.png",
@@ -1638,40 +1230,16 @@
         "Url": "https://arizona.campusgroups.com/LSULF/"
     },
     {
-        "name": "JumpCats Jump Rope Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4312201_Official_JumpCats_Logo_72516214.jpeg",
-        "Url": "https://arizona.campusgroups.com/JumpCats/"
-    },
-    {
         "name": "K7UAZ Amateur Radio Club",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2083083_K7UAZ_Blue_Cal_Logojpg_101185455.jpeg",
         "Url": "https://arizona.campusgroups.com/CLUB503/"
     },
     {
-        "name": "KAMP Student Radio",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_3175668_kamplogo_21012385.png",
-        "Url": "https://arizona.campusgroups.com/KAMP/"
-    },
-    {
         "name": "Kappa Alpha Pi",
         "Description": "Greek-Letter Organization - Social Greek Letter, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5059657_kapi_logo_71012184.png",
         "Url": "https://arizona.campusgroups.com/KAPi/"
-    },
-    {
-        "name": "Kappa Delta Chi Sorority Incorporated",
-        "Description": "Student Organization - Social Greek Letter",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3173505_kdchi_121814636.png",
-        "Url": "https://arizona.campusgroups.com/CLUB506/"
-    },
-    {
-        "name": "Kappa Psi Pharmaceutical Fraternity ( Gamma Upsilon )",
-        "Description": "Student Organization - Leadership, Political, Social Greek Letter, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2350759_Kappa_Psi_Coat_of_Armsjpg_9212756.jpeg",
-        "Url": "https://www.pharmacy.arizona.edu/kappa-psi"
     },
     {
         "name": "Kesem",
@@ -1684,18 +1252,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_5027180_KASA_LOGOjpg_8818595.jpeg",
         "Url": "https://arizona.campusgroups.com/KASA/"
-    },
-    {
-        "name": "Korean Student Association",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/KSA/"
-    },
-    {
-        "name": "Kuwaiti Club",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2046527_296B0AB76BF7403BA55266D860A32C61_81433325.jpeg",
-        "Url": "https://arizona.campusgroups.com/CLUB521/"
     },
     {
         "name": "Lab Animal Medicine Club",
@@ -1734,12 +1290,6 @@
         "Url": "https://arizona.campusgroups.com/UAZLVMA/"
     },
     {
-        "name": "Latter-Day Saint Student Association",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2058620_LDSSA_Logojpg_111162231.jpeg",
-        "Url": "https://arizona.campusgroups.com/LDSSA/"
-    },
-    {
         "name": "Laya A Capella",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5020049_LAYA_1_626205957.png",
@@ -1750,12 +1300,6 @@
         "Description": "Student Organization - Leadership",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_4304866_LCMC_LogoJPG_53111640.jpeg",
         "Url": "https://arizona.campusgroups.com/CLUB323/"
-    },
-    {
-        "name": "Leave a Trace",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3623689_Screen_Shot_20240812_at_44140_PM_812194535.png",
-        "Url": "https://arizona.campusgroups.com/LAT/"
     },
     {
         "name": "Letters of Love",
@@ -1800,28 +1344,10 @@
         "Url": "https://arizona.campusgroups.com/CLUB551/"
     },
     {
-        "name": "Management Information Systems Graduate Association ( 2024 - 2025 )",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/MISGA2025/"
-    },
-    {
         "name": "Management Information Systems Graduate Association ( 2025 - 2026 )",
         "Description": "Leadership program - Leadership",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5067336_MISGA_Table_Tentsjpg_114135325.jpeg",
         "Url": "https://arizona.campusgroups.com/MISGAED2526/"
-    },
-    {
-        "name": "Master’s Entry to the Profession of Nursing Student Organization- Gilbert Chapter",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2079995_MSO_logo_1242105.png",
-        "Url": "https://arizona.campusgroups.com/CLUB556/"
-    },
-    {
-        "name": "Material Advantage",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2067106_Screen_Shot_20210907_at_61527_PM_97211618.png",
-        "Url": "https://arizona.campusgroups.com/CLUB559/"
     },
     {
         "name": "Material Advantage",
@@ -1834,12 +1360,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
         "Url": "https://arizona.campusgroups.com/CLUB561/"
-    },
-    {
-        "name": "Medical Device Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2053784_MD_Logo_421191359.png",
-        "Url": "https://arizona.campusgroups.com/CLUB567/"
     },
     {
         "name": "Medical Directive",
@@ -1894,18 +1414,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_4306398_70AD297A21944AE1ACA05094A103F241PNG_111202830.jpeg",
         "Url": "https://arizona.campusgroups.com/MENASA/"
-    },
-    {
-        "name": "Middle Eastern Pharmacist Student Association",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3171095_17253285666817cd5bc2282e44898956b2c25e4921c72_1jpg_9222020.jpeg",
-        "Url": "https://arizona.campusgroups.com/MePA/"
-    },
-    {
-        "name": "Mindful Ambassadors",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2059578_CAPS_Mindful_Ambassadors_Logo_Color_714164310.png",
-        "Url": "https://arizona.campusgroups.com/MindfulAmbassadors/"
     },
     {
         "name": "Minorities in Agriculture Natural Resources and Related Sciences ( MANNRS )",
@@ -1992,12 +1500,6 @@
         "Url": "https://arizona.campusgroups.com/NOBCChE/"
     },
     {
-        "name": "National Organization of Minority Architects Student Chapter",
-        "Description": "Student Organization - Leadership, Political, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2070993_NOMAS_2023_logo300x_828131454.png",
-        "Url": "https://arizona.campusgroups.com/NOMAS/"
-    },
-    {
         "name": "National Retail Federation Student Association",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2062071_logo_83020194.png",
@@ -2008,12 +1510,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2056580_NSBE_organization_logo_92321259.png",
         "Url": "https://nsbewebeditor.wixsite.com/website/about"
-    },
-    {
-        "name": "National Society of Collegiate Scholars",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_3175817_NSCS_Classic_Seal_Transparent_PNG_1_1_1_113101416.png",
-        "Url": "https://arizona.campusgroups.com/theNSCS/"
     },
     {
         "name": "National Student Speech Language Hearing Association",
@@ -2052,12 +1548,6 @@
         "Url": "https://arizona.campusgroups.com/NSA/"
     },
     {
-        "name": "Network of Enlightened Women",
-        "Description": "Student Organization - Leadership, Political, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2074052_8C3D234E85784A01977F37019AA1923C_117155223.png",
-        "Url": "https://arizona.campusgroups.com/NeW/"
-    },
-    {
         "name": "Neuroscience and Cognitive Science Association of Students",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2065622_NSCSAS_logo_square_85105444.png",
@@ -2094,12 +1584,6 @@
         "Url": "https://arizona.campusgroups.com/Nusci/"
     },
     {
-        "name": "Olami",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2047248_Olami_UofA_CampusColorsSocialProfileFull_Name_81725933.png",
-        "Url": "https://arizona.campusgroups.com/JAC/"
-    },
-    {
         "name": "Olami Arizona",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_4317307_Olami_UofA_RedCampusColorDuotoneLogo_519221748.png",
@@ -2118,46 +1602,16 @@
         "Url": "https://arizona.campusgroups.com/ODP/"
     },
     {
-        "name": "One Health Club",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/UAOHC/"
-    },
-    {
-        "name": "Optics for All",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2080646_WiO2019LogoBlack_2_58215959.png",
-        "Url": "https://arizona.campusgroups.com/CLUB1138/"
-    },
-    {
         "name": "Optics for All",
         "Description": "Student Organization - Special Interest, Hybrid/virtual/online",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5033528_OFA_logo_extra_1_725135049.png",
         "Url": "https://arizona.campusgroups.com/OFA/"
     },
     {
-        "name": "Orienteering Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/ArizOna/"
-    },
-    {
         "name": "Orthodox Christian Fellowship",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2080197_ocflogojpg_122201054.jpeg",
         "Url": "https://arizona.campusgroups.com/CLUB670/"
-    },
-    {
-        "name": "Out in Science, Technology, Engineering, and Mathematics",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2051055_ostemjpg_29195630.jpeg",
-        "Url": "https://arizona.campusgroups.com/CLUB671/"
-    },
-    {
-        "name": "Pacific Roots",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4303951_Pacific_Roots_Logo_62521588.png",
-        "Url": "https://arizona.campusgroups.com/UAPacificRoots/"
     },
     {
         "name": "Pasifika Collective",
@@ -2176,12 +1630,6 @@
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
         "Url": "https://arizona.campusgroups.com/CLUB682/"
-    },
-    {
-        "name": "Persona Undergraduate Literary Magazine",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3179597_IMG_9592_1jpg_814133514.jpeg",
-        "Url": "https://arizona.campusgroups.com/Persona/"
     },
     {
         "name": "Pharm Assist",
@@ -2226,24 +1674,6 @@
         "Url": "https://arizona.campusgroups.com/PLS/"
     },
     {
-        "name": "Phi Mu Alpha Sinfonia",
-        "Description": "Student Organization - Social Greek Letter, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2062475_PhiMuAlphaSinfoniaCrest_126223245.png",
-        "Url": "https://arizona.campusgroups.com/CLUB694/"
-    },
-    {
-        "name": "Phi Sigma Rho",
-        "Description": "Greek-Letter Organization - Social Greek Letter",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3176633_psr_913142455.png",
-        "Url": "https://arizona.campusgroups.com/PSR/"
-    },
-    {
-        "name": "Philosophy Club",
-        "Description": "Student Organization - Political, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2073332_duckrabbit_816201442.png",
-        "Url": "https://arizona.campusgroups.com/CLUB698/"
-    },
-    {
         "name": "Philosophy Club",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
@@ -2268,18 +1698,6 @@
         "Url": "https://arizona.campusgroups.com/CLUB702/"
     },
     {
-        "name": "Physicists for Inclusion and Equity",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3624241_PIE_fullLogo_83015464.png",
-        "Url": "https://arizona.campusgroups.com/CLUB1139/"
-    },
-    {
-        "name": "Physics Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2071797_phys_club_complete_with_red_7702449.png",
-        "Url": "https://arizona.campusgroups.com/UAPC/"
-    },
-    {
         "name": "Physiology Club",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2065120_physiology_sticker_518193346.png",
@@ -2296,18 +1714,6 @@
         "Description": "Student Organization - Political, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_5019899_alt_logoJPG_91121755.jpeg",
         "Url": "https://arizona.campusgroups.com/CLUB708/"
-    },
-    {
-        "name": "Pokemon Go Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2049689_IMG_0846jpg_4643210.jpeg",
-        "Url": "https://arizona.campusgroups.com/UAPOGO/"
-    },
-    {
-        "name": "Polish Cultural Student Organization",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2085633_276044868_409239474342881_3866451581782991571_njpg_424194925.jpeg",
-        "Url": "https://arizona.campusgroups.com/PCSO/"
     },
     {
         "name": "Powerlifting Club",
@@ -2376,12 +1782,6 @@
         "Url": "https://arizona.campusgroups.com/CLUB725/"
     },
     {
-        "name": "Production of Art, Music, Film, Acting, and Dance",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2063363_IMG_3164JPG_97195111.jpeg",
-        "Url": "https://www.pamfauniversityofarizona.com/"
-    },
-    {
         "name": "Professional Achievements in Nursing",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_4306691_PAIN_Logopdf_821213328.jpeg",
@@ -2412,12 +1812,6 @@
         "Url": "https://arizona.campusgroups.com/CLUB738/"
     },
     {
-        "name": "Psychedelic Medicine Radar",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_3179971_PMR_logo_981595.png",
-        "Url": "https://arizona.campusgroups.com/PMR/"
-    },
-    {
         "name": "Public Health Allied Mentorship",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
@@ -2442,18 +1836,6 @@
         "Url": "https://arizona.campusgroups.com/QuantFC/"
     },
     {
-        "name": "Ramblers Hiking Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2071815_Ramblers_Logojpg_210183151.jpeg",
-        "Url": "https://arizona.campusgroups.com/CLUB756/"
-    },
-    {
-        "name": "Ratio Christi",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2065446_RCSquare_Red_copy_logojpg_101020455.jpeg",
-        "Url": "https://arizona.campusgroups.com/RatioChristi/"
-    },
-    {
         "name": "Red Cross Club",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
@@ -2464,12 +1846,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2072245_RUF_Logojpg_3319859.jpeg",
         "Url": "https://arizona.campusgroups.com/CLUB761/"
-    },
-    {
-        "name": "riso club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/usrisoclub/"
     },
     {
         "name": "Ritmos Latinos",
@@ -2502,18 +1878,6 @@
         "Url": "https://arizona.campusgroups.com/SiF/"
     },
     {
-        "name": "Semper Fi Club",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/semperfi/"
-    },
-    {
-        "name": "Service Cats",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/CKI/home/"
-    },
-    {
         "name": "Service, Care, Representation, Unity, Bridging Support",
         "Description": "Student Organization - Leadership",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_4316562_IMG_0188jpg_78174731.jpeg",
@@ -2542,12 +1906,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5037842_IMG_1750JPG_111216572.jpeg",
         "Url": "https://arizona.campusgroups.com/SiennaCollective/"
-    },
-    {
-        "name": "Sigma Alpha Agricultural Sorority- Alpha Rho Chapter",
-        "Description": "Greek-Letter Organization - Leadership, Social Greek Letter, Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/SigmaAlpha/"
     },
     {
         "name": "Sigma Lambda Beta",
@@ -2622,18 +1980,6 @@
         "Url": "https://arizona.campusgroups.com/SCC/"
     },
     {
-        "name": "Software Engineering Wildcats",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_3179503_IMG_5795JPG_12319219.jpeg",
-        "Url": "https://arizona.campusgroups.com/SEW/"
-    },
-    {
-        "name": "SolNote",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_3179772_SolNote_logo_122153438.jpeg",
-        "Url": "https://arizona.campusgroups.com/solnote/"
-    },
-    {
         "name": "SOPHOS Sophomore Honorary",
         "Description": "Student Organization - Leadership",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2070310_SOPHOS_122183213.png",
@@ -2644,12 +1990,6 @@
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_4311677_sasa_insta_logo_715204445.png",
         "Url": "https://arizona.campusgroups.com/SASA/"
-    },
-    {
-        "name": "Sports Analytics Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_2073989_arizonasportsanalyticsclubhighresolutionlogocolorontransparentbackground_73015330.png",
-        "Url": "https://arizona.campusgroups.com/SPAC/"
     },
     {
         "name": "Sports Management Association",
@@ -2664,18 +2004,6 @@
         "Url": "https://arizona.campusgroups.com/SpursSophomoreHonorary/"
     },
     {
-        "name": "St. Thomas More Catholic Newman Center",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_3171225_croppedLogoFilled_815174053.png",
-        "Url": "https://www.uacatholic.org/"
-    },
-    {
-        "name": "Start Your Engines",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4297731_RacingFlagsJune2007jpg_810174536.jpeg",
-        "Url": "https://arizona.campusgroups.com/startyourengines/"
-    },
-    {
         "name": "Street Medicine - CVM",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_5029014_Club_Logojpg_731175425.jpeg",
@@ -2686,12 +2014,6 @@
         "Description": "Student Organization - Leadership",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2045914_IMG_2991jpg_82319470.jpeg",
         "Url": "https://arizona.campusgroups.com/CLUB594/"
-    },
-    {
-        "name": "Student Academy of Audiology",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4310072_Screenshot_20240722_210007_727183730.png",
-        "Url": "https://arizona.campusgroups.com/UASAA/"
     },
     {
         "name": "Student Affiliates in School Psychology",
@@ -2766,18 +2088,6 @@
         "Url": "https://arizona.campusgroups.com/DSJ/"
     },
     {
-        "name": "Student Entrepreneurship Association",
-        "Description": "Student Organization - Leadership, Political, Social Greek Letter, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_5023149_SEA_logo_1_103222448.png",
-        "Url": "https://arizona.campusgroups.com/SEA/"
-    },
-    {
-        "name": "Student Entrepreneurship Club",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_5047416_SEC_LOGOPNG_1120171815.jpeg",
-        "Url": "https://arizona.campusgroups.com/SEC/"
-    },
-    {
         "name": "Student Health Advocacy Committee",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_1769268_SHAC_Logo_919141813.png",
@@ -2826,22 +2136,10 @@
         "Url": "https://arizona.campusgroups.com/SOC/"
     },
     {
-        "name": "Student Society of Health-System Pharmacists ( SSHP )",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2350558_logo_91218430.png",
-        "Url": "https://arizona.campusgroups.com/CLUB881/"
-    },
-    {
         "name": "Student Society of Veterinary Surgery",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2351164_Logo_102214324.png",
         "Url": "https://arizona.campusgroups.com/SSVS/"
-    },
-    {
-        "name": "Student Veterans of America",
-        "Description": "Student Organization - Leadership, Political, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4671435_SVALogo_1010151252.png",
-        "Url": "https://arizona.campusgroups.com/CLUB884/"
     },
     {
         "name": "Student Veterinary Emergency and Critical Care Society",
@@ -2854,12 +2152,6 @@
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2075685_SCNO_928143521.jpeg",
         "Url": "https://arizona.campusgroups.com/CLUB885/"
-    },
-    {
-        "name": "Students for Humanitarian Aid and Relief Efforts - S.H.A.R.E.",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_5018604_chat_e2ed97af5a2844dabb626c83f420af4d_IMG_0448_1022194448.jpeg",
-        "Url": "https://arizona.campusgroups.com/SHARE/"
     },
     {
         "name": "Students for Justice in Palestine",
@@ -2910,12 +2202,6 @@
         "Url": "https://arizona.campusgroups.com/CLUB1064/"
     },
     {
-        "name": "Tap Besties",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/Tapbffs/"
-    },
-    {
         "name": "Tau Beta Pi",
         "Description": "Student Organization - Leadership",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2057763_Vertical_BLUE2_10923931.png",
@@ -2940,18 +2226,6 @@
         "Url": "https://linktr.ee/taco.uofa"
     },
     {
-        "name": "Test Club 123",
-        "Description": "Student Organization",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/TEST123/"
-    },
-    {
-        "name": "The Arizona American Rock Mechanics Association",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/ARMA/"
-    },
-    {
         "name": "The Business of Fashion Association",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5033658_Bofa_6117630.jpeg",
@@ -2964,18 +2238,6 @@
         "Url": "https://arizona.campusgroups.com/CLUB929/"
     },
     {
-        "name": "The College of Veterinary Medicine Mental Health and Wellness Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4307698_750x750dd1a4b6d983f47b3b6e2f69660e9dc19jpg_62113715.jpeg",
-        "Url": "https://arizona.campusgroups.com/CVMMHW/"
-    },
-    {
-        "name": "The College of Veterinary Medicine Student Chapter of The American College of Veterinary Pathologists",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/UASCACVP/"
-    },
-    {
         "name": "The Conscious Kitchen",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5052636_Screenshot_20250917_at_73633PM_918211643.png",
@@ -2986,12 +2248,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2071140_Derby_Cats_Logo_527154246.png",
         "Url": "https://uaderbycats.wixsite.com/home"
-    },
-    {
-        "name": "The Franke Honors Ambassadors",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_3180553_AMBASSADORS_9802113.png",
-        "Url": "https://arizona.campusgroups.com/FHA/"
     },
     {
         "name": "The Habitat for Humanity Club",
@@ -3036,12 +2292,6 @@
         "Url": "https://arizona.campusgroups.com/PCC/"
     },
     {
-        "name": "The Poets of Tucson",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_4302249_UOFATPOT_1_23182649.png",
-        "Url": "https://arizona.campusgroups.com/TPOT/"
-    },
-    {
         "name": "The Rho Chi Society",
         "Description": "Student Organization - Leadership",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
@@ -3052,24 +2302,6 @@
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2048718_Rotaract_Profile_Icon_1018192744.png",
         "Url": "https://www.uazrotaractclub.org/"
-    },
-    {
-        "name": "The Safety, Alignment, Future, and Ethics of AI club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/SAFEAI/"
-    },
-    {
-        "name": "The Saudi Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/SCUA/"
-    },
-    {
-        "name": "The Society for Aspiring Plant Pathologists and Plant Scientists",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/SAPPS/"
     },
     {
         "name": "The Society for Creative Ananchronism--The College of St Felix",
@@ -3102,12 +2334,6 @@
         "Url": "https://arizona.campusgroups.com/CLUB975/"
     },
     {
-        "name": "The Womens Network",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2057110_twn_logojpg_8421429.jpeg",
-        "Url": "https://arizona.campusgroups.com/Women/"
-    },
-    {
         "name": "Theme Park Entertainment Group ( TPEG )",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2063733_FINAL_2022_LOGO03_1jpg_128191011.jpeg",
@@ -3132,12 +2358,6 @@
         "Url": "https://arizona.campusgroups.com/CLUB1061/"
     },
     {
-        "name": "Trailcats Hiking Club ( DVM Students Only )",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_5031762_IMG_3457_9612575.jpeg",
-        "Url": "https://arizona.campusgroups.com/Trailcats/"
-    },
-    {
         "name": "TREND Fashion Events Board",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3173680_TREND_LOGOPNG_9123939.jpeg",
@@ -3148,12 +2368,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2025/s2_image_upload_5055513_tricats_logo_65151736.png",
         "Url": "https://arizona.campusgroups.com/CLUB988/"
-    },
-    {
-        "name": "Tucson Campus Ministry",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/TCM/"
     },
     {
         "name": "Tucson Effective Altruism",
@@ -3198,12 +2412,6 @@
         "Url": "https://arizona.campusgroups.com/UASynchro/"
     },
     {
-        "name": "UATV",
-        "Description": "Student Organization - Departmental",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/UATV/"
-    },
-    {
         "name": "UAZ CVM Student Chapter of the Feline Veterinary Medical Association",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
@@ -3216,22 +2424,10 @@
         "Url": "https://arizona.campusgroups.com/UMAS/"
     },
     {
-        "name": "UnderLing Club",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2072690_Underling_Club_Logo_Red_schwajpg_108181530.jpeg",
-        "Url": "https://arizona.campusgroups.com/CLUB1019/"
-    },
-    {
         "name": "UnderSkore",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2077761_Screen_Shot_20210708_at_43415_PM_7819350.png",
         "Url": "https://arizona.campusgroups.com/CLUB1020/"
-    },
-    {
-        "name": "UNICEF Arizona Campus Initiative",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4298222_unicef_logowhite_828122421.png",
-        "Url": "https://arizona.campusgroups.com/UNICEF/"
     },
     {
         "name": "University Filmmakers Organization",
@@ -3276,12 +2472,6 @@
         "Url": "https://arizona.campusgroups.com/parvoz/"
     },
     {
-        "name": "Veggie Cats",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2067186_vegwildcat_1webp_115183142.jpeg",
-        "Url": "https://uaveggiecats.wixsite.com/website"
-    },
-    {
         "name": "Veterinary Business Management Association",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_3170871_VBMAbluetaglinelogo_822101213.png",
@@ -3316,12 +2506,6 @@
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2073733_vidalogo_213182223.png",
         "Url": "https://arizona.campusgroups.com/VIDA/"
-    },
-    {
-        "name": "Voter Cats",
-        "Description": "Student Organization - Leadership, Political",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/VoterCats/"
     },
     {
         "name": "WiCYS - Women in CyberSecurity Student Chapter",
@@ -3378,22 +2562,10 @@
         "Url": "https://arizonafsae.com/"
     },
     {
-        "name": "WildCat Fusion Network",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4310558_WhatsApp_Image_20240415_at_143816_525340.jpeg",
-        "Url": "https://arizona.campusgroups.com/WCF/"
-    },
-    {
         "name": "Wildcat Gaming Club",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2061272_uaesports_LOGO_gloss_83152745.png",
         "Url": "https://arizona.campusgroups.com/esports/"
-    },
-    {
-        "name": "Wildcat Handball",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/CLUB1103/"
     },
     {
         "name": "Wildcat Horn Club",
@@ -3444,18 +2616,6 @@
         "Url": "https://arizona.campusgroups.com/TabletopGaming/"
     },
     {
-        "name": "Wildcat Unmanned Aerial Vision Explorers",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_2077960_cymk_10101348.png",
-        "Url": "https://arizona.campusgroups.com/WAVE/"
-    },
-    {
-        "name": "Wildcat Wing Booster Club",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
-        "Url": "https://arizona.campusgroups.com/WWBC/"
-    },
-    {
         "name": "Wildcats Committed to Animal Rescue and Education",
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_3180067_Untitled_912202616.png",
@@ -3466,18 +2626,6 @@
         "Description": "Student Organization - Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2062783_WFC_Logo10_930183527.png",
         "Url": "https://arizona.campusgroups.com/CLUB1124/"
-    },
-    {
-        "name": "Wildcats for Harris",
-        "Description": "Student Organization - Political",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3178691_HoP_92301047.png",
-        "Url": "https://arizona.campusgroups.com/H4Pres/"
-    },
-    {
-        "name": "Wildcats in Nursing, Support, Education",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_4316110_WiseCatsLogo_95164751.png",
-        "Url": "https://arizona.campusgroups.com/Wisecats/"
     },
     {
         "name": "Wildcats Move Against Child Exploitation",
@@ -3498,28 +2646,10 @@
         "Url": "https://arizona.campusgroups.com/WWC/"
     },
     {
-        "name": "Women in Architectural and Civil Engineering ( WACE )",
-        "Description": "Student Organization - Leadership, Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2024/s2_image_upload_3171336_979955453e1f44a3b9c699af1e63315e_1210191549.jpeg",
-        "Url": "https://arizona.campusgroups.com/WACE/"
-    },
-    {
-        "name": "Women in Architecture Society",
-        "Description": "Student Organization - Leadership",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2020/s2_image_upload_2045911_wias_logo_103012653.png",
-        "Url": "https://arizona.campusgroups.com/CLUB1132/"
-    },
-    {
         "name": "Women in Economics Club",
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2067973_Untitled_design_1011145650.png",
         "Url": "https://arizona.campusgroups.com/CLUB1134/"
-    },
-    {
-        "name": "Women in Information and Computer Science",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2021/s2_image_upload_2075090_Profile_PhotosCovers_871603.png",
-        "Url": "https://arizona.campusgroups.com/CLUB1133/"
     },
     {
         "name": "Women In Medicine and Science",
@@ -3582,12 +2712,6 @@
         "Url": "https://arizona.campusgroups.com/WAVMA/"
     },
     {
-        "name": "Worldwide Wildcats",
-        "Description": "Student Organization - Special Interest",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2023/s2_image_upload_4299254_3FFAF62731AC4FBCB87D641775D837CBPNG_88164043.jpeg",
-        "Url": "https://arizona.campusgroups.com/WWW/"
-    },
-    {
         "name": "YoungLife",
         "Description": "Student Organization - Leadership",
         "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2077000_Young_Life_Logojpg_81503613.jpeg",
@@ -3598,12 +2722,6 @@
         "Description": "Student Organization - Leadership, Special Interest",
         "Image": "https://arizona.campusgroups.com/images/default_club_logo_square.png",
         "Url": "https://arizona.campusgroups.com/YHA/"
-    },
-    {
-        "name": "Zeta Phi Beta Sorority, Incorporated - Pi Xi Chapter",
-        "Description": "Student Organization",
-        "Image": "https://arizona.campusgroups.com/upload/arizona/2022/s2_image_upload_2074054_zphib1920logojpg_727142240.jpeg",
-        "Url": "https://arizona.campusgroups.com/pixizphib/"
     },
     {
         "name": "Zona Jiu Jitsu Club",
