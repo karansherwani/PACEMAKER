@@ -5,12 +5,18 @@ import { useRouter } from 'next/navigation';
 import styles from '../styles/clubs.module.css';
 
 interface Club {
-    id: string;
+    category_scraped_from: string;
     name: string;
-    category: string;
-    description: string;
-    members: number;
-    meetingTime: string;
+    type: string;
+    subcategories: string;
+    url: string;
+    image_url: string;
+    mission: string;
+    membership_benefits: string;
+    membership_type: string;
+    contact_info: string;
+    website: string;
+    registration_status: string;
 }
 
 interface Event {
@@ -23,35 +29,24 @@ interface Event {
     description: string;
 }
 
-const CLUBS: Club[] = [
-    { id: '1', name: 'AI & Machine Learning Club', category: 'Technology', description: 'Explore artificial intelligence and build ML projects together', members: 156, meetingTime: 'Thursdays 6PM' },
-    { id: '2', name: 'Data Science Society', category: 'Technology', description: 'Learn data analysis, visualization, and statistical modeling', members: 89, meetingTime: 'Wednesdays 5PM' },
-    { id: '3', name: 'Women in STEM', category: 'Professional', description: 'Empowering women in science, technology, engineering and math', members: 234, meetingTime: 'Tuesdays 7PM' },
-    { id: '4', name: 'Entrepreneurship Club', category: 'Business', description: 'Turn your ideas into startups with like-minded innovators', members: 178, meetingTime: 'Mondays 6PM' },
-    { id: '5', name: 'Hiking & Outdoors Club', category: 'Recreation', description: 'Explore Arizona trails and enjoy nature with fellow hikers', members: 312, meetingTime: 'Saturdays 8AM' },
-    { id: '6', name: 'Photography Club', category: 'Arts', description: 'Capture moments and learn photography techniques', members: 67, meetingTime: 'Fridays 4PM' },
-    { id: '7', name: 'Finance & Investment Club', category: 'Business', description: 'Learn about stocks, crypto, and personal finance', members: 145, meetingTime: 'Wednesdays 7PM' },
-    { id: '8', name: 'Robotics Team', category: 'Technology', description: 'Design and build robots for competitions', members: 52, meetingTime: 'Mon/Wed 5PM' },
-    { id: '9', name: 'Community Service League', category: 'Service', description: 'Give back to the Tucson community through volunteer work', members: 198, meetingTime: 'Various' },
-    { id: '10', name: 'Debate Society', category: 'Academic', description: 'Sharpen your argumentation and public speaking skills', members: 76, meetingTime: 'Tuesdays 6PM' },
-];
-
 const EVENTS: Event[] = [
     { id: '1', title: 'Tech Career Fair', category: 'Professional', date: 'Jan 15, 2025', time: '10AM - 4PM', location: 'Student Union', description: 'Meet recruiters from top tech companies' },
-    { id: '2', title: 'Hackathon: AI Edition', category: 'Technology', date: 'Jan 20-21, 2025', time: '48 hours', location: 'Gould-Simpson', description: 'Build AI-powered solutions in 48 hours' },
+    { id: '2', title: 'Hackathon: AI Edition', category: 'Academic', date: 'Jan 20-21, 2025', time: '48 hours', location: 'Gould-Simpson', description: 'Build AI-powered solutions in 48 hours' },
     { id: '3', title: 'Resume Workshop', category: 'Professional', date: 'Jan 18, 2025', time: '2PM - 4PM', location: 'Career Services', description: 'Get your resume reviewed by industry professionals' },
-    { id: '4', title: 'Outdoor Movie Night', category: 'Social', date: 'Jan 22, 2025', time: '7PM', location: 'Mall Lawn', description: 'Watch a movie under the stars' },
-    { id: '5', title: 'Startup Pitch Competition', category: 'Business', date: 'Jan 25, 2025', time: '5PM - 8PM', location: 'McClelland Hall', description: 'Pitch your startup idea to win prizes' },
+    { id: '4', title: 'Outdoor Movie Night', category: 'Special Interest', date: 'Jan 22, 2025', time: '7PM', location: 'Mall Lawn', description: 'Watch a movie under the stars' },
+    { id: '5', title: 'Startup Pitch Competition', category: 'Professional', date: 'Jan 25, 2025', time: '5PM - 8PM', location: 'McClelland Hall', description: 'Pitch your startup idea to win prizes' },
     { id: '6', title: 'Study Abroad Info Session', category: 'Academic', date: 'Jan 28, 2025', time: '3PM', location: 'Modern Languages', description: 'Learn about international opportunities' },
 ];
-
-const CATEGORIES = ['All', 'Technology', 'Professional', 'Business', 'Academic', 'Recreation', 'Arts', 'Service', 'Social'];
 
 export default function ClubsPage() {
     const router = useRouter();
     const [studentName, setStudentName] = useState('');
-    const [selectedInterests, setSelectedInterests] = useState<string[]>(['All']);
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(['All']);
     const [activeTab, setActiveTab] = useState<'clubs' | 'events'>('clubs');
+    const [clubs, setClubs] = useState<Club[]>([]);
+    const [categories, setCategories] = useState<string[]>(['All']);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const name = localStorage.getItem('studentName');
@@ -59,29 +54,65 @@ export default function ClubsPage() {
             router.push('/');
             return;
         }
-        // Initialize name
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         setStudentName(name);
+
+        // Load clubs from public folder
+        fetch('/data/uofa_clubs.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load clubs data');
+                }
+                return response.json();
+            })
+            .then((data: Club[]) => {
+                setClubs(data);
+
+                // Extract unique categories from subcategories
+                const uniqueCategories = new Set<string>();
+                data.forEach(club => {
+                    if (club.subcategories) {
+                        club.subcategories.split(',').forEach(cat => {
+                            const trimmed = cat.trim();
+                            if (trimmed) uniqueCategories.add(trimmed);
+                        });
+                    }
+                });
+
+                setCategories(['All', ...Array.from(uniqueCategories).sort()]);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error loading clubs:', error);
+                setLoading(false);
+            });
     }, [router]);
 
-    const toggleInterest = (category: string) => {
+    const toggleCategory = (category: string) => {
         if (category === 'All') {
-            setSelectedInterests(['All']);
+            setSelectedCategories(['All']);
         } else {
-            const newInterests = selectedInterests.includes(category)
-                ? selectedInterests.filter(i => i !== category)
-                : [...selectedInterests.filter(i => i !== 'All'), category];
-            setSelectedInterests(newInterests.length === 0 ? ['All'] : newInterests);
+            const newCategories = selectedCategories.includes(category)
+                ? selectedCategories.filter(i => i !== category)
+                : [...selectedCategories.filter(i => i !== 'All'), category];
+            setSelectedCategories(newCategories.length === 0 ? ['All'] : newCategories);
         }
     };
 
-    const filteredClubs = selectedInterests.includes('All')
-        ? CLUBS
-        : CLUBS.filter(club => selectedInterests.includes(club.category));
+    const filteredClubs = clubs.filter(club => {
+        const subcats = club.subcategories?.split(',').map(s => s.trim().toLowerCase()) || [];
+        const categoryMatch = selectedCategories.includes('All') || selectedCategories.some(c => subcats.includes(c.toLowerCase()));
 
-    const filteredEvents = selectedInterests.includes('All')
+        const searchMatch = searchQuery === '' ||
+            club.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            club.mission?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            club.type?.toLowerCase().includes(searchQuery.toLowerCase());
+
+        return categoryMatch && searchMatch;
+    });
+
+    const filteredEvents = selectedCategories.includes('All')
         ? EVENTS
-        : EVENTS.filter(event => selectedInterests.includes(event.category));
+        : EVENTS.filter(event => selectedCategories.includes(event.category));
 
     return (
         <div className={styles.container}>
@@ -104,24 +135,26 @@ export default function ClubsPage() {
             {/* HERO SECTION */}
             <section className={styles.hero}>
                 <div className={styles.heroContent}>
-                    <h1>Clubs &amp; Events</h1>
+                    <h1>University of Arizona Clubs &amp; Events</h1>
                     <p className={styles.heroSubtext}>
-                        Discover clubs and events that match your interests to enhance your college experience.
+                        Discover {clubs.length} student organizations and upcoming events that match your interests.
                     </p>
                 </div>
             </section>
 
             <main className={styles.main}>
 
-                {/* Interest Filter */}
+                
+
+                {/* Category Filter */}
                 <section className={styles.filterSection}>
-                    <h2>Filter by Interest</h2>
+                    <h2>Filter by Category</h2>
                     <div className={styles.interestTags}>
-                        {CATEGORIES.map(category => (
+                        {categories.map(category => (
                             <button
                                 key={category}
-                                className={`${styles.interestTag} ${selectedInterests.includes(category) ? styles.selected : ''}`}
-                                onClick={() => toggleInterest(category)}
+                                className={`${styles.interestTag} ${selectedCategories.includes(category) ? styles.selected : ''}`}
+                                onClick={() => toggleCategory(category)}
                             >
                                 {category}
                             </button>
@@ -145,23 +178,62 @@ export default function ClubsPage() {
                     </button>
                 </div>
 
+                {/* Loading State */}
+                {loading && (
+                    <div className={styles.loadingState}>
+                        <p>Loading clubs...</p>
+                    </div>
+                )}
+
                 {/* Clubs List */}
-                {activeTab === 'clubs' && (
+                {activeTab === 'clubs' && !loading && (
                     <section className={styles.listSection}>
-                        <div className={styles.clubsGrid}>
-                            {filteredClubs.map(club => (
-                                <div key={club.id} className={styles.clubCard}>
-                                    <span className={styles.categoryBadge}>{club.category}</span>
-                                    <h3>{club.name}</h3>
-                                    <p className={styles.description}>{club.description}</p>
-                                    <div className={styles.clubMeta}>
-                                        <span>👥 {club.members} members</span>
-                                        <span>📅 {club.meetingTime}</span>
+                        {filteredClubs.length === 0 ? (
+                            <div className={styles.emptyState}>
+                                <p>No clubs found matching your criteria.</p>
+                            </div>
+                        ) : (
+                            <div className={styles.clubsGrid}>
+                                {filteredClubs.map(club => (
+                                    <div key={club.url} className={styles.clubCard}>
+                                        {club.image_url && (
+                                            <div className={styles.clubImage}>
+                                                <img src={club.image_url} alt={`${club.name} logo`} loading="lazy" />
+                                            </div>
+                                        )}
+                                        <div className={styles.clubHeader}>
+                                            <span className={styles.categoryBadge}>{club.type || 'Student Organization'}</span>
+                                           
+                                        </div>
+                                        <h3>{club.name}</h3>
+                                        {club.subcategories && (
+                                            <p className={styles.subcategories}>
+                                                {club.subcategories}
+                                            </p>
+                                        )}
+                                        <p className={styles.description}>
+                                            {club.mission || 'Explore this organization to learn more about their activities and mission.'}
+                                        </p>
+                                        <div className={styles.clubMeta}>
+                                            <span>📋 {club.membership_type || 'Lifetime membership'}</span>
+                                        </div>
+                                        <div className={styles.clubActions}>
+                                            
+                                            {club.url && (
+                                                <a 
+                                                    href={club.url} 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer"
+                                                    className={styles.joinBtn}
+                                                >
+                                                    View Details
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
-                                    <button className={styles.joinBtn}>Join Club</button>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        )}
                     </section>
                 )}
 
