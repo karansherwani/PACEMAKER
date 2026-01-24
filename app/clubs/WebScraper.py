@@ -24,24 +24,34 @@ for el in elements:
     img_url=None
     club_url=None
     name = el.get_attribute("aria-label")
+
+    unregistered = False
     try:
-        club_url = el.find_element(By.CSS_SELECTOR, "a[target='_blank']").get_attribute("href").strip()
-    except NoSuchElementException:
-        club_url=None
-    try:
-        description_text=el.find_element(By.CSS_SELECTOR,"p.h5.media-heading.grey-element").text
-    except NoSuchElementException:
-        pass
-    try:
-        img_url = el.find_element(By.CSS_SELECTOR, "img.media-object.media-object--bordered").get_attribute("src")
+        badge_text = el.find_element(By.CSS_SELECTOR, "span.badge.badge-warning").text.strip()
+        if badge_text == "Group Not Registered Yet":
+            unregistered = True
     except NoSuchElementException:
         pass
-    
-    if name:
-        clubs.append({"name":name.strip(),
-                      "Description":description_text,
-                      "Image":img_url,
-                      "Url":club_url})
+
+    if unregistered!=True:
+        try:
+            club_url = el.find_element(By.CSS_SELECTOR, "a[target='_blank']").get_attribute("href").strip()
+        except NoSuchElementException:
+            club_url=None
+        try:
+            description_text=el.find_element(By.CSS_SELECTOR,"p.h5.media-heading.grey-element").text
+        except NoSuchElementException:
+            pass
+        try:
+            img_url = el.find_element(By.CSS_SELECTOR, "img.media-object.media-object--bordered").get_attribute("src")
+        except NoSuchElementException:
+            pass
+        
+        if name:
+            clubs.append({"name":name.strip(),
+                          "Description":description_text,
+                          "Image":img_url,
+                          "Url":club_url})
 
 driver.quit()
 
