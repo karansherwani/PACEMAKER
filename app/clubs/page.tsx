@@ -21,22 +21,23 @@ interface Club {
 
 interface Event {
     id: string;
-    title: string;
-    category: string;
+    name: string;
+    url: string;
     date: string;
     time: string;
+    timezone: string;
     location: string;
-    description: string;
+    attendees: number;
+    organization: string;
+    category: string;
+    categoryType: string;
+    tags: string[];
+    allTags: string[];
+    badge: string;
+    image: string;
+    isFree: boolean;
+    additionalInfo: string;
 }
-
-const EVENTS: Event[] = [
-    { id: '1', title: 'Tech Career Fair', category: 'Professional', date: 'Jan 15, 2025', time: '10AM - 4PM', location: 'Student Union', description: 'Meet recruiters from top tech companies' },
-    { id: '2', title: 'Hackathon: AI Edition', category: 'Academic', date: 'Jan 20-21, 2025', time: '48 hours', location: 'Gould-Simpson', description: 'Build AI-powered solutions in 48 hours' },
-    { id: '3', title: 'Resume Workshop', category: 'Professional', date: 'Jan 18, 2025', time: '2PM - 4PM', location: 'Career Services', description: 'Get your resume reviewed by industry professionals' },
-    { id: '4', title: 'Outdoor Movie Night', category: 'Special Interest', date: 'Jan 22, 2025', time: '7PM', location: 'Mall Lawn', description: 'Watch a movie under the stars' },
-    { id: '5', title: 'Startup Pitch Competition', category: 'Professional', date: 'Jan 25, 2025', time: '5PM - 8PM', location: 'McClelland Hall', description: 'Pitch your startup idea to win prizes' },
-    { id: '6', title: 'Study Abroad Info Session', category: 'Academic', date: 'Jan 28, 2025', time: '3PM', location: 'Modern Languages', description: 'Learn about international opportunities' },
-];
 
 export default function ClubsPage() {
     const router = useRouter();
@@ -44,9 +45,12 @@ export default function ClubsPage() {
     const [selectedCategories, setSelectedCategories] = useState<string[]>(['All']);
     const [activeTab, setActiveTab] = useState<'clubs' | 'events'>('clubs');
     const [clubs, setClubs] = useState<Club[]>([]);
-    const [categories, setCategories] = useState<string[]>(['All']);
+    const [events, setEvents] = useState<Event[]>([]);
+    const [clubCategories, setClubCategories] = useState<string[]>(['All']);
+    const [eventCategories, setEventCategories] = useState<string[]>(['All']);
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(true);
+    const [eventsLoading, setEventsLoading] = useState(true);
 
     useEffect(() => {
         const name = localStorage.getItem('studentName');
@@ -78,12 +82,39 @@ export default function ClubsPage() {
                     }
                 });
 
-                setCategories(['All', ...Array.from(uniqueCategories).sort()]);
+                setClubCategories(['All', ...Array.from(uniqueCategories).sort()]);
                 setLoading(false);
             })
             .catch(error => {
                 console.error('Error loading clubs:', error);
                 setLoading(false);
+            });
+
+        // Load events from the scraped data
+        fetch('/data/UOFA_Clubs_events.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load events data');
+                }
+                return response.json();
+            })
+            .then((data: Event[]) => {
+                setEvents(data);
+
+                // Extract unique event categories
+                const uniqueEventCategories = new Set<string>();
+                data.forEach(event => {
+                    if (event.category) {
+                        uniqueEventCategories.add(event.category);
+                    }
+                });
+
+                setEventCategories(['All', ...Array.from(uniqueEventCategories).sort()]);
+                setEventsLoading(false);
+            })
+            .catch(error => {
+                console.error('Error loading events:', error);
+                setEventsLoading(false);
             });
     }, [router]);
 
@@ -98,6 +129,46 @@ export default function ClubsPage() {
         }
     };
 
+    // Helper function to parse event date string into Date object
+    const parseEventDate = (dateStr: string): Date | null => {
+        try {
+            // Expected format: "Tue, Jan 27, 2026"
+            // Remove the day of week part
+            const datePart = dateStr.split(',').slice(1).join(',').trim(); // "Jan 27, 2026"
+            const date = new Date(datePart);
+            if (!isNaN(date.getTime())) {
+                return date;
+            }
+        } catch (e) {
+            console.error('Error parsing date:', dateStr, e);
+        }
+        return null;
+    };
+
+    // Helper function to calculate relative date badge
+    const getDateBadge = (dateStr: string): string => {
+        const eventDate = parseEventDate(dateStr);
+        if (!eventDate) return '';
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        const eventDateOnly = new Date(eventDate);
+        eventDateOnly.setHours(0, 0, 0, 0);
+
+        const diffTime = eventDateOnly.getTime() - today.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 0) return 'TODAY';
+        if (diffDays === 1) return 'TOMORROW';
+        if (diffDays > 1 && diffDays <= 7) return `IN ${diffDays} DAYS`;
+        
+        return '';
+    };
+
     const filteredClubs = clubs.filter(club => {
         const subcats = club.subcategories?.split(',').map(s => s.trim().toLowerCase()) || [];
         const categoryMatch = selectedCategories.includes('All') || selectedCategories.some(c => subcats.includes(c.toLowerCase()));
@@ -110,9 +181,58 @@ export default function ClubsPage() {
         return categoryMatch && searchMatch;
     });
 
-    const filteredEvents = selectedCategories.includes('All')
-        ? EVENTS
-        : EVENTS.filter(event => selectedCategories.includes(event.category));
+    const filteredEvents = events.filter(event => {
+        // Parse event date and filter out past events
+        const eventDate = parseEventDate(event.date);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        // Only show future events (today and onwards)
+        if (eventDate) {
+            const eventDateOnly = new Date(eventDate);
+            eventDateOnly.setHours(0, 0, 0, 0);
+            if (eventDateOnly < today) {
+                return false;
+            }
+        }
+
+        const categoryMatch = selectedCategories.includes('All') || 
+            selectedCategories.includes(event.category) ||
+            event.allTags?.some(tag => selectedCategories.includes(tag));
+
+        const searchMatch = searchQuery === '' ||
+            event.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            event.organization?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            event.location?.toLowerCase().includes(searchQuery.toLowerCase());
+
+        return categoryMatch && searchMatch;
+    });
+
+    // Sort events by date (earliest first)
+    const sortedEvents = [...filteredEvents].sort((a, b) => {
+        const dateA = parseEventDate(a.date);
+        const dateB = parseEventDate(b.date);
+        if (!dateA || !dateB) return 0;
+        return dateA.getTime() - dateB.getTime();
+    });
+
+    // Get the appropriate categories based on active tab
+    const currentCategories = activeTab === 'clubs' ? clubCategories : eventCategories;
+
+    // Helper function to format date for display
+    const formatEventDate = (dateStr: string) => {
+        try {
+            const eventDate = parseEventDate(dateStr);
+            if (eventDate) {
+                const day = eventDate.getDate();
+                const month = eventDate.toLocaleDateString('en-US', { month: 'short' });
+                return { day: day.toString(), month };
+            }
+        } catch (e) {
+            console.error('Error formatting date:', dateStr);
+        }
+        return { day: '--', month: '---' };
+    };
 
     return (
         <div className={styles.container}>
@@ -137,20 +257,52 @@ export default function ClubsPage() {
                 <div className={styles.heroContent}>
                     <h1>University of Arizona Clubs &amp; Events</h1>
                     <p className={styles.heroSubtext}>
-                        Discover {clubs.length} student organizations and upcoming events that match your interests.
+                        Discover {clubs.length} student organizations and {sortedEvents.length} upcoming events that match your interests.
                     </p>
                 </div>
             </section>
 
             <main className={styles.main}>
+                {/* Search Bar */}
+                <div className={styles.searchSection}>
+                    <input
+                        type="text"
+                        placeholder={`Search ${activeTab}...`}
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className={styles.searchInput}
+                    />
+                </div>
 
-                
+                {/* Tabs */}
+                <div className={styles.tabs}>
+                    <button
+                        className={`${styles.tab} ${activeTab === 'clubs' ? styles.activeTab : ''}`}
+                        onClick={() => {
+                            setActiveTab('clubs');
+                            setSelectedCategories(['All']);
+                            setSearchQuery('');
+                        }}
+                    >
+                        Clubs ({filteredClubs.length})
+                    </button>
+                    <button
+                        className={`${styles.tab} ${activeTab === 'events' ? styles.activeTab : ''}`}
+                        onClick={() => {
+                            setActiveTab('events');
+                            setSelectedCategories(['All']);
+                            setSearchQuery('');
+                        }}
+                    >
+                        Upcoming Events ({sortedEvents.length})
+                    </button>
+                </div>
 
                 {/* Category Filter */}
                 <section className={styles.filterSection}>
                     <h2>Filter by Category</h2>
                     <div className={styles.interestTags}>
-                        {categories.map(category => (
+                        {currentCategories.map(category => (
                             <button
                                 key={category}
                                 className={`${styles.interestTag} ${selectedCategories.includes(category) ? styles.selected : ''}`}
@@ -162,26 +314,16 @@ export default function ClubsPage() {
                     </div>
                 </section>
 
-                {/* Tabs */}
-                <div className={styles.tabs}>
-                    <button
-                        className={`${styles.tab} ${activeTab === 'clubs' ? styles.activeTab : ''}`}
-                        onClick={() => setActiveTab('clubs')}
-                    >
-                        Clubs ({filteredClubs.length})
-                    </button>
-                    <button
-                        className={`${styles.tab} ${activeTab === 'events' ? styles.activeTab : ''}`}
-                        onClick={() => setActiveTab('events')}
-                    >
-                        Upcoming Events ({filteredEvents.length})
-                    </button>
-                </div>
-
                 {/* Loading State */}
-                {loading && (
+                {loading && activeTab === 'clubs' && (
                     <div className={styles.loadingState}>
                         <p>Loading clubs...</p>
+                    </div>
+                )}
+
+                {eventsLoading && activeTab === 'events' && (
+                    <div className={styles.loadingState}>
+                        <p>Loading events...</p>
                     </div>
                 )}
 
@@ -203,7 +345,6 @@ export default function ClubsPage() {
                                         )}
                                         <div className={styles.clubHeader}>
                                             <span className={styles.categoryBadge}>{club.type || 'Student Organization'}</span>
-                                           
                                         </div>
                                         <h3>{club.name}</h3>
                                         {club.subcategories && (
@@ -218,7 +359,6 @@ export default function ClubsPage() {
                                             <span>📋 {club.membership_type || 'Lifetime membership'}</span>
                                         </div>
                                         <div className={styles.clubActions}>
-                                            
                                             {club.url && (
                                                 <a 
                                                     href={club.url} 
@@ -238,28 +378,58 @@ export default function ClubsPage() {
                 )}
 
                 {/* Events List */}
-                {activeTab === 'events' && (
+                {activeTab === 'events' && !eventsLoading && (
                     <section className={styles.listSection}>
-                        <div className={styles.eventsGrid}>
-                            {filteredEvents.map(event => (
-                                <div key={event.id} className={styles.eventCard}>
-                                    <div className={styles.eventDate}>
-                                        <span className={styles.eventDay}>{event.date.split(' ')[1]?.replace(',', '')}</span>
-                                        <span className={styles.eventMonth}>{event.date.split(' ')[0]}</span>
-                                    </div>
-                                    <div className={styles.eventInfo}>
-                                        <span className={styles.categoryBadge}>{event.category}</span>
-                                        <h3>{event.title}</h3>
-                                        <p className={styles.description}>{event.description}</p>
-                                        <div className={styles.eventMeta}>
-                                            <span>🕐 {event.time}</span>
-                                            <span>📍 {event.location}</span>
+                        {sortedEvents.length === 0 ? (
+                            <div className={styles.emptyState}>
+                                <p>No upcoming events found matching your criteria.</p>
+                            </div>
+                        ) : (
+                            <div className={styles.eventsGrid}>
+                                {sortedEvents.map(event => {
+                                    const { day, month } = formatEventDate(event.date);
+                                    const badge = getDateBadge(event.date);
+                                    return (
+                                        <div key={event.id} className={styles.eventCard}>
+                                            <div className={styles.eventDate}>
+                                                <span className={styles.eventDay}>{day}</span>
+                                                <span className={styles.eventMonth}>{month}</span>
+                                                {badge && (
+                                                    <span className={styles.eventBadge}>{badge}</span>
+                                                )}
+                                            </div>
+                                            <div className={styles.eventInfo}>
+                                                
+                                                <h3>{event.name}</h3>
+                                                <p className={styles.organization}>By {event.organization}</p>
+                                                <div className={styles.eventMeta}>
+                                                    <span>🕐 {event.time}</span>
+                                                    <span>📍 {event.location || 'Location TBA'}</span>
+                                                    {event.attendees > 0 && (
+                                                        <span>👥 {event.attendees} going</span>
+                                                    )}
+                                                </div>
+                                                {event.tags && event.tags.length > 0 && (
+                                                    <div className={styles.eventTags}>
+                                                        {event.tags.slice(0, 3).map((tag, idx) => (
+                                                            <span key={idx} className={styles.tag}>{tag}</span>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <a 
+                                                href={event.url} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className={styles.rsvpBtn}
+                                            >
+                                                View Event
+                                            </a>
                                         </div>
-                                    </div>
-                                    <button className={styles.rsvpBtn}>RSVP</button>
-                                </div>
-                            ))}
-                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </section>
                 )}
             </main>
