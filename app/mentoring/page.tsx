@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '../styles/mentoring.module.css';
 
@@ -137,6 +137,33 @@ export default function MentoringPage() {
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [bookedSlot, setBookedSlot] = useState<TimeSlot | null>(null);
     const [meetingType, setMeetingType] = useState<'In-Person' | 'Online'>('Online');
+    const [sessionType, setSessionType] = useState<'individual' | 'group' | 'pass'>('individual');
+    const [groupEmails, setGroupEmails] = useState<string[]>(['', '', '']);
+    const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+    const [paymentSuccess, setPaymentSuccess] = useState(false);
+
+    // Check for Stripe redirect
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('success') === 'true') {
+            setPaymentSuccess(true);
+            setShowSuccessModal(true);
+        }
+        if (params.get('canceled') === 'true') {
+            alert('Payment was canceled. Please try again.');
+        }
+        // Clean up URL
+        if (params.get('success') || params.get('canceled')) {
+            window.history.replaceState({}, '', '/mentoring');
+        }
+    }, []);
+
+    // Session pricing
+    const PRICING = {
+        individual: { label: 'Individual Session', price: 20, description: 'One-on-one' },
+        group: { label: 'Group Session', price: 60, description: 'Up to 3 students' },
+        pass: { label: '5-Session Pass', price: 100, description: '5 sessions (Save $0!)' },
+    };
 
     const filteredMentors = MENTORS.filter(m =>
         m.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -149,9 +176,38 @@ export default function MentoringPage() {
         setMeetingType(mentor.supportsOnline ? 'Online' : 'In-Person');
     };
 
-    const handleBookSlot = (slot: TimeSlot) => {
-        setBookedSlot(slot);
-        setShowSuccessModal(true);
+    const handleBookSlot = async (slot: TimeSlot) => {
+        if (!selectedMentor) return;
+
+        setIsProcessingPayment(true);
+        try {
+            const userEmail = localStorage.getItem('userEmail') || localStorage.getItem('studentEmail');
+
+            const response = await fetch('/api/payments/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    sessionType,
+                    mentorName: selectedMentor.name,
+                    timeSlot: `${slot.day}, ${slot.date} at ${slot.time}`,
+                    userEmail,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (data.url) {
+                // Redirect to Stripe Checkout
+                window.location.href = data.url;
+            } else {
+                throw new Error(data.error || 'Failed to create checkout session');
+            }
+        } catch (error) {
+            console.error('Payment error:', error);
+            alert('Failed to process payment. Please try again.');
+        } finally {
+            setIsProcessingPayment(false);
+        }
     };
 
     const handleCloseModal = () => {
@@ -322,6 +378,39 @@ export default function MentoringPage() {
                                             In-Person (Campus)
                                         </button>
                                     )}
+                                </div>
+                            </div>
+
+                            <div style={{ marginBottom: '24px' }}>
+                                <p style={{ fontWeight: '600', marginBottom: '12px', color: 'var(--uofa-blue)' }}>Select Session Type:</p>
+                                <div className={styles.meetingTypeToggle} style={{ flexWrap: 'wrap', gap: '8px' }}>
+                                    <button
+                                        className={`${styles.typeBtn} ${sessionType === 'individual' ? styles.typeBtnActive : ''}`}
+                                        onClick={() => setSessionType('individual')}
+                                        style={{ flex: '1 1 150px' }}
+                                    >
+                                        <div style={{ fontWeight: '600' }}>Individual</div>
+                                        <div style={{ fontSize: '1.25rem', fontWeight: '700', color: sessionType === 'individual' ? 'white' : 'var(--uofa-blue)' }}>$20</div>
+                                        <div style={{ fontSize: '0.75rem', opacity: 0.8 }}>One-on-one</div>
+                                    </button>
+                                    <button
+                                        className={`${styles.typeBtn} ${sessionType === 'group' ? styles.typeBtnActive : ''}`}
+                                        onClick={() => setSessionType('group')}
+                                        style={{ flex: '1 1 150px' }}
+                                    >
+                                        <div style={{ fontWeight: '600' }}>Group Session</div>
+                                        <div style={{ fontSize: '1.25rem', fontWeight: '700', color: sessionType === 'group' ? 'white' : 'var(--uofa-blue)' }}>$60</div>
+                                        <div style={{ fontSize: '0.75rem', opacity: 0.8 }}>Up to 3 students</div>
+                                    </button>
+                                    <button
+                                        className={`${styles.typeBtn} ${sessionType === 'pass' ? styles.typeBtnActive : ''}`}
+                                        onClick={() => setSessionType('pass')}
+                                        style={{ flex: '1 1 150px' }}
+                                    >
+                                        <div style={{ fontWeight: '600' }}>5-Session Pass</div>
+                                        <div style={{ fontSize: '1.25rem', fontWeight: '700', color: sessionType === 'pass' ? 'white' : 'var(--uofa-blue)' }}>$100</div>
+                                        <div style={{ fontSize: '0.75rem', opacity: 0.8 }}>Save $0!</div>
+                                    </button>
                                 </div>
                             </div>
 

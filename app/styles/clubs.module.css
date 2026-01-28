@@ -121,6 +121,78 @@
     margin: 0 auto;
 }
 
+/* Search Section */
+.searchSection {
+    background: var(--color-surface);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.searchContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 16px;
+    color: var(--uofa-blue);
+    pointer-events: none;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 16px 50px;
+    font-size: 1.1rem;
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--bg-light);
+    color: var(--text-primary);
+    transition: all 0.3s;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--uofa-blue);
+    box-shadow: 0 0 0 4px rgba(12, 35, 75, 0.1);
+}
+
+.searchInput::placeholder {
+    color: var(--text-secondary);
+}
+
+.clearSearch {
+    position: absolute;
+    right: 16px;
+    background: var(--color-border);
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.clearSearch:hover {
+    background: var(--uofa-red);
+    color: white;
+}
+
+.searchResults {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--uofa-blue);
+    font-weight: 500;
+}
+
 /* Filter Section */
 .filterSection {
     background: var(--color-surface);

@@ -63,9 +63,11 @@ export default function Dashboard() {
           </div>
         </div>
         <div className={styles.headerRight}>
-          <div className={styles.userInfo}>
-            <div className={styles.userAvatar}>{studentName.charAt(0).toUpperCase()}</div>
-            <span className={styles.userEmail}>{localStorage.getItem('userEmail')}</span>
+          <div className={styles.userInfo} onClick={() => router.push('/profile')} style={{ cursor: 'pointer' }}>
+            <div className={styles.userAvatar}>
+              {studentName ? studentName.split(' ').map(n => n.charAt(0).toUpperCase()).join('').slice(0, 2) : '?'}
+            </div>
+            <span className={styles.userName}>{studentName || 'User'}</span>
           </div>
           <button className={styles.logoutBtn} onClick={handleLogout}>
             Logout

@@ -43,7 +43,6 @@ export default function ProgressPage() {
     const [showAddCourse, setShowAddCourse] = useState(false);
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         const name = localStorage.getItem('studentName');
         if (!name) {
             router.push('/');
@@ -51,17 +50,48 @@ export default function ProgressPage() {
         }
         setStudentName(name);
 
-        // Load saved courses from localStorage
-        const savedCourses = localStorage.getItem('savedCourses');
-        if (savedCourses) {
-            const parsed = JSON.parse(savedCourses);
-            setCourses(parsed);
-        }
+        // Load saved courses from MongoDB first, fallback to localStorage
+        const loadCourses = async () => {
+            const userId = localStorage.getItem('userId') || localStorage.getItem('userEmail');
+            if (userId) {
+                try {
+                    const response = await fetch(`/api/user/courses?userId=${encodeURIComponent(userId)}`);
+                    const data = await response.json();
+                    if (data.courses?.length > 0) {
+                        setCourses(data.courses);
+                        return;
+                    }
+                } catch (error) {
+                    console.error('Error loading courses from DB:', error);
+                }
+            }
+            // Fallback to localStorage
+            const savedCourses = localStorage.getItem('savedCourses');
+            if (savedCourses) {
+                const parsed = JSON.parse(savedCourses);
+                setCourses(parsed);
+            }
+        };
+        loadCourses();
     }, [router]);
 
-    const saveCourses = (updatedCourses: Course[]) => {
+    const saveCourses = async (updatedCourses: Course[]) => {
         setCourses(updatedCourses);
         localStorage.setItem('savedCourses', JSON.stringify(updatedCourses));
+
+        // Also save to MongoDB
+        const userId = localStorage.getItem('userId') || localStorage.getItem('userEmail');
+        if (userId) {
+            try {
+                await fetch('/api/user/courses', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId, courses: updatedCourses }),
+                });
+            } catch (error) {
+                console.error('Error saving courses to DB:', error);
+            }
+        }
     };
 
     const addNewCourse = () => {

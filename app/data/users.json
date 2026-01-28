@@ -42,5 +42,21 @@
     "password": "112233",
     "fullName": "23864879",
     "studentId": "A00329068"
+  },
+  {
+    "id": "1769539687112",
+    "authMethod": "netid",
+    "identifier": "Karankumar11",
+    "password": "AhaURR6LdKmbA%8N",
+    "fullName": "Karankumar11",
+    "studentId": "A00133209"
+  },
+  {
+    "id": "1769565806000",
+    "authMethod": "netid",
+    "identifier": "dvcnmf",
+    "password": "cKG7pTFStqW%jbCq",
+    "fullName": "Dvcnmf",
+    "studentId": "A00350465"
   }
 ]

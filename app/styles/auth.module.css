@@ -330,3 +330,72 @@
     padding: 16px;
   }
 }
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.divider span {
+  padding: 0 16px;
+}
+
+/* Google Sign-In Button */
+.googleBtn {
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+
+.googleBtn:hover:not(:disabled) {
+  background: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+.googleBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Generate Password Button */
+.generateBtn {
+  margin-top: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #0C234B, #1E3A5F);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.generateBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(12, 35, 75, 0.3);
+}

@@ -43,6 +43,27 @@
           "d55268e98c36",
           "4a5ebd323a96"
         ]
+      },
+      {
+        "userId": "karankumar1@uofa.edu",
+        "courseNumber": "CSC 210",
+        "courseName": "Data Structures",
+        "attemptDate": "2026-01-28T01:57:56.124Z",
+        "score": 3,
+        "total": 10,
+        "percentage": 30,
+        "questionsUsed": [
+          "4e74653c10c9",
+          "5604560bbd42",
+          "2e26a579142c",
+          "8f5628367808",
+          "77ac4d961c4b",
+          "9c761ffc2dd3",
+          "48bd005cad82",
+          "1d5605b92962",
+          "6594fc8e9aaf",
+          "3c1d0edeaf56"
+        ]
       }
     ]
   }

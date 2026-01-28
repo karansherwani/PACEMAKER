@@ -152,7 +152,7 @@ export default function ClubsPage() {
 
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        
+
         const tomorrow = new Date(today);
         tomorrow.setDate(tomorrow.getDate() + 1);
 
@@ -165,7 +165,7 @@ export default function ClubsPage() {
         if (diffDays === 0) return 'TODAY';
         if (diffDays === 1) return 'TOMORROW';
         if (diffDays > 1 && diffDays <= 7) return `IN ${diffDays} DAYS`;
-        
+
         return '';
     };
 
@@ -186,7 +186,7 @@ export default function ClubsPage() {
         const eventDate = parseEventDate(event.date);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        
+
         // Only show future events (today and onwards)
         if (eventDate) {
             const eventDateOnly = new Date(eventDate);
@@ -196,7 +196,7 @@ export default function ClubsPage() {
             }
         }
 
-        const categoryMatch = selectedCategories.includes('All') || 
+        const categoryMatch = selectedCategories.includes('All') ||
             selectedCategories.includes(event.category) ||
             event.allTags?.some(tag => selectedCategories.includes(tag));
 
@@ -360,9 +360,9 @@ export default function ClubsPage() {
                                         </div>
                                         <div className={styles.clubActions}>
                                             {club.url && (
-                                                <a 
-                                                    href={club.url} 
-                                                    target="_blank" 
+                                                <a
+                                                    href={club.url}
+                                                    target="_blank"
                                                     rel="noopener noreferrer"
                                                     className={styles.joinBtn}
                                                 >
@@ -399,7 +399,7 @@ export default function ClubsPage() {
                                                 )}
                                             </div>
                                             <div className={styles.eventInfo}>
-                                                
+
                                                 <h3>{event.name}</h3>
                                                 <p className={styles.organization}>By {event.organization}</p>
                                                 <div className={styles.eventMeta}>
@@ -417,9 +417,9 @@ export default function ClubsPage() {
                                                     </div>
                                                 )}
                                             </div>
-                                            <a 
-                                                href={event.url} 
-                                                target="_blank" 
+                                            <a
+                                                href={event.url}
+                                                target="_blank"
                                                 rel="noopener noreferrer"
                                                 className={styles.rsvpBtn}
                                             >

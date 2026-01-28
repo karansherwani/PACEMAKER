@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useMemo } from 'react';
+import { useState, useRef, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -32,6 +32,42 @@ export default function PlacementsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [plannedCourses, setPlannedCourses] = useState<Course[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [loadingTranscript, setLoadingTranscript] = useState(true);
+
+  // Check for saved transcript on load
+  useEffect(() => {
+    const checkSavedTranscript = async () => {
+      const userId = localStorage.getItem('userId') || localStorage.getItem('userEmail');
+      if (!userId) {
+        setLoadingTranscript(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/upload?userId=${encodeURIComponent(userId)}`);
+        const data = await response.json();
+
+        if (data.hasTranscript && data.courses?.length > 0) {
+          // Transform to CourseGrade format
+          const savedGrades: CourseGrade[] = data.courses.map((c: { course: string; description: string; grade: string; credits: number; term: string }) => ({
+            course: c.course,
+            description: c.description,
+            grade: c.grade,
+            credits: c.credits,
+            term: c.term,
+          }));
+          setGrades(savedGrades);
+          setStep('results');
+        }
+      } catch (error) {
+        console.error('Error checking saved transcript:', error);
+      } finally {
+        setLoadingTranscript(false);
+      }
+    };
+
+    checkSavedTranscript();
+  }, []);
 
   // Get all courses for search
   const allCourses = useMemo(() => getCourses(), []);
@@ -543,7 +579,7 @@ export default function PlacementsPage() {
               .map(term => {
                 const termCourses = grades.filter(g => g.term === term);
                 if (termCourses.length === 0) return null;
-                
+
                 // Check if this is the most recent term with IP courses
                 const hasInProgress = termCourses.some(c => c.grade === 'IP');
                 const isCurrentTerm = hasInProgress;
@@ -554,7 +590,6 @@ export default function PlacementsPage() {
                       <h3>{term}</h3>
                       {isCurrentTerm && <span className={styles.currentBadge}>Current</span>}
                     </div>
-
                     <div className={styles.courseList}>
                       {termCourses.map((g, i) => (
                         <div key={i} className={styles.courseRow}>

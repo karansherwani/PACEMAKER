@@ -125,7 +125,7 @@ export async function parseTranscriptPDF(buffer: Buffer): Promise<ParsedTranscri
         // Build a map with course code as key, but keep courses in reverse order
         // so the last occurrence (most recent) is kept
         const uniqueCoursesMap = new Map<string, CourseGrade>();
-        
+
         // Process in reverse to prioritize most recent terms when de-duplicating
         for (let i = courses.length - 1; i >= 0; i--) {
             const course = courses[i];

@@ -1,49 +1,77 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-
-// Mock user database - Replace with your real database
-const users = [
-    {
-        id: '1',
-        email: 'karan@example.com',
-        name: 'Karan Kumar',
-        password: 'password123',
-    },
-    {
-        id: '2',
-        email: 'student@example.com',
-        name: 'Test Student',
-        password: 'password123',
-    },
-];
+import GoogleProvider from 'next-auth/providers/google';
+import connectToDatabase from '@/app/lib/mongodb';
+import User from '@/app/models/User';
+import bcrypt from 'bcryptjs';
 
 export const authOptions: NextAuthOptions = {
     providers: [
+        // Google OAuth Provider
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID || '',
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+        }),
+        // Credentials Provider (Email/Password)
         CredentialsProvider({
             name: 'Credentials',
             credentials: {
                 email: { label: 'Email', type: 'text' },
                 password: { label: 'Password', type: 'password' },
+                isSignup: { label: 'Is Signup', type: 'text' },
             },
             async authorize(credentials) {
                 if (!credentials?.email || !credentials?.password) {
                     throw new Error('Email and password are required');
                 }
 
-                // Find user in database
-                const user = users.find(
-                    u => u.email === credentials.email && u.password === credentials.password
-                );
+                try {
+                    await connectToDatabase();
 
-                if (!user) {
-                    throw new Error('Invalid email or password');
+                    const user = await User.findOne({ email: credentials.email.toLowerCase() });
+
+                    // Handle signup
+                    if (credentials.isSignup === 'true') {
+                        if (user) {
+                            throw new Error('An account with this email already exists');
+                        }
+
+                        // Hash password and create new user
+                        const hashedPassword = await bcrypt.hash(credentials.password, 12);
+                        const newUser = await User.create({
+                            email: credentials.email.toLowerCase(),
+                            password: hashedPassword,
+                            authProvider: 'credentials',
+                            profile: { fullName: '' },
+                        });
+
+                        return {
+                            id: newUser._id.toString(),
+                            email: newUser.email,
+                            name: newUser.profile?.fullName || '',
+                        };
+                    }
+
+                    // Handle signin
+                    if (!user) {
+                        throw new Error('Invalid email or password');
+                    }
+
+                    // Check password
+                    const isValid = await bcrypt.compare(credentials.password, user.password || '');
+                    if (!isValid) {
+                        throw new Error('Invalid email or password');
+                    }
+
+                    return {
+                        id: user._id.toString(),
+                        email: user.email,
+                        name: user.profile?.fullName || '',
+                    };
+                } catch (error) {
+                    console.error('Auth error:', error);
+                    throw error;
                 }
-
-                return {
-                    id: user.id,
-                    email: user.email,
-                    name: user.name,
-                };
             },
         }),
     ],
@@ -52,10 +80,36 @@ export const authOptions: NextAuthOptions = {
         error: '/auth',
     },
     callbacks: {
-        async jwt({ token, user }) {
+        async signIn({ user, account }) {
+            // Handle Google OAuth sign in
+            if (account?.provider === 'google') {
+                try {
+                    await connectToDatabase();
+
+                    // Check if user exists, if not create
+                    const existingUser = await User.findOne({ email: user.email?.toLowerCase() });
+
+                    if (!existingUser) {
+                        await User.create({
+                            email: user.email?.toLowerCase(),
+                            authProvider: 'google',
+                            profile: { fullName: user.name || '' },
+                        });
+                    }
+                } catch (error) {
+                    console.error('Google sign-in error:', error);
+                    return false;
+                }
+            }
+            return true;
+        },
+        async jwt({ token, user, account }) {
             if (user) {
                 token.id = user.id;
                 token.email = user.email;
+            }
+            if (account) {
+                token.provider = account.provider;
             }
             return token;
         },
