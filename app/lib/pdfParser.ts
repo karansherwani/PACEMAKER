@@ -2,8 +2,16 @@
 // Use pdf-parse v2 with the named PDFParse export
 import { PDFParse } from 'pdf-parse';
 
+// Student Information extracted from transcript
+export interface StudentInfo {
+    name: string | null;
+    studentId: string | null;
+    dateOfBirth: string | null;
+}
+
 export interface ParsedTranscript {
     courses: CourseGrade[];
+    studentInfo: StudentInfo;
 }
 
 export interface CourseGrade {
@@ -15,7 +23,78 @@ export interface CourseGrade {
 }
 
 /**
- * Parse a PDF transcript to extract course grades
+ * Extract student information from transcript text
+ */
+function extractStudentInfo(text: string): StudentInfo {
+    const lines = text.split('\n');
+    let name: string | null = null;
+    let studentId: string | null = null;
+    let dateOfBirth: string | null = null;
+
+    // Common patterns for student name
+    // Pattern 1: "Name: John Doe" or "Student Name: John Doe"
+    const namePattern1 = /(?:Student\s*)?Name\s*[:\-]?\s*([A-Za-z]+(?:\s+[A-Za-z]+)+)/i;
+    // Pattern 2: Look for a capitalized name near the top (typically first few lines)
+    const namePattern2 = /^([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3})$/;
+
+    // Student ID patterns - typically 8-10 digits
+    const studentIdPattern1 = /(?:Student\s*)?(?:ID|Id|#)\s*[:\-]?\s*(\d{7,10})/i;
+    const studentIdPattern2 = /(?:EmplID|EMPLID|Empl\s*ID)\s*[:\-]?\s*(\d{7,10})/i;
+    const studentIdPattern3 = /^(\d{8,10})$/; // Standalone 8-10 digit number
+
+    // Date of Birth patterns
+    const dobPattern1 = /(?:Date\s*of\s*Birth|DOB|D\.O\.B|Birth\s*Date)\s*[:\-]?\s*(\d{1,2}[\/-]\d{1,2}[\/-]\d{2,4})/i;
+    const dobPattern2 = /(?:Date\s*of\s*Birth|DOB|D\.O\.B|Birth\s*Date)\s*[:\-]?\s*([A-Za-z]+\s+\d{1,2},?\s+\d{4})/i;
+
+    // Search through lines for student info
+    for (let i = 0; i < Math.min(lines.length, 50); i++) {
+        const line = lines[i].trim();
+
+        // Try to find student name
+        if (!name) {
+            let match = line.match(namePattern1);
+            if (match) {
+                name = match[1].trim();
+            } else if (i < 10) {
+                // Check for capitalized name in first 10 lines
+                match = line.match(namePattern2);
+                if (match && !line.includes('University') && !line.includes('College') && !line.includes('Transcript')) {
+                    name = match[1].trim();
+                }
+            }
+        }
+
+        // Try to find student ID
+        if (!studentId) {
+            let match = line.match(studentIdPattern1) || line.match(studentIdPattern2);
+            if (match) {
+                studentId = match[1].trim();
+            } else {
+                match = line.match(studentIdPattern3);
+                if (match && line.length === match[1].length) {
+                    studentId = match[1].trim();
+                }
+            }
+        }
+
+        // Try to find date of birth
+        if (!dateOfBirth) {
+            const match = line.match(dobPattern1) || line.match(dobPattern2);
+            if (match) {
+                dateOfBirth = match[1].trim();
+            }
+        }
+
+        // Stop if we found all info
+        if (name && studentId && dateOfBirth) break;
+    }
+
+    console.log('Extracted student info:', { name, studentId, dateOfBirth });
+    return { name, studentId, dateOfBirth };
+}
+
+/**
+ * Parse a PDF transcript to extract course grades and student information
  * Uses pdf-parse v2 API for Node.js/Next.js server environment
  */
 export async function parseTranscriptPDF(buffer: Buffer): Promise<ParsedTranscript> {
@@ -27,7 +106,8 @@ export async function parseTranscriptPDF(buffer: Buffer): Promise<ParsedTranscri
         const result = await pdfParser.getText();
         const text = result.text;
 
-
+        // Extract student information for verification
+        const studentInfo = extractStudentInfo(text);
 
         // Extract Courses
         const courses: CourseGrade[] = [];
@@ -145,6 +225,7 @@ export async function parseTranscriptPDF(buffer: Buffer): Promise<ParsedTranscri
 
         return {
             courses: finalCourses,
+            studentInfo,
         };
     } catch (error) {
         console.error('Error parsing PDF:', error);

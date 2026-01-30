@@ -18,6 +18,21 @@ interface Course {
     components: GradeComponent[];
 }
 
+interface TranscriptCourse {
+    course: string;
+    description: string;
+    grade: string;
+    credits: number;
+    term: string;
+}
+
+interface GPACalculatorCourse {
+    id: string;
+    name: string;
+    credits: number;
+    expectedGrade: string;
+}
+
 const GRADE_THRESHOLDS = [
     { grade: 'A', min: 90 },
     { grade: 'B', min: 80 },
@@ -25,6 +40,16 @@ const GRADE_THRESHOLDS = [
     { grade: 'D', min: 60 },
     { grade: 'E', min: 0 },
 ];
+
+const GRADE_POINTS: Record<string, number> = {
+    'A+': 4.0, 'A': 4.0, 'A-': 3.7,
+    'B+': 3.3, 'B': 3.0, 'B-': 2.7,
+    'C+': 2.3, 'C': 2.0, 'C-': 1.7,
+    'D+': 1.3, 'D': 1.0, 'D-': 0.7,
+    'E': 0.0, 'F': 0.0, 'W': 0.0,
+};
+
+const GRADE_OPTIONS = ['A', 'B', 'C', 'D', 'E'];
 
 const DEFAULT_COMPONENTS: GradeComponent[] = [
     { id: '1', name: 'Midterm 1', weight: 25, score: null, completed: false },
@@ -42,6 +67,15 @@ export default function ProgressPage() {
     const [newCourseName, setNewCourseName] = useState('');
     const [showAddCourse, setShowAddCourse] = useState(false);
 
+    // Transcript data
+    const [transcriptCourses, setTranscriptCourses] = useState<TranscriptCourse[]>([]);
+    const [loadingTranscript, setLoadingTranscript] = useState(true);
+
+    // GPA Calculator State
+    const [previousCredits, setPreviousCredits] = useState<string>('');
+    const [previousGPA, setPreviousGPA] = useState<string>('');
+    const [gpaCalculatorCourses, setGpaCalculatorCourses] = useState<GPACalculatorCourse[]>([]);
+
     useEffect(() => {
         const name = localStorage.getItem('studentName');
         if (!name) {
@@ -50,30 +84,86 @@ export default function ProgressPage() {
         }
         setStudentName(name);
 
-        // Load saved courses from MongoDB first, fallback to localStorage
-        const loadCourses = async () => {
-            const userId = localStorage.getItem('userId') || localStorage.getItem('userEmail');
-            if (userId) {
-                try {
-                    const response = await fetch(`/api/user/courses?userId=${encodeURIComponent(userId)}`);
-                    const data = await response.json();
-                    if (data.courses?.length > 0) {
-                        setCourses(data.courses);
-                        return;
-                    }
-                } catch (error) {
-                    console.error('Error loading courses from DB:', error);
+        // Load saved courses and transcript
+        loadCourses();
+        loadTranscript();
+    }, [router]);
+
+    const loadCourses = async () => {
+        const userId = localStorage.getItem('userId') || localStorage.getItem('userEmail');
+        if (userId) {
+            try {
+                const response = await fetch(`/api/user/courses?userId=${encodeURIComponent(userId)}`);
+                const data = await response.json();
+                if (data.courses?.length > 0) {
+                    setCourses(data.courses);
+                    return;
+                }
+            } catch (error) {
+                console.error('Error loading courses from DB:', error);
+            }
+        }
+        // Fallback to localStorage
+        const savedCourses = localStorage.getItem('savedCourses');
+        if (savedCourses) {
+            const parsed = JSON.parse(savedCourses);
+            setCourses(parsed);
+        }
+    };
+
+    const loadTranscript = async () => {
+        const userId = localStorage.getItem('userId') || localStorage.getItem('userEmail');
+        if (!userId) {
+            setLoadingTranscript(false);
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/upload?userId=${encodeURIComponent(userId)}`);
+            const data = await response.json();
+
+            if (data.hasTranscript && data.courses?.length > 0) {
+                setTranscriptCourses(data.courses);
+
+                // Get current semester courses (in-progress or most recent term)
+                const currentCourses = data.courses.filter((c: TranscriptCourse) =>
+                    c.grade === 'IP' ||
+                    (data.courses.some((x: TranscriptCourse) => x.grade === 'IP') ? false :
+                        c.term === data.courses[data.courses.length - 1].term)
+                );
+
+                // Initialize GPA calculator with current semester courses
+                if (currentCourses.length > 0) {
+                    const gpaCourses: GPACalculatorCourse[] = currentCourses.map((c: TranscriptCourse, i: number) => ({
+                        id: `transcript-${i}`,
+                        name: `${c.course} - ${c.description}`,
+                        credits: c.credits,
+                        expectedGrade: c.grade === 'IP' ? 'B' : c.grade,
+                    }));
+                    setGpaCalculatorCourses(gpaCourses);
+                }
+
+                // Calculate previous credits and GPA from completed courses
+                const completedCourses = data.courses.filter((c: TranscriptCourse) =>
+                    c.grade !== 'IP' && GRADE_POINTS[c.grade] !== undefined
+                );
+
+                if (completedCourses.length > 0) {
+                    const totalCredits = completedCourses.reduce((sum: number, c: TranscriptCourse) => sum + c.credits, 0);
+                    const totalPoints = completedCourses.reduce((sum: number, c: TranscriptCourse) =>
+                        sum + (GRADE_POINTS[c.grade] || 0) * c.credits, 0);
+                    const gpa = totalCredits > 0 ? totalPoints / totalCredits : 0;
+
+                    setPreviousCredits(totalCredits.toString());
+                    setPreviousGPA(gpa.toFixed(2));
                 }
             }
-            // Fallback to localStorage
-            const savedCourses = localStorage.getItem('savedCourses');
-            if (savedCourses) {
-                const parsed = JSON.parse(savedCourses);
-                setCourses(parsed);
-            }
-        };
-        loadCourses();
-    }, [router]);
+        } catch (error) {
+            console.error('Error loading transcript:', error);
+        } finally {
+            setLoadingTranscript(false);
+        }
+    };
 
     const saveCourses = async (updatedCourses: Course[]) => {
         setCourses(updatedCourses);
@@ -173,6 +263,50 @@ export default function ProgressPage() {
         saveCourses(updatedCourses);
     };
 
+    // GPA Calculator Functions
+    const updateGPACourse = (id: string, field: 'expectedGrade' | 'credits', value: string | number) => {
+        setGpaCalculatorCourses(prev =>
+            prev.map(c => c.id === id ? { ...c, [field]: value } : c)
+        );
+    };
+
+    const addGPACourse = () => {
+        const newCourse: GPACalculatorCourse = {
+            id: `new-${Date.now()}`,
+            name: 'New Course',
+            credits: 3,
+            expectedGrade: 'B',
+        };
+        setGpaCalculatorCourses([...gpaCalculatorCourses, newCourse]);
+    };
+
+    const removeGPACourse = (id: string) => {
+        setGpaCalculatorCourses(prev => prev.filter(c => c.id !== id));
+    };
+
+    const calculateCumulativeGPA = () => {
+        const prevCredits = parseFloat(previousCredits) || 0;
+        const prevGPA = parseFloat(previousGPA) || 0;
+        const prevPoints = prevCredits * prevGPA;
+
+        const currentCredits = gpaCalculatorCourses.reduce((sum, c) => sum + c.credits, 0);
+        const currentPoints = gpaCalculatorCourses.reduce((sum, c) =>
+            sum + (GRADE_POINTS[c.expectedGrade] || 0) * c.credits, 0);
+
+        const totalCredits = prevCredits + currentCredits;
+        const totalPoints = prevPoints + currentPoints;
+
+        return totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : '0.00';
+    };
+
+    const calculateCurrentSemesterGPA = () => {
+        const currentCredits = gpaCalculatorCourses.reduce((sum, c) => sum + c.credits, 0);
+        const currentPoints = gpaCalculatorCourses.reduce((sum, c) =>
+            sum + (GRADE_POINTS[c.expectedGrade] || 0) * c.credits, 0);
+
+        return currentCredits > 0 ? (currentPoints / currentCredits).toFixed(2) : '0.00';
+    };
+
     // Calculate grades for selected course
     const components = selectedCourse?.components || [];
     const totalWeight = components.reduce((sum, c) => sum + c.weight, 0);
@@ -204,6 +338,10 @@ export default function ProgressPage() {
         return 'You got this! 🚀';
     };
 
+    // Get current semester from transcript
+    const currentSemesterCourses = transcriptCourses.filter(c => c.grade === 'IP');
+    const totalCurrentCredits = gpaCalculatorCourses.reduce((sum, c) => sum + c.credits, 0);
+
     return (
         <div className={styles.container}>
             {/* HEADER */}
@@ -227,22 +365,162 @@ export default function ProgressPage() {
                 <div className={styles.heroContent}>
                     <h1>Calculate Your Grades</h1>
                     <p className={styles.heroSubtext}>
-                        Track your progress and calculate what you need on your final exams to achieve your target grades.
+                        Track your progress, calculate final exam scores needed, and project your cumulative GPA.
                     </p>
                 </div>
             </section>
 
             <main className={styles.main}>
-                <div className={styles.welcomeCard}>
-                    <h1>Hi {studentName}! 👋</h1>
-                    <p>Select a course or add a new one to calculate your grades</p>
+                {/* Stats Cards */}
+                <div className={styles.statsGrid}>
+                    <div className={styles.statCard}>
+                        <div className={styles.statIcon}>📊</div>
+                        <div className={styles.statInfo}>
+                            <span className={styles.statValue}>{previousGPA || '—'}</span>
+                            <span className={styles.statLabel}>Current GPA</span>
+                        </div>
+                    </div>
+                    <div className={styles.statCard}>
+                        <div className={styles.statIcon}>📚</div>
+                        <div className={styles.statInfo}>
+                            <span className={styles.statValue}>{currentSemesterCourses.length || gpaCalculatorCourses.length}</span>
+                            <span className={styles.statLabel}>Current Courses</span>
+                        </div>
+                    </div>
+                    <div className={styles.statCard}>
+                        <div className={styles.statIcon}>🎯</div>
+                        <div className={styles.statInfo}>
+                            <span className={styles.statValue}>{totalCurrentCredits}</span>
+                            <span className={styles.statLabel}>Credits This Term</span>
+                        </div>
+                    </div>
+                    <div className={styles.statCard}>
+                        <div className={styles.statIcon}>📈</div>
+                        <div className={styles.statInfo}>
+                            <span className={styles.statValue}>{calculateCumulativeGPA()}</span>
+                            <span className={styles.statLabel}>Projected GPA</span>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Course Selection */}
-                {/* Add Course Section */}
+                <div className={styles.welcomeCard}>
+                    <h1>Hi {studentName}! 👋</h1>
+                    <p>Track your grades, calculate what you need on finals, and project your GPA</p>
+                </div>
+
+                {/* GPA Calculator Section */}
+                <section className={styles.gpaCalculatorSection}>
+                    <div className={styles.sectionHeader}>
+                        <div className={styles.sectionIcon}>📊</div>
+                        <div>
+                            <h2>Cumulative GPA Calculator</h2>
+                            <p>Calculate your projected cumulative GPA based on expected grades</p>
+                        </div>
+                    </div>
+
+                    <div className={styles.gpaInputsGrid}>
+                        <div className={styles.gpaInputCard}>
+                            <label>Previous Credits</label>
+                            <input
+                                type="number"
+                                value={previousCredits}
+                                onChange={(e) => setPreviousCredits(e.target.value)}
+                                placeholder="0"
+                                min="0"
+                                step="1"
+                            />
+                            <span className={styles.inputHint}>Total credits before this semester</span>
+                        </div>
+                        <div className={styles.gpaInputCard}>
+                            <label>Previous GPA</label>
+                            <input
+                                type="number"
+                                value={previousGPA}
+                                onChange={(e) => setPreviousGPA(e.target.value)}
+                                placeholder="0.00"
+                                min="0"
+                                max="4"
+                                step="0.01"
+                            />
+                            <span className={styles.inputHint}>Your GPA before this semester</span>
+                        </div>
+                    </div>
+
+                    <div className={styles.currentCoursesSection}>
+                        <h3>Current Semester Courses</h3>
+                        {loadingTranscript ? (
+                            <div className={styles.loadingState}>
+                                <div className={styles.spinner}></div>
+                                <p>Loading courses from transcript...</p>
+                            </div>
+                        ) : gpaCalculatorCourses.length === 0 ? (
+                            <div className={styles.emptyGPACourses}>
+                                <p>No courses found. Add courses to calculate your GPA.</p>
+                                <button onClick={addGPACourse} className={styles.addGPACourseBtn}>
+                                    + Add Course
+                                </button>
+                            </div>
+                        ) : (
+                            <>
+                                <div className={styles.gpaCoursesTable}>
+                                    <div className={styles.gpaCourseHeader}>
+                                        <span>Course</span>
+                                        <span>Credits</span>
+                                        <span>Expected Grade</span>
+                                        <span></span>
+                                    </div>
+                                    {gpaCalculatorCourses.map((course) => (
+                                        <div key={course.id} className={styles.gpaCourseRow}>
+                                            <span className={styles.gpaCourseName}>{course.name}</span>
+                                            <input
+                                                type="number"
+                                                value={course.credits}
+                                                onChange={(e) => updateGPACourse(course.id, 'credits', parseInt(e.target.value) || 0)}
+                                                className={styles.gpaCreditsInput}
+                                                min="0"
+                                                max="12"
+                                            />
+                                            <select
+                                                value={course.expectedGrade}
+                                                onChange={(e) => updateGPACourse(course.id, 'expectedGrade', e.target.value)}
+                                                className={styles.gpaGradeSelect}
+                                            >
+                                                {GRADE_OPTIONS.map(g => (
+                                                    <option key={g} value={g}>{g}</option>
+                                                ))}
+                                            </select>
+                                            <button
+                                                onClick={() => removeGPACourse(course.id)}
+                                                className={styles.removeCourseBtn}
+                                            >
+                                                ×
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                                <button onClick={addGPACourse} className={styles.addGPACourseBtn}>
+                                    + Add Another Course
+                                </button>
+                            </>
+                        )}
+                    </div>
+
+                    <div className={styles.gpaResultsGrid}>
+                        <div className={styles.gpaResultCard}>
+                            <span className={styles.gpaResultLabel}>Semester GPA</span>
+                            <span className={styles.gpaResultValue}>{calculateCurrentSemesterGPA()}</span>
+                        </div>
+                        <div className={styles.gpaResultCard + ' ' + styles.gpaResultPrimary}>
+                            <span className={styles.gpaResultLabel}>Projected Cumulative GPA</span>
+                            <span className={styles.gpaResultValue}>{calculateCumulativeGPA()}</span>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Course Grade Calculator Section */}
                 <section className={styles.inputSection}>
                     <div className={styles.addCourseContainer}>
-                        <h2>Manage Courses</h2>
+                        <h2>Grade Calculator</h2>
                         {showAddCourse ? (
                             <div className={styles.addCourseForm}>
                                 <input
@@ -299,7 +577,6 @@ export default function ProgressPage() {
                                                     {isExpanded ? '▼' : '▶'}
                                                 </span>
                                                 <span className={styles.courseName}>{course.name}</span>
-                                                {/* <span className={styles.gradeHint}>Needs calculated% for an &quot;A&quot;</span> */}
                                             </div>
                                             <div className={styles.gradeSection}>
                                                 <span className={styles.finalGrade}>{grade.toFixed(1)}%</span>
